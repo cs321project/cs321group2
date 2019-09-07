@@ -1,9 +1,11 @@
 # cs321group2
 
 **Table of Contents**
-1. [Group Members](#group-members)
-2. [Project Description](#project-description)
+* [Group Members](#group-members)
+* [Project Description](#project-description)
+* [Class Information](#class-information)
 
+## Class Information
 |  Semester |  Class   | Section | Group |
 |:---------:|:--------:|:-------:|:-----:|
 | Fall 2019 |   CS321  |   01    |   2   |
