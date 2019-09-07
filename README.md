@@ -1,9 +1,9 @@
 # cs321group2
 
 **Table of Contents**
+* [Class Information](#class-information)
 * [Group Members](#group-members)
 * [Project Description](#project-description)
-* [Class Information](#class-information)
 
 ## Class Information
 |  Semester |  Class   | Section | Group |
