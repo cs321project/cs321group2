@@ -1,10 +1,8 @@
 # cs321group2
 
 **Table of Contents**
-
-[TOCM]
-
-[TOC]
+1. [Group Members](#group-members)
+2. [Project Description](#project-description)
 
 |  Semester |  Class   | Section | Group |
 |:---------:|:--------:|:-------:|:-----:|
