@@ -11,6 +11,6 @@ import Interfaces.ILevel;
  *
  * @author Group 2
  */
-public class BasicLevel implements ILevel{
-    
+public class BasicLevel implements ILevel {
+
 }

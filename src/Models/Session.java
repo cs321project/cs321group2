@@ -5,7 +5,7 @@
  */
 package Models;
 
-import Utils.LogUtil;
+import Utils.Log;
 
 /**
  *
@@ -14,15 +14,17 @@ import Utils.LogUtil;
 public class Session {
 
     private static Session instance = null;
+    public Settings AppSettings = null;
 
     private Session() {
 
-        LogUtil.Verbose("Creating New Session Instance");
+        Log.Debug("Creating New Session Instance");
+        AppSettings = new Settings();
     }
 
     public static Session getInstance() {
 
-        LogUtil.Verbose("Getting Session Instance");
+        Log.Verbose("Getting Session Instance");
 
         if (instance == null) {
             instance = new Session();
@@ -30,4 +32,5 @@ public class Session {
 
         return instance;
     }
+
 }

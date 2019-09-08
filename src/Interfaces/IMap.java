@@ -10,5 +10,5 @@ package Interfaces;
  * @author Group 2
  */
 public interface IMap {
-    
+
 }

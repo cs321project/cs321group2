@@ -12,5 +12,5 @@ import Interfaces.IPlayer;
  * @author Group 2
  */
 public class BasicPlayer implements IPlayer {
-    
+
 }

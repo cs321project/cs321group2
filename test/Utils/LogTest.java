@@ -15,9 +15,9 @@ import org.junit.Test;
  *
  * @author Branch Hill
  */
-public class LogUtilTest {
+public class LogTest {
 
-    public LogUtilTest() {
+    public LogTest() {
     }
 
     @BeforeClass
@@ -37,56 +37,57 @@ public class LogUtilTest {
     }
 
     /**
-     * Test of Exception method, of class LogUtil.
+     * Test of Exception method, of class Log.
      */
     @Test
     public void testException() {
         Exception ex = new Exception("Exception Log Test");
-        LogUtil.Exception(ex);
+        Log.Exception(ex);
     }
 
     /**
-     * Test of Error method, of class LogUtil.
+     * Test of Error method, of class Log.
      */
     @Test
     public void testError() {
         String message = "Error Log Test";
-        LogUtil.Error(message);
+        Log.Error(message);
     }
-    
+
     /**
-     * Test of Warning method, of class LogUtil.
+     * Test of Warning method, of class Log.
      */
     @Test
     public void testWarning() {
         String message = "Warning Log Test";
-        LogUtil.Warning(message);
+        Log.Warning(message);
     }
-    
+
     /**
-     * Test of Information method, of class LogUtil.
+     * Test of Information method, of class Log.
      */
     @Test
     public void testInformation() {
         String message = "Information Log Test";
-        LogUtil.Information(message);
+        Log.Information(message);
     }
-    
+
     /**
-     * Test of Debug method, of class LogUtil.
+     * Test of Debug method, of class Log.
      */
     @Test
     public void testDebug() {
         String message = "Debug Log Test";
-        LogUtil.Debug(message);
+        Log.Debug(message);
     }
 
     /**
-     * Test of Verbose method, of class LogUtil.
+     * Test of Verbose method, of class Log.
      */
     @Test
     public void testVerbose() {
         String message = "Verbose Log Test";
-        LogUtil.Verbose(message);
+        Log.Verbose(message);
     }
+
 }

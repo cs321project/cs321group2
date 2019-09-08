@@ -11,6 +11,6 @@ import Interfaces.IMap;
  *
  * @author Group 2
  */
-public class BasicMap implements IMap{
-    
+public class BasicMap implements IMap {
+
 }

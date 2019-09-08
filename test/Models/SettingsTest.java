@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Group 2
  */
-public class SessionTest {
+public class SettingsTest {
 
-    public SessionTest() {
+    public SettingsTest() {
     }
 
     @BeforeClass
@@ -38,14 +38,17 @@ public class SessionTest {
     }
 
     /**
-     * Test of getInstance method, of class Session.
+     * Test of GetSetting method, of class Settings.
      */
     @Test
-    public void testGetInstance() {
-        System.out.println("Session.getInstance Test");
-        Session nullResult = null;
-        Session result = Session.getInstance();
-        assertNotEquals(nullResult, result);
+    public void testAddAndGetSetting() {
+        System.out.println("AddAndGetSetting Test");
+        Session session = Session.getInstance();
+
+        session.AppSettings.AddOrUpdateSetting("Test Key", "Test Value");
+        String result = session.AppSettings.GetSetting("Test Key");
+
+        assertEquals("Test Value", result);
     }
 
 }

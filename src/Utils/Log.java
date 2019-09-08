@@ -6,29 +6,29 @@
 package Utils;
 
 import java.util.Arrays;
-import Utils.Constants;
 
 /**
  *
  * @author Branch Hill
  */
-public class LogUtil {
+public class Log {
 
-    /**
-     *
-     * @param ex
-     */
     public static void Exception(Exception ex) {
 
         if (ex == null) {
             return;
         }
 
+        String time = DateTimeUtil.GetLocalTimeAsString();
         String source = ex.getClass().toString();
         String stacktrace = Arrays.toString(ex.getStackTrace());
         String message = ex.getMessage();
 
         System.err.println("********** Exception **********");
+
+        if (time != null) {
+            System.err.println("Time: " + time);
+        }
 
         if (source != null) {
             System.err.println("Source: " + source);
@@ -47,46 +47,61 @@ public class LogUtil {
 
     public static void Error(String message) {
 
+        String time = DateTimeUtil.GetLocalTimeAsString();
+
         if (message == null) {
             return;
         }
 
-        System.err.println("[ERR]: " + message);
+        System.err.println("[ERR] " + time + Constants.SINGLE_SPACE + message);
     }
 
     public static void Warning(String message) {
 
+        String time = DateTimeUtil.GetLocalTimeAsString();
+
         if (message == null) {
             return;
         }
 
-        System.out.println(Constants.ANSI_YELLOW + "[WRN]: " + message + Constants.ANSI_RESET);
+        System.out.println(Constants.ANSI_YELLOW + "[WRN] " + time
+                + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
     public static void Information(String message) {
 
+        String time = DateTimeUtil.GetLocalTimeAsString();
+
         if (message == null) {
             return;
         }
 
-        System.out.println(Constants.ANSI_BLUE + "[INF]: " + message + Constants.ANSI_RESET);
+        System.out.println(Constants.ANSI_BLUE + "[INF] " + time
+                + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
     public static void Debug(String message) {
 
+        String time = DateTimeUtil.GetLocalTimeAsString();
+
         if (message == null) {
             return;
         }
 
-        System.out.println(Constants.ANSI_BLACK + "[DBG]: " + message + Constants.ANSI_RESET);
+        System.out.println(Constants.ANSI_BLACK + "[DBG] " + time
+                + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
     public static void Verbose(String message) {
 
+        String time = DateTimeUtil.GetLocalTimeAsString();
+
         if (message == null) {
             return;
         }
 
-        System.out.println(Constants.ANSI_GREEN + "[VRB]: " + message + Constants.ANSI_RESET);
+        System.out.println(Constants.ANSI_GREEN + "[VRB] " + time
+                + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
+
 }
