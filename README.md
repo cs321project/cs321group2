@@ -17,4 +17,4 @@
 * Branch Hill
 
 ## Project Description
-TBD
+Our project will be a top down dungeon crawler game with enemies, loot, and traps. The user will be able to navigate a labyrinthine or dungeon environment, battling and avoiding the obstacles. The player will advance to higher levels with different maps as they play the game.
