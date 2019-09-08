@@ -5,6 +5,8 @@
  */
 package Models;
 
+import Utils.LogUtil;
+
 /**
  *
  * @author Group 2
@@ -15,9 +17,13 @@ public class Session {
 
     private Session() {
 
+        LogUtil.Verbose("Creating New Session Instance");
     }
 
     public static Session getInstance() {
+
+        LogUtil.Verbose("Getting Session Instance");
+
         if (instance == null) {
             instance = new Session();
         }

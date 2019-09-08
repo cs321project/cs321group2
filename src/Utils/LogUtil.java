@@ -6,6 +6,7 @@
 package Utils;
 
 import java.util.Arrays;
+import Utils.Constants;
 
 /**
  *
@@ -53,12 +54,39 @@ public class LogUtil {
         System.err.println("[ERR]: " + message);
     }
 
+    public static void Warning(String message) {
+
+        if (message == null) {
+            return;
+        }
+
+        System.out.println(Constants.ANSI_YELLOW + "[WRN]: " + message + Constants.ANSI_RESET);
+    }
+
+    public static void Information(String message) {
+
+        if (message == null) {
+            return;
+        }
+
+        System.out.println(Constants.ANSI_BLUE + "[INF]: " + message + Constants.ANSI_RESET);
+    }
+
+    public static void Debug(String message) {
+
+        if (message == null) {
+            return;
+        }
+
+        System.out.println(Constants.ANSI_BLACK + "[DBG]: " + message + Constants.ANSI_RESET);
+    }
+
     public static void Verbose(String message) {
 
         if (message == null) {
             return;
         }
 
-        System.out.println("[VRB]: " + message);
+        System.out.println(Constants.ANSI_GREEN + "[VRB]: " + message + Constants.ANSI_RESET);
     }
 }

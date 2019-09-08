@@ -53,6 +53,33 @@ public class LogUtilTest {
         String message = "Error Log Test";
         LogUtil.Error(message);
     }
+    
+    /**
+     * Test of Warning method, of class LogUtil.
+     */
+    @Test
+    public void testWarning() {
+        String message = "Warning Log Test";
+        LogUtil.Warning(message);
+    }
+    
+    /**
+     * Test of Information method, of class LogUtil.
+     */
+    @Test
+    public void testInformation() {
+        String message = "Information Log Test";
+        LogUtil.Information(message);
+    }
+    
+    /**
+     * Test of Debug method, of class LogUtil.
+     */
+    @Test
+    public void testDebug() {
+        String message = "Debug Log Test";
+        LogUtil.Debug(message);
+    }
 
     /**
      * Test of Verbose method, of class LogUtil.
