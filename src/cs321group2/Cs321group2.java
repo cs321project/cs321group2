@@ -5,9 +5,11 @@
  */
 package cs321group2;
 
+import Utils.LogUtil;
+
 /**
  *
- * @author 
+ * @author Group 2
  */
 public class Cs321group2 {
 
@@ -15,7 +17,7 @@ public class Cs321group2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        LogUtil.Verbose("Initializing Application");
     }
-    
 }

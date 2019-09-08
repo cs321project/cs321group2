@@ -7,20 +7,21 @@ package Models;
 
 /**
  *
- * @author 
+ * @author Group 2
  */
 public class Session {
-    
+
     private static Session instance = null;
-    
-    private Session(){
-        
+
+    private Session() {
+
     }
-    
-    public static Session getInstance(){
-        if(instance == null)
+
+    public static Session getInstance() {
+        if (instance == null) {
             instance = new Session();
-        
+        }
+
         return instance;
     }
 }
