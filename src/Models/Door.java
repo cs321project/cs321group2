@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaces;
+package Models;
 
 /**
  *
  * @author Group 2
  */
-public interface IObstacle {
+public class Door {
 
 }
