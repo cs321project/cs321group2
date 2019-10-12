@@ -5,6 +5,8 @@
  */
 package Models;
 
+import Interfaces.ILevel;
+import Interfaces.IPlayer;
 import Utils.Log;
 
 /**
@@ -15,6 +17,8 @@ public class Session {
 
     private static Session instance = null;
     public Settings AppSettings = null;
+    public ILevel CurrentLevel = null;
+    public IPlayer CurrentPlayer = null;
 
     private Session() {
 

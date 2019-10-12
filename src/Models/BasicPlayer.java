@@ -13,4 +13,14 @@ import Interfaces.IPlayer;
  */
 public class BasicPlayer implements IPlayer {
 
+    private Inventory Inventory;
+    
+    public Inventory getInventory() {
+        return this.Inventory;
+    }
+    
+    public void setInventory(Inventory Inventory) {
+        this.Inventory = Inventory;
+    }
+    
 }
