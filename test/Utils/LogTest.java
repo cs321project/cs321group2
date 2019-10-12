@@ -42,7 +42,7 @@ public class LogTest {
     @Test
     public void testException() {
         Exception ex = new Exception("Exception Log Test");
-        Log.Exception(ex);
+        Log.exception(ex);
     }
 
     /**
@@ -51,7 +51,7 @@ public class LogTest {
     @Test
     public void testError() {
         String message = "Error Log Test";
-        Log.Error(message);
+        Log.error(message);
     }
 
     /**
@@ -60,7 +60,7 @@ public class LogTest {
     @Test
     public void testWarning() {
         String message = "Warning Log Test";
-        Log.Warning(message);
+        Log.warning(message);
     }
 
     /**
@@ -69,7 +69,7 @@ public class LogTest {
     @Test
     public void testInformation() {
         String message = "Information Log Test";
-        Log.Information(message);
+        Log.information(message);
     }
 
     /**
@@ -78,7 +78,7 @@ public class LogTest {
     @Test
     public void testDebug() {
         String message = "Debug Log Test";
-        Log.Debug(message);
+        Log.debug(message);
     }
 
     /**
@@ -87,7 +87,7 @@ public class LogTest {
     @Test
     public void testVerbose() {
         String message = "Verbose Log Test";
-        Log.Verbose(message);
+        Log.verbose(message);
     }
 
 }

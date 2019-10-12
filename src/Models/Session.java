@@ -18,13 +18,13 @@ public class Session {
 
     private Session() {
 
-        Log.Debug("Creating New Session Instance");
+        Log.debug("Creating New Session Instance");
         AppSettings = new Settings();
     }
 
     public static Session getInstance() {
 
-        Log.Verbose("Getting Session Instance");
+        Log.verbose("Getting Session Instance");
 
         if (instance == null) {
             instance = new Session();

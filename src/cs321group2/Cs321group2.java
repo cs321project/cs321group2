@@ -21,7 +21,7 @@ public class Cs321group2 {
      */
     public static void main(String[] args) {
 
-        Log.Verbose("Initializing Application");
+        Log.verbose("Initializing Application");
         session = Session.getInstance();
     }
 

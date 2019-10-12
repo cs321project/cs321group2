@@ -8,6 +8,7 @@ package Models;
 import Utils.ApplicationSettings;
 import Utils.Constants;
 import Utils.Log;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -20,14 +21,14 @@ public class Settings {
 
     public Settings() {
         try {
-            Log.Verbose("Initializing App Settings");
-            applicationSettings = ApplicationSettings.GetAppSettings();
-        } catch (Exception ex) {
-            Log.Exception(ex);
+            Log.verbose("Initializing App Settings");
+            applicationSettings = ApplicationSettings.getAppSettings();
+        } catch (IOException ex) {
+            Log.exception(ex);
         }
     }
 
-    public String GetSetting(String key) {
+    public String getSetting(String key) {
         try {
             if (key == null) {
                 return Constants.EMPTY_STRING;
@@ -35,22 +36,22 @@ public class Settings {
 
             return (String) applicationSettings.getOrDefault(key, Constants.EMPTY_STRING);
         } catch (Exception ex) {
-            Log.Exception(ex);
+            Log.exception(ex);
             return Constants.EMPTY_STRING;
         }
     }
 
-    public boolean AddOrUpdateSetting(String key, String value) {
+    public boolean addOrUpdateSetting(String key, String value) {
         try {
             if (key == null || value == null) {
                 return false;
             }
 
             applicationSettings.put(key, value);
-            ApplicationSettings.UpdateAppSettings(applicationSettings);
+            ApplicationSettings.updateAppSettings(applicationSettings);
             return true;
-        } catch (Exception ex) {
-            Log.Exception(ex);
+        } catch (IOException ex) {
+            Log.exception(ex);
             return false;
         }
     }
