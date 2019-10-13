@@ -10,7 +10,7 @@ import Utils.Log;
 
 /**
  *
- * @author branc
+ * @author Group 2
  */
 public class InitView extends javax.swing.JFrame {
 
