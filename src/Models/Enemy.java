@@ -11,18 +11,18 @@ import javafx.util.Pair;
  *
  * @author Group 2
  */
-public class Door {
+public class Enemy {
 
     private Pair location;
-    private int level;
+    private int health;
 
-    public Door() {
+    public Enemy() {
 
     }
 
-    public Door(Pair location, int level) {
+    public Enemy(Pair location, int health) {
         this.location = location;
-        this.level = level;
+        this.health = health;
     }
 
     public void setLocation(Pair location) {
@@ -33,12 +33,12 @@ public class Door {
         return this.location;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
-    public int getLevel() {
-        return this.level;
+    public int getHealth() {
+        return this.health;
     }
 
 }

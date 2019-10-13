@@ -11,18 +11,20 @@ import javafx.util.Pair;
  *
  * @author Group 2
  */
-public class Door {
+public class Loot {
 
     private Pair location;
-    private int level;
+    private int value;
+    private int id;
 
-    public Door() {
+    public Loot() {
 
     }
 
-    public Door(Pair location, int level) {
+    public Loot(Pair location, int value, int id) {
         this.location = location;
-        this.level = level;
+        this.value = value;
+        this.id = id;
     }
 
     public void setLocation(Pair location) {
@@ -33,12 +35,20 @@ public class Door {
         return this.location;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setValue(int value) {
+        this.value = value;
     }
 
-    public int getLevel() {
-        return this.level;
+    public int getValue() {
+        return this.value;
+    }
+
+    public void setID(int id) {
+        this.id = id;
+    }
+
+    public int getID() {
+        return this.id;
     }
 
 }

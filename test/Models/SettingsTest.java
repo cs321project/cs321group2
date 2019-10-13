@@ -45,8 +45,8 @@ public class SettingsTest {
         System.out.println("AddAndGetSetting Test");
         Session session = Session.getInstance();
 
-        session.AppSettings.addOrUpdateSetting("Test Key", "Test Value");
-        String result = session.AppSettings.getSetting("Test Key");
+        session.appSettings.addOrUpdateSetting("Test Key", "Test Value");
+        String result = session.appSettings.getSetting("Test Key");
 
         assertEquals("Test Value", result);
     }

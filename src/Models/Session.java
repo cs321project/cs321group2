@@ -5,8 +5,6 @@
  */
 package Models;
 
-import Interfaces.ILevel;
-import Interfaces.IPlayer;
 import Utils.Log;
 
 /**
@@ -16,14 +14,13 @@ import Utils.Log;
 public class Session {
 
     private static Session instance = null;
-    public Settings AppSettings = null;
-    public ILevel CurrentLevel = null;
-    public IPlayer CurrentPlayer = null;
+    public Settings appSettings = null;
+    public Map currentMap = null;
+    public Player currentPlayer = null;
 
     private Session() {
-
         Log.debug("Creating New Session Instance");
-        AppSettings = new Settings();
+        appSettings = new Settings();
     }
 
     public static Session getInstance() {

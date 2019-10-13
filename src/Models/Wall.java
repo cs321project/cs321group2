@@ -5,12 +5,14 @@
  */
 package Models;
 
-import Interfaces.ITrap;
-
 /**
  *
  * @author Group 2
  */
-public class BasicTrap implements ITrap {
-
+public class Wall extends Obstacle {
+    
+    public Wall() {
+        
+    }
+    
 }
