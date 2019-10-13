@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="cs321group2">
+  <ClassDiagramComponents>
+    <Class name="Door" package="Models" visibility="public" xPosition="717.0" yPosition="1616.0">
+      <Fields>
+        <Field name="location" type="Pair" visibility="private"/>
+        <Field name="level" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Pair" name="location"/>
+          <Argument type="int" name="level"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setLocation" returnType="void" visibility="public">
+          <Argument type="Pair" name="location"/>
+        </Method>
+        <Method name="getLocation" returnType="Pair" visibility="public"/>
+        <Method name="setLevel" returnType="void" visibility="public">
+          <Argument type="int" name="level"/>
+        </Method>
+        <Method name="getLevel" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Enemy" package="Models" visibility="public" xPosition="952.0" yPosition="1813.0">
+      <Fields>
+        <Field name="location" type="Pair" visibility="private"/>
+        <Field name="health" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Pair" name="location"/>
+          <Argument type="int" name="health"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setLocation" returnType="void" visibility="public">
+          <Argument type="Pair" name="location"/>
+        </Method>
+        <Method name="getLocation" returnType="Pair" visibility="public"/>
+        <Method name="setHealth" returnType="void" visibility="public">
+          <Argument type="int" name="health"/>
+        </Method>
+        <Method name="getHealth" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Loot" package="Models" visibility="public" xPosition="1210.0" yPosition="1813.0">
+      <Fields>
+        <Field name="location" type="Pair" visibility="private"/>
+        <Field name="value" type="int" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Pair" name="location"/>
+          <Argument type="int" name="value"/>
+          <Argument type="int" name="id"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setLocation" returnType="void" visibility="public">
+          <Argument type="Pair" name="location"/>
+        </Method>
+        <Method name="getLocation" returnType="Pair" visibility="public"/>
+        <Method name="setValue" returnType="void" visibility="public">
+          <Argument type="int" name="value"/>
+        </Method>
+        <Method name="getValue" returnType="int" visibility="public"/>
+        <Method name="setID" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getID" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Map" package="Models" visibility="public" xPosition="1010.0" yPosition="1165.0">
+      <Fields>
+        <Field name="level" type="int" visibility="private"/>
+        <Field name="loot" type="List&lt;Loot&gt;" visibility="private"/>
+        <Field name="obstacles" type="List&lt;Obstacle&gt;" visibility="private"/>
+        <Field name="enemies" type="List&lt;Enemy&gt;" visibility="private"/>
+        <Field name="door" type="Door" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="level"/>
+          <Argument type="List&lt;Loot&gt;" name="loot"/>
+          <Argument type="List&lt;Obstacle&gt;" name="obstacles"/>
+          <Argument type="List&lt;Enemy&gt;" name="enemies"/>
+          <Argument type="Door" name="door"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLevel" returnType="int" visibility="public"/>
+        <Method name="setLevel" returnType="void" visibility="public">
+          <Argument type="int" name="level"/>
+        </Method>
+        <Method name="getLoot" returnType="List&lt;Loot&gt;" visibility="public"/>
+        <Method name="setLoot" returnType="void" visibility="public">
+          <Argument type="List&lt;Loot&gt;" name="loot"/>
+        </Method>
+        <Method name="getObstacles" returnType="List&lt;Obstacle&gt;" visibility="public"/>
+        <Method name="setObstacles" returnType="void" visibility="public">
+          <Argument type="List&lt;Obstacle&gt;" name="obstacles"/>
+        </Method>
+        <Method name="getEnemies" returnType="List&lt;Enemy&gt;" visibility="public"/>
+        <Method name="setEnemies" returnType="void" visibility="public">
+          <Argument type="List&lt;Enemy&gt;" name="enemies"/>
+        </Method>
+        <Method name="getDoor" returnType="Door" visibility="public"/>
+        <Method name="setDoor" returnType="void" visibility="public">
+          <Argument type="Door" name="door"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Obstacle" package="Models" visibility="public" xPosition="346.0" yPosition="1238.0">
+      <Fields>
+        <Field name="location" type="Pair" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Pair" name="location"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setLocation" returnType="void" visibility="public">
+          <Argument type="Pair" name="location"/>
+        </Method>
+        <Method name="getLocation" returnType="Pair" visibility="public"/>
+        <Method name="setID" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getID" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Player" package="Models" visibility="public" xPosition="1506.0" yPosition="1676.0">
+      <Fields>
+        <Field name="inventory" type="List&lt;Loot&gt;" visibility="private"/>
+        <Field name="health" type="int" visibility="private"/>
+        <Field name="location" type="Pair" visibility="private"/>
+        <Field name="baseAttack" type="int" visibility="private"/>
+        <Field name="baseDefense" type="int" visibility="private"/>
+        <Field name="lives" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="List&lt;Loot&gt;" name="inventory"/>
+          <Argument type="int" name="health"/>
+          <Argument type="Pair" name="location"/>
+          <Argument type="int" name="baseAttack"/>
+          <Argument type="int" name="baseDefense"/>
+          <Argument type="int" name="lives"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setInventory" returnType="void" visibility="public">
+          <Argument type="List&lt;Loot&gt;" name="inventory"/>
+        </Method>
+        <Method name="getInventory" returnType="List&lt;Loot&gt;" visibility="public"/>
+        <Method name="setHealth" returnType="void" visibility="public">
+          <Argument type="int" name="health"/>
+        </Method>
+        <Method name="getHealth" returnType="int" visibility="public"/>
+        <Method name="setLocation" returnType="void" visibility="public">
+          <Argument type="Pair" name="location"/>
+        </Method>
+        <Method name="getLocation" returnType="Pair" visibility="public"/>
+        <Method name="setAttack" returnType="void" visibility="public">
+          <Argument type="int" name="baseAttack"/>
+        </Method>
+        <Method name="getAttack" returnType="int" visibility="public"/>
+        <Method name="setDefense" returnType="void" visibility="public">
+          <Argument type="int" name="baseDefense"/>
+        </Method>
+        <Method name="getDefense" returnType="int" visibility="public"/>
+        <Method name="setLives" returnType="void" visibility="public">
+          <Argument type="int" name="lives"/>
+        </Method>
+        <Method name="getLives" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Session" package="Models" visibility="public" xPosition="1702.0" yPosition="1147.0">
+      <Fields>
+        <Field name="instance" type="Session" visibility="private" isStatic="true"/>
+        <Field name="appSettings" type="Settings" visibility="public"/>
+        <Field name="currentMap" type="Map" visibility="public"/>
+        <Field name="currentPlayer" type="Player" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="Session" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Settings" package="Models" visibility="public" xPosition="1227.0" yPosition="771.0">
+      <Fields>
+        <Field name="applicationSettings" type="Map" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSetting" returnType="String" visibility="public">
+          <Argument type="String" name="key"/>
+        </Method>
+        <Method name="addOrUpdateSetting" returnType="boolean" visibility="public">
+          <Argument type="String" name="key"/>
+          <Argument type="String" name="value"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Trap" package="Models" visibility="public" xPosition="225.0" yPosition="1654.0">
+      <Fields>
+        <Field name="damageValue" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setValue" returnType="void" visibility="public">
+          <Argument type="int" name="damageValue"/>
+        </Method>
+        <Method name="getValue" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Wall" package="Models" visibility="public" xPosition="486.0" yPosition="1654.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ApplicationSettings" package="Utils" visibility="public" xPosition="623.0" yPosition="771.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getAppSettings" returnType="Map" visibility="public" isStatic="true"/>
+        <Method name="updateAppSettings" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Map" name="dict"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Constants" package="Utils" visibility="public" xPosition="623.0" yPosition="305.0">
+      <Fields>
+        <Field name="ANSI_RESET" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_BLACK" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_RED" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_GREEN" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_YELLOW" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_BLUE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="NEW_LINE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="EMPTY_STRING" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SINGLE_SPACE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SETTINGS_FILE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="DateTimeUtil" package="Utils" visibility="public" xPosition="850.0" yPosition="476.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getLocalTimeAsString" returnType="String" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="FileUtil" package="Utils" visibility="public" xPosition="916.0" yPosition="771.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="fileExists" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="createFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="createIfNotPresent" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="WriteMapToSettingsFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Map" name="map"/>
+        </Method>
+        <Method name="getMapFromSettingsFile" returnType="Map" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Log" package="Utils" visibility="public" xPosition="1427.0" yPosition="305.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="exception" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Exception" name="ex"/>
+        </Method>
+        <Method name="error" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="warning" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="information" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="debug" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="verbose" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="output" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="getInputString" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="getInputInt" returnType="int" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="RandomUtil" package="Utils" visibility="public" xPosition="930.0" yPosition="305.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getRandomIntegerBetweenRange" returnType="int" visibility="public" isStatic="true">
+          <Argument type="int" name="min"/>
+          <Argument type="int" name="max"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StringUtil" package="Utils" visibility="public" xPosition="1156.0" yPosition="476.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="concat" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InitView" package="Views" visibility="public" xPosition="1577.0" yPosition="771.0">
+      <Fields>
+        <Field name="session" type="Session" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="session" source="Views.InitView" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Player" target="Models.Loot" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="obstacles" source="Models.Map" target="Models.Obstacle" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Obstacle&gt;"/>
+    <HasRelation name="enemies" source="Models.Map" target="Models.Enemy" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Enemy&gt;"/>
+    <HasRelation name="applicationSettings" source="Models.Settings" target="Models.Map" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map"/>
+    <HasRelation name="loot" source="Models.Map" target="Models.Loot" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loot&gt;"/>
+    <HasRelation name="appSettings" source="Models.Session" target="Models.Settings" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Settings"/>
+    <UseRelation source="Models.Map" target="Models.Loot" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Models.Wall" target="Models.Obstacle"/>
+    <HasRelation name="door" source="Models.Map" target="Models.Door" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="inventory" source="Models.Player" target="Models.Loot" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loot&gt;"/>
+    <UseRelation source="Models.Session" target="Models.Session" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Models.Trap" target="Models.Obstacle"/>
+    <UseRelation source="Models.Map" target="Models.Enemy" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="instance" source="Models.Session" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentMap" source="Models.Session" target="Models.Map" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map"/>
+    <UseRelation source="Models.Map" target="Models.Obstacle" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Map" target="Models.Door" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utils.ApplicationSettings" target="Models.Map" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Utils.FileUtil" target="Models.Map" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentPlayer" source="Models.Session" target="Models.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
