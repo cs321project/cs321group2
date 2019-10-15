@@ -24,5 +24,9 @@ public class Trap extends Obstacle {
     public int getValue() {
         return this.damageValue;
     }
+    
+    private void engage() {
+        
+    }
 
 }

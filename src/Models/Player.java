@@ -5,6 +5,7 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
 import java.util.List;
 import javafx.util.Pair;
 
@@ -12,11 +13,10 @@ import javafx.util.Pair;
  *
  * @author Group 2
  */
-public class Player {
+public class Player extends AbstractMapItem {
 
     private List<Loot> inventory;
     private int health;
-    private Pair location;
     private int baseAttack;
     private int baseDefense;
     private int lives;
@@ -50,14 +50,6 @@ public class Player {
         return this.health;
     }
 
-    public void setLocation(Pair location) {
-        this.location = location;
-    }
-
-    public Pair getLocation() {
-        return this.location;
-    }
-
     public void setAttack(int baseAttack) {
         this.baseAttack = baseAttack;
     }
@@ -80,6 +72,38 @@ public class Player {
 
     public int getLives() {
         return this.lives;
+    }
+
+    public void equip(Loot item) {
+
+    }
+
+    public void unEquip(Loot item) {
+
+    }
+
+    public void attack() {
+
+    }
+
+    public void move() {
+
+    }
+
+    public void pickupLoot() {
+
+    }
+
+    public void heal() {
+
+    }
+
+    public void revive() {
+
+    }
+
+    private void die() {
+
     }
 
 }

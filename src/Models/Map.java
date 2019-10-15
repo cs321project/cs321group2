@@ -5,6 +5,7 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ public class Map {
     private List<Obstacle> obstacles;
     private List<Enemy> enemies;
     private Door door;
+    private AbstractMapItem[][] mapGrid;
     
     public Map() {
         

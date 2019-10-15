@@ -5,15 +5,15 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
 import javafx.util.Pair;
 
 /**
  *
  * @author Group 2
  */
-public class Enemy {
+public class Enemy extends AbstractMapItem {
 
-    private Pair location;
     private int health;
 
     public Enemy() {
@@ -25,20 +25,24 @@ public class Enemy {
         this.health = health;
     }
 
-    public void setLocation(Pair location) {
-        this.location = location;
-    }
-
-    public Pair getLocation() {
-        return this.location;
-    }
-
     public void setHealth(int health) {
         this.health = health;
     }
 
     public int getHealth() {
         return this.health;
+    }
+
+    public void attack() {
+
+    }
+
+    public void move() {
+
+    }
+
+    private void die() {
+
     }
 
 }

@@ -5,15 +5,15 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
 import javafx.util.Pair;
 
 /**
  *
  * @author Group 2
  */
-public class Door {
+public class Door extends AbstractMapItem {
 
-    private Pair location;
     private int level;
 
     public Door() {
@@ -25,20 +25,16 @@ public class Door {
         this.level = level;
     }
 
-    public void setLocation(Pair location) {
-        this.location = location;
-    }
-
-    public Pair getLocation() {
-        return this.location;
-    }
-
     public void setLevel(int level) {
         this.level = level;
     }
 
     public int getLevel() {
         return this.level;
+    }
+    
+    private void unLock() {
+        
     }
 
 }

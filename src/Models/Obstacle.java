@@ -5,15 +5,15 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
 import javafx.util.Pair;
 
 /**
  *
  * @author Group 2
  */
-public class Obstacle {
-
-    private Pair location;
+public class Obstacle extends AbstractMapItem {
+    
     private int id;
 
     public Obstacle() {
@@ -22,14 +22,6 @@ public class Obstacle {
 
     public Obstacle(Pair location) {
         this.location = location;
-    }
-
-    public void setLocation(Pair location) {
-        this.location = location;
-    }
-
-    public Pair getLocation() {
-        return this.location;
     }
 
     public void setID(int id) {

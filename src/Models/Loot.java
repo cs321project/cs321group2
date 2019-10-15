@@ -5,15 +5,15 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
 import javafx.util.Pair;
 
 /**
  *
  * @author Group 2
  */
-public class Loot {
+public class Loot extends AbstractMapItem {
 
-    private Pair location;
     private int value;
     private int id;
 
@@ -25,14 +25,6 @@ public class Loot {
         this.location = location;
         this.value = value;
         this.id = id;
-    }
-
-    public void setLocation(Pair location) {
-        this.location = location;
-    }
-
-    public Pair getLocation() {
-        return this.location;
     }
 
     public void setValue(int value) {
