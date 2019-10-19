@@ -6,7 +6,10 @@
 package Views;
 
 import Models.Session;
+import Utils.Constants;
 import Utils.Log;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +17,19 @@ import Utils.Log;
  */
 public class LoginView extends javax.swing.JFrame {
 
+    private static Session session = Session.getInstance();
+
     /**
      * Creates new form InitView
      */
     public LoginView() {
         initComponents();
+
+        this.newUserLabel.setVisible(false);
+        this.returningUserLabel.setVisible(false);
+        this.startGameButton.setVisible(false);
+        this.usernameComboBox.setVisible(false);
+        this.usernameEntry.setVisible(false);
     }
 
     /**
@@ -30,24 +41,152 @@ public class LoginView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        titleLabel = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        newUserButton = new javax.swing.JButton();
+        returningUserButton = new javax.swing.JButton();
+        usernameComboBox = new javax.swing.JComboBox<>();
+        returningUserLabel = new javax.swing.JLabel();
+        newUserLabel = new javax.swing.JLabel();
+        usernameEntry = new javax.swing.JTextField();
+        aboutButton = new javax.swing.JButton();
+        startGameButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        titleLabel.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        titleLabel.setText("Best Dungeon Crawler");
+
+        newUserButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        newUserButton.setText("New User ");
+        newUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserButtonActionPerformed(evt);
+            }
+        });
+
+        returningUserButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        returningUserButton.setText("Returning User");
+        returningUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returningUserButtonActionPerformed(evt);
+            }
+        });
+
+        usernameComboBox.setFont(new java.awt.Font("Sitka Subheading", 0, 14)); // NOI18N
+
+        returningUserLabel.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        returningUserLabel.setText("Username:");
+
+        newUserLabel.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        newUserLabel.setText("Username:");
+
+        usernameEntry.setFont(new java.awt.Font("Sitka Subheading", 0, 14)); // NOI18N
+
+        aboutButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        aboutButton.setText("About");
+
+        startGameButton.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        startGameButton.setText("Start Game");
+        startGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startGameButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(returningUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(aboutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(startGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newUserLabel)
+                            .addComponent(returningUserLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(usernameEntry, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(usernameComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(titleLabel)
+                        .addGap(0, 191, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newUserButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(returningUserButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newUserLabel)
+                    .addComponent(usernameEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(returningUserLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(startGameButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aboutButton)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private static Session session;
-    
+    private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
+        session.isNewUser = true;
+        this.newUserLabel.setVisible(true);
+        this.usernameEntry.setVisible(true);
+        this.returningUserLabel.setVisible(false);
+        this.usernameComboBox.setVisible(false);
+        this.startGameButton.setVisible(true);
+    }//GEN-LAST:event_newUserButtonActionPerformed
+
+    private void returningUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returningUserButtonActionPerformed
+        session.isNewUser = false;
+        this.newUserLabel.setVisible(false);
+        this.usernameEntry.setVisible(false);
+        this.returningUserLabel.setVisible(true);
+        this.usernameComboBox.setVisible(true);
+        this.startGameButton.setVisible(true);
+    }//GEN-LAST:event_returningUserButtonActionPerformed
+
+    private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
+        try {
+            String username = Constants.EMPTY_STRING;
+            
+            if (session.isNewUser) {
+                username = this.usernameEntry.getText().trim();
+
+                if (username == null ? Constants.EMPTY_STRING == null : username.equals(Constants.EMPTY_STRING)) {
+                    JOptionPane.showMessageDialog(this, "Invalid Username");
+                }
+            } else {
+                
+            }
+            
+            session.initGame(username);
+        }
+        catch(HeadlessException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_startGameButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -57,10 +196,10 @@ public class LoginView extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         Log.verbose("Initializing Application");
         session = Session.getInstance();
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -79,7 +218,7 @@ public class LoginView extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -89,5 +228,15 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aboutButton;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton newUserButton;
+    private javax.swing.JLabel newUserLabel;
+    private javax.swing.JButton returningUserButton;
+    private javax.swing.JLabel returningUserLabel;
+    private javax.swing.JButton startGameButton;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JComboBox<String> usernameComboBox;
+    private javax.swing.JTextField usernameEntry;
     // End of variables declaration//GEN-END:variables
 }

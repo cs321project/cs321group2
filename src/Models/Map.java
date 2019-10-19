@@ -13,6 +13,9 @@ import java.util.List;
  * @author Group 2
  */
 public class Map {
+    
+    public static final int MIN_LEVEL = 1;
+    public static final int MAX_LEVEL = 5;
 
     private int level;
     private AbstractMapItem[][] mapGrid;
@@ -21,7 +24,7 @@ public class Map {
         
     }
     
-    public Map(int level, List<Loot> loot, List<Obstacle> obstacles, List<Enemy> enemies, Door door) {
+    public Map(int level) {
         this.level = level;
         initializeGrid();
     }

@@ -15,6 +15,12 @@ import javafx.util.Pair;
  */
 public class Player extends AbstractMapItem {
 
+    public static final int MAX_HEALTH = 100;
+    public static final int MAX_ATTACK = 10;
+    public static final int MAX_DEFENSE = 10;
+    public static final int MAX_LIVES = 5;
+
+    public String username;
     private List<Loot> inventory;
     private int health;
     private int baseAttack;
@@ -25,7 +31,8 @@ public class Player extends AbstractMapItem {
 
     }
 
-    public Player(List<Loot> inventory, int health, Pair location, int baseAttack, int baseDefense, int lives) {
+    public Player(String username, List<Loot> inventory, int health, Pair location, int baseAttack, int baseDefense, int lives) {
+        this.username = username;
         this.inventory = inventory;
         this.health = health;
         this.location = location;
