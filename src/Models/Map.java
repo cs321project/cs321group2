@@ -15,10 +15,6 @@ import java.util.List;
 public class Map {
 
     private int level;
-    private List<Loot> loot;
-    private List<Obstacle> obstacles;
-    private List<Enemy> enemies;
-    private Door door;
     private AbstractMapItem[][] mapGrid;
     
     public Map() {
@@ -27,10 +23,7 @@ public class Map {
     
     public Map(int level, List<Loot> loot, List<Obstacle> obstacles, List<Enemy> enemies, Door door) {
         this.level = level;
-        this.loot = loot;
-        this.obstacles = obstacles;
-        this.enemies = enemies; 
-        this.door = door;
+        initializeGrid();
     }
     
     public int getLevel() {
@@ -41,36 +34,8 @@ public class Map {
         this.level = level;
     }
 
-    public List<Loot> getLoot() {
-        return this.loot;
-    }
+    private void initializeGrid() {
 
-    public void setLoot(List<Loot> loot) {
-        this.loot = loot;
-    }
-
-    public List<Obstacle> getObstacles() {
-        return this.obstacles;
-    }
-
-    public void setObstacles(List<Obstacle> obstacles) {
-        this.obstacles = obstacles;
-    }
-
-    public List<Enemy> getEnemies() {
-        return this.enemies;
-    }
-
-    public void setEnemies(List<Enemy> enemies) {
-        this.enemies = enemies;
-    }
-
-    public Door getDoor() {
-        return this.door;
-    }
-
-    public void setDoor(Door door) {
-        this.door = door;
     }
 
 }
