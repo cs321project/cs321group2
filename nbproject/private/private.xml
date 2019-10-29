@@ -6,6 +6,7 @@
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Abstractions/AbstractMapItem.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Settings.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Utils/JsonUtil.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Utils/SystemUtil.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Door.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Loot.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Session.java</file>
@@ -18,6 +19,8 @@
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Map.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Enemy.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Trap.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Views/PreGameMenuView.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Views/InGameMenuView.java</file>
         </group>
     </open-files>
 </project-private>
