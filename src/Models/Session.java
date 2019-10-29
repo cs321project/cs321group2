@@ -8,13 +8,13 @@ package Models;
 import Utils.Constants;
 import Utils.Log;
 import Utils.StringUtil;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author Group 2
  */
-public class Session {
+public class Session implements Serializable{
 
     private static Session instance = null;
     public Settings appSettings = null;
