@@ -6,6 +6,10 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
+import Utils.Constants;
+import Utils.StringUtil;
+import Utils.SystemUtil;
+import java.io.File;
 import java.util.List;
 import javafx.util.Pair;
 
@@ -39,6 +43,14 @@ public class Player extends AbstractMapItem {
         this.baseAttack = baseAttack;
         this.baseDefense = baseDefense;
         this.lives = lives;
+    }
+    
+    public String getPlayerDirectoy() {
+        String userDir = SystemUtil.getUserDirectory();
+        String dir = StringUtil.concat(userDir, File.separator, 
+                this.username);
+        
+        return dir;
     }
 
     public void setInventory(List<Loot> inventory) {

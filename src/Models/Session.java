@@ -25,6 +25,7 @@ public class Session implements Serializable{
     private Session() {
         Log.debug("Creating New Session Instance");
         appSettings = new Settings();
+        
     }
 
     public static Session getInstance() {

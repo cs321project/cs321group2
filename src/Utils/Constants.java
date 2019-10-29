@@ -17,4 +17,6 @@ public class Constants {
 
     // Application Settings
     public static final String SETTINGS_FILE = "ApplicationSettings.txt";
+    
+    public static final String USER_DIR_KEY = "user.home";
 }

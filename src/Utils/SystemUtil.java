@@ -1,0 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Utils;
+
+/**
+ *
+ * @author Group 2
+ */
+public class SystemUtil {
+    
+    public static String getUserDirectory(){
+        return System.getProperty(Constants.USER_DIR_KEY);
+    }
+    
+}
