@@ -6,7 +6,7 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-import java.util.List;
+import Utils.Constants;
 
 /**
  *
@@ -31,6 +31,17 @@ public class Map {
     
     public int getLevel() {
         return this.level;
+    }
+    
+    public String getLevelOfDificulty() {
+        switch(this.level) {
+            case 1:
+                return "Easy";
+            case 2:
+                return "Medium";
+            default:
+                return "Hard";
+        }
     }
     
     public void setLevel(int level) {

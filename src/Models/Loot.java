@@ -15,13 +15,13 @@ import javafx.util.Pair;
 public class Loot extends AbstractMapItem {
 
     private int value;
-    private int id;
+    private String id;
 
     public Loot() {
 
     }
 
-    public Loot(Pair location, int value, int id) {
+    public Loot(Pair location, int value, String id) {
         this.location = location;
         this.value = value;
         this.id = id;
@@ -35,11 +35,11 @@ public class Loot extends AbstractMapItem {
         return this.value;
     }
 
-    public void setID(int id) {
+    public void setID(String id) {
         this.id = id;
     }
 
-    public int getID() {
+    public String getID() {
         return this.id;
     }
 

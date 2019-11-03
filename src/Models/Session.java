@@ -9,6 +9,8 @@ import Utils.Constants;
 import Utils.Log;
 import Utils.StringUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -39,11 +41,16 @@ public class Session implements Serializable{
         return instance;
     }
 
-    public void initGame(String userName) {
+    public boolean initGame(String userName) {
 
         if (this.isNewUser) {
-            currentPlayer = new Player(userName, null, Player.MAX_HEALTH, null,
-                    Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES);
+            // New Player Inventory
+            List<Loot> beginnerInventory = new ArrayList();
+            beginnerInventory.add(new Loot(null, 5, "Sword"));
+            beginnerInventory.add(new Loot(null, 5, "Sheild"));
+            
+            currentPlayer = new Player(userName, beginnerInventory, Player.MAX_HEALTH, null,
+                    Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES, Map.MIN_LEVEL);
 
             currentMap = new Map(Map.MIN_LEVEL);
 
@@ -52,8 +59,10 @@ public class Session implements Serializable{
         }
 
         Log.information(StringUtil.concat("Game Initialized: ",
-                "Username: ", currentPlayer.username, ",", Constants.SINGLE_SPACE, 
+                "Username: ", currentPlayer.getUsername(), ",", Constants.SINGLE_SPACE, 
                 "Map Level: ", Integer.toString(currentMap.getLevel())));
+        
+        return true;
     }
 
 }
