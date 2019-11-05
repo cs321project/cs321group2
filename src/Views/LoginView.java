@@ -77,6 +77,7 @@ public class LoginView extends javax.swing.JFrame {
         titleLabel.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
         titleLabel.setText("Best Dungeon Crawler");
 
+        loginPanel.setBorder(null);
         loginPanel.setVisible(true);
 
         newUserButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
@@ -160,6 +161,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        gameSetupView.setBorder(null);
         gameSetupView.setVisible(true);
 
         jLabel1.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
@@ -284,7 +286,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(highestLevelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );

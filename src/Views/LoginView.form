@@ -71,6 +71,9 @@
     </Component>
     <Container class="javax.swing.JInternalFrame" name="loginPanel">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
 
@@ -208,6 +211,9 @@
     </Container>
     <Container class="javax.swing.JInternalFrame" name="gameSetupView">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
 
@@ -294,7 +300,7 @@
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="highestLevelEntry" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
