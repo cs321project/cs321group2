@@ -57,8 +57,8 @@ public class LoginView extends javax.swing.JFrame {
         gameSetupView = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        newGameRadioButton = new javax.swing.JRadioButton();
+        lastSessionRadioButton = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         currentPlayerEntry = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -151,7 +151,7 @@ public class LoginView extends javax.swing.JFrame {
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(returningUserLabel)
                     .addComponent(usernameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(startGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aboutButton)
@@ -166,11 +166,21 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         jLabel2.setText("Choose Game:");
 
-        jRadioButton1.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
-        jRadioButton1.setText("New Game");
+        newGameRadioButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        newGameRadioButton.setText("New Game");
+        newGameRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameRadioButtonActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
-        jRadioButton2.setText("Continue Last Session");
+        lastSessionRadioButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        lastSessionRadioButton.setText("Continue Last Session");
+        lastSessionRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastSessionRadioButtonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         jLabel3.setText("Current Player:");
@@ -231,9 +241,9 @@ public class LoginView extends javax.swing.JFrame {
                         .addGap(75, 75, 75)
                         .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(gameSetupViewLayout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(newGameRadioButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                                .addComponent(jRadioButton2)
+                                .addComponent(lastSessionRadioButton)
                                 .addGap(10, 10, 10))
                             .addComponent(currentPlayerEntry))))
                 .addContainerGap())
@@ -246,8 +256,8 @@ public class LoginView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(newGameRadioButton)
+                    .addComponent(lastSessionRadioButton))
                 .addGap(25, 25, 25)
                 .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -261,15 +271,17 @@ public class LoginView extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(diffEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(invEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(invEntry, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(highestLevelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
+
+        jLabel5.getAccessibleContext().setAccessibleName("Level of Difficulty:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +336,7 @@ public class LoginView extends javax.swing.JFrame {
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         try {
             String username = Constants.EMPTY_STRING;
-            
+
             if (session.isNewUser) {
                 username = this.usernameEntry.getText().trim();
 
@@ -332,9 +344,9 @@ public class LoginView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Invalid Username");
                 }
             } else {
-                
+
             }
-            
+
             boolean init = session.initGame(username);
             this.currentPlayerEntry.setText(this.session.currentPlayer.getUsername());
             this.levelEntry.setText(Integer.toString(this.session.currentMap.getLevel()));
@@ -343,11 +355,30 @@ public class LoginView extends javax.swing.JFrame {
             this.highestLevelEntry.setText(Integer.toString(this.session.currentPlayer.getHighestLevel()));
             this.loginPanel.setVisible(false);
             this.gameSetupView.setVisible(true);
-        }
-        catch(HeadlessException ex) {
+
+            if (session.isNewUser) {
+                this.newGameRadioButton.setSelected(true);
+                this.lastSessionRadioButton.setEnabled(false);
+                this.newGameRadioButton.setEnabled(false);
+            } else {
+                this.lastSessionRadioButton.setSelected(true);
+            }
+        } catch (HeadlessException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_startGameButtonActionPerformed
+
+    private void newGameRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameRadioButtonActionPerformed
+        if (!session.isNewUser) {
+            this.lastSessionRadioButton.setSelected(!this.newGameRadioButton.isSelected());
+        }
+    }//GEN-LAST:event_newGameRadioButtonActionPerformed
+
+    private void lastSessionRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastSessionRadioButtonActionPerformed
+        if (!session.isNewUser) {
+            this.newGameRadioButton.setSelected(!this.lastSessionRadioButton.isSelected());
+        }
+    }//GEN-LAST:event_lastSessionRadioButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,11 +433,11 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JRadioButton lastSessionRadioButton;
     private javax.swing.JTextField levelEntry;
     private javax.swing.JInternalFrame loginPanel;
+    private javax.swing.JRadioButton newGameRadioButton;
     private javax.swing.JButton newUserButton;
     private javax.swing.JLabel newUserLabel;
     private javax.swing.JButton returningUserButton;
