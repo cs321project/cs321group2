@@ -28,6 +28,17 @@ public class FileUtil {
         }
         createFile(path);
     }
+    
+    public static void createDirectory(String path) {
+         File file = new File(path);
+        if (!file.exists()) {
+            if (file.mkdir()) {
+                Log.verbose(StringUtil.concat("Created dir: ", path));
+            } else {
+                Log.verbose(StringUtil.concat("Faile to create dir: ", path));
+            }
+        }
+    }
 
     public static void WriteMapToSettingsFile(Map map) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         createIfNotPresent(Constants.SETTINGS_FILE);

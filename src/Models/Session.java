@@ -6,8 +6,11 @@
 package Models;
 
 import Utils.Constants;
+import Utils.FileUtil;
 import Utils.Log;
 import Utils.StringUtil;
+import Utils.SystemUtil;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,8 @@ public class Session implements Serializable{
     public boolean isNewUser = true;
 
     private Session() {
-        Log.debug("Creating New Session Instance");        
+        Log.debug("Creating New Session Instance"); 
+        FileUtil.createDirectory(this.getGameDirectory());
     }
 
     public static Session getInstance() {
@@ -36,6 +40,14 @@ public class Session implements Serializable{
         }
 
         return instance;
+    }
+    
+    public String getGameDirectory() {
+        String userDir = SystemUtil.getUserDirectory();
+        String dir = StringUtil.concat(userDir, File.separator,
+                "DungeonCrawlerData");
+
+        return dir;
     }
     
     public static void setInstance(Session session) {

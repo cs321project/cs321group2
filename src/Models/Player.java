@@ -6,6 +6,7 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
+import Utils.FileUtil;
 import Utils.StringUtil;
 import Utils.SystemUtil;
 import java.io.File;
@@ -45,14 +46,16 @@ public class Player extends AbstractMapItem {
         this.baseDefense = baseDefense;
         this.lives = lives;
         this.highestLevel = highestLevel;
+        
+        FileUtil.createDirectory(this.getPlayerSettingsDir());
     }
 
-    public String getPlayerSettingsFile() {
-        String userDir = SystemUtil.getUserDirectory();
-        String dir = StringUtil.concat(userDir, File.separator,
+    public String getPlayerSettingsDir() {
+        String gameDir = Session.getInstance().getGameDirectory();
+        String file = StringUtil.concat(gameDir, File.separator,
                 this.username);
 
-        return dir;
+        return file;
     }
 
     public String getUsername() {
@@ -73,7 +76,7 @@ public class Player extends AbstractMapItem {
         this.inventory.stream().filter((arg) -> (arg != null)).forEachOrdered((arg) -> {
             inv.add(arg.getID());
         });
-        
+
         return inv;
     }
 
