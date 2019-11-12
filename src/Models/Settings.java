@@ -18,19 +18,18 @@ import java.io.ObjectOutputStream;
  */
 public class Settings {
 
-    public static boolean getSetting(Session session) throws IOException, ClassNotFoundException {
+    public static Session getSetting(Session session) throws IOException, ClassNotFoundException {
 
         FileInputStream file
                 = new FileInputStream(session.currentPlayer.getPlayerSettingsFile());
         ObjectInputStream in = new ObjectInputStream(file);
 
-        Session s= (Session) in.readObject();
-        Session.setInstance(s);
+        Session s = (Session) in.readObject();
 
         in.close();
         file.close();
 
-        return true;
+        return s;
     }
 
     public static void addOrUpdateSetting(Session session) throws FileNotFoundException, IOException {
