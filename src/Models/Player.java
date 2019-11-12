@@ -7,9 +7,11 @@ package Models;
 
 import Abstractions.AbstractMapItem;
 import Utils.FileUtil;
+import Utils.Log;
 import Utils.StringUtil;
 import Utils.SystemUtil;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
@@ -46,14 +48,30 @@ public class Player extends AbstractMapItem {
         this.baseDefense = baseDefense;
         this.lives = lives;
         this.highestLevel = highestLevel;
-        
+
         FileUtil.createDirectory(this.getPlayerSettingsDir());
+
+        try {
+            FileUtil.createIfNotPresent(this.getPlayerSettingsFile());
+        } catch(IOException ex)  {
+            Log.exception(ex);
+        }
     }
 
     public String getPlayerSettingsDir() {
         String gameDir = Session.getInstance().getGameDirectory();
         String file = StringUtil.concat(gameDir, File.separator,
                 this.username);
+
+        return file;
+    }
+
+    public String getPlayerSettingsFile() {
+        String playerDir = this.getPlayerSettingsDir();
+        String file = StringUtil.concat(playerDir, File.separator,
+                "LastGame.txt");
+
+        Log.verbose(StringUtil.concat("Getting player settings: ", file));
 
         return file;
     }

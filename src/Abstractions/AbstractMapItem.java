@@ -5,13 +5,14 @@
  */
 package Abstractions;
 
+import java.io.Serializable;
 import javafx.util.Pair;
 
 /**
  *
  * @author Group 2
  */
-public class AbstractMapItem {
+public class AbstractMapItem implements Serializable {
 
     public Pair location;
 

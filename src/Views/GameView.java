@@ -11,6 +11,7 @@ import Utils.Constants;
 import Utils.Log;
 import Utils.StringUtil;
 import java.awt.HeadlessException;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -547,9 +548,11 @@ public class GameView extends javax.swing.JFrame {
 
         try {
             Settings.addOrUpdateSetting(this.session);
-        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Game saved successfully!");
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(
                     this, StringUtil.concat("Failed to save game: ", ex.getMessage()));
+            Log.exception(ex);
         }
     }//GEN-LAST:event_saveGameButtonActionPerformed
 

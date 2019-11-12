@@ -21,7 +21,7 @@ public class Settings {
     public static boolean getSetting(Session session) throws IOException, ClassNotFoundException {
 
         FileInputStream file
-                = new FileInputStream(session.currentPlayer.getPlayerSettingsDir());
+                = new FileInputStream(session.currentPlayer.getPlayerSettingsFile());
         ObjectInputStream in = new ObjectInputStream(file);
 
         Session s= (Session) in.readObject();
@@ -36,7 +36,7 @@ public class Settings {
     public static void addOrUpdateSetting(Session session) throws FileNotFoundException, IOException {
 
         FileOutputStream file
-                = new FileOutputStream(session.currentPlayer.getPlayerSettingsDir());
+                = new FileOutputStream(session.currentPlayer.getPlayerSettingsFile());
         ObjectOutputStream out = new ObjectOutputStream(file);
 
         out.writeObject(session);

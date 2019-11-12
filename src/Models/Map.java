@@ -6,13 +6,13 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-import Utils.Constants;
+import java.io.Serializable;
 
 /**
  *
  * @author Group 2
  */
-public class Map {
+public class Map implements Serializable {
     
     public static final int MIN_LEVEL = 1;
     public static final int MAX_LEVEL = 5;

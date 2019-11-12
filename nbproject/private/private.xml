@@ -4,15 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Settings.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Obstacle.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Door.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Loot.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Map.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Utils/SystemUtil.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Views/GameView.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Session.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Enemy.java</file>
             <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Player.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Trap.java</file>
-            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Wall.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/test/Models/SettingsTest.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Utils/FileUtil.java</file>
         </group>
     </open-files>
 </project-private>
