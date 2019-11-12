@@ -6,6 +6,7 @@
 package Views;
 
 import Models.Session;
+import Models.Settings;
 import Utils.Constants;
 import Utils.Log;
 import Utils.StringUtil;
@@ -33,6 +34,7 @@ public class LoginView extends javax.swing.JFrame {
         this.usernameEntry.setVisible(false);
         this.gameSetupView.setVisible(false);
         this.mapView.setVisible(false);
+        this.inGameMenuView.setVisible(false);
     }
 
     /**
@@ -80,6 +82,8 @@ public class LoginView extends javax.swing.JFrame {
         healthLabel = new javax.swing.JLabel();
         panel1 = new java.awt.Panel();
         jButton2 = new javax.swing.JButton();
+        inGameMenuView = new javax.swing.JInternalFrame();
+        saveGameButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -345,6 +349,11 @@ public class LoginView extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         jButton2.setText("Menu");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mapViewLayout = new javax.swing.GroupLayout(mapView.getContentPane());
         mapView.getContentPane().setLayout(mapViewLayout);
@@ -387,6 +396,34 @@ public class LoginView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        inGameMenuView.setBorder(null);
+        inGameMenuView.setVisible(true);
+
+        saveGameButton.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        saveGameButton.setText("Save Game");
+        saveGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveGameButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inGameMenuViewLayout = new javax.swing.GroupLayout(inGameMenuView.getContentPane());
+        inGameMenuView.getContentPane().setLayout(inGameMenuViewLayout);
+        inGameMenuViewLayout.setHorizontalGroup(
+            inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inGameMenuViewLayout.createSequentialGroup()
+                .addContainerGap(436, Short.MAX_VALUE)
+                .addComponent(saveGameButton)
+                .addContainerGap())
+        );
+        inGameMenuViewLayout.setVerticalGroup(
+            inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inGameMenuViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(saveGameButton)
+                .addContainerGap(431, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -396,12 +433,14 @@ public class LoginView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(titleLabel)
-                            .addComponent(mapView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                            .addComponent(gameSetupView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                            .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
-                        .addGap(0, 42, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(titleLabel)
+                                .addComponent(mapView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                                .addComponent(gameSetupView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                                .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)))
+                        .addGap(0, 26, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -417,7 +456,9 @@ public class LoginView extends javax.swing.JFrame {
                 .addComponent(gameSetupView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mapView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -491,11 +532,26 @@ public class LoginView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.gameSetupView.setVisible(false);
         this.mapView.setVisible(true);
-        
+
         this.attackLabel.setText(Integer.toString(session.currentPlayer.getAttack()));
         this.defenseLabel.setText(Integer.toString(session.currentPlayer.getDefense()));
         this.healthLabel.setText(Integer.toString(session.currentPlayer.getHealth()));
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.mapView.setVisible(false);
+        this.inGameMenuView.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void saveGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameButtonActionPerformed
+
+        try {
+            Settings.addOrUpdateSetting(this.session);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                    this, StringUtil.concat("Failed to save game: ", ex.getMessage()));
+        }
+    }//GEN-LAST:event_saveGameButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -545,6 +601,7 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JInternalFrame gameSetupView;
     private javax.swing.JLabel healthLabel;
     private javax.swing.JTextField highestLevelEntry;
+    private javax.swing.JInternalFrame inGameMenuView;
     private javax.swing.JTextField invEntry;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -569,6 +626,7 @@ public class LoginView extends javax.swing.JFrame {
     private java.awt.Panel panel1;
     private javax.swing.JButton returningUserButton;
     private javax.swing.JLabel returningUserLabel;
+    private javax.swing.JButton saveGameButton;
     private javax.swing.JButton startGameButton;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JComboBox<String> usernameComboBox;
