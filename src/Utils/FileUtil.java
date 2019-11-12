@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -28,24 +29,32 @@ public class FileUtil {
         }
         createFile(path);
     }
-    
+
     public static void createDirectory(String path) {
-         File file = new File(path);
+        File file = new File(path);
         if (!file.exists()) {
             if (file.mkdir()) {
                 Log.verbose(StringUtil.concat("Created dir: ", path));
             } else {
-                Log.verbose(StringUtil.concat("Faile to create dir: ", path));
+                Log.verbose(StringUtil.concat("Failed to create dir: ", path));
             }
         }
+    }
+
+    public static String[] getSubdirectories(String path) {
+        File file = new File(path);
+        String[] directories = file.list((File current, String name) 
+                -> new File(current, name).isDirectory());
+        
+        return directories;
     }
 
     public static void WriteMapToSettingsFile(Map map) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         createIfNotPresent(Constants.SETTINGS_FILE);
         PrintWriter writer = new PrintWriter(Constants.SETTINGS_FILE, "UTF-8");
-        map.keySet().forEach(( key)->{
-    writer.println(key.toString() + ":" + map.getOrDefault(key, Constants.EMPTY_STRING).toString());
-});
+        map.keySet().forEach((key) -> {
+            writer.println(key.toString() + ":" + map.getOrDefault(key, Constants.EMPTY_STRING).toString());
+        });
     }
 
     public static Map getMapFromSettingsFile() throws FileNotFoundException, IOException {

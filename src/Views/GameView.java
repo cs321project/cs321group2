@@ -8,6 +8,7 @@ package Views;
 import Models.Session;
 import Models.Settings;
 import Utils.Constants;
+import Utils.FileUtil;
 import Utils.Log;
 import Utils.StringUtil;
 import java.awt.HeadlessException;
@@ -27,6 +28,16 @@ public class GameView extends javax.swing.JFrame {
      */
     public GameView() {
         initComponents();
+        
+        String[] savedUsers;
+        
+        savedUsers = FileUtil
+                .getSubdirectories(
+                        Session.getInstance().getGameDirectory());
+        
+        for(String user : savedUsers) {
+            this.usernameComboBox.addItem(user);
+        }
 
         this.newUserLabel.setVisible(false);
         this.returningUserLabel.setVisible(false);
@@ -494,8 +505,10 @@ public class GameView extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Invalid Username");
                 }
             } else {
-
+                username = this.usernameComboBox.getSelectedItem().toString();
             }
+            
+            Log.debug(username);
 
             boolean init = session.initGame(username);
             this.currentPlayerEntry.setText(this.session.currentPlayer.getUsername());
