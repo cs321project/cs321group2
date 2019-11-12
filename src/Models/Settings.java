@@ -5,11 +5,12 @@
  */
 package Models;
 
-import Utils.ApplicationSettings;
-import Utils.Constants;
-import Utils.Log;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Map;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -17,42 +18,30 @@ import java.util.Map;
  */
 public class Settings {
 
-    private Map applicationSettings = null;
+    public static boolean getSetting(Session session) throws IOException, ClassNotFoundException {
 
-    public Settings() {
-        try {
-            Log.verbose("Initializing App Settings");
-            applicationSettings = ApplicationSettings.getAppSettings();
-        } catch (IOException ex) {
-            Log.exception(ex);
-        }
+        FileInputStream file
+                = new FileInputStream(session.currentPlayer.getPlayerSettingsFile());
+        ObjectInputStream in = new ObjectInputStream(file);
+
+        Session s= (Session) in.readObject();
+        Session.setInstance(s);
+
+        in.close();
+        file.close();
+
+        return true;
     }
 
-    public String getSetting(String key) {
-        try {
-            if (key == null) {
-                return Constants.EMPTY_STRING;
-            }
+    public static void addOrUpdateSetting(Session session) throws FileNotFoundException, IOException {
 
-            return (String) applicationSettings.getOrDefault(key, Constants.EMPTY_STRING);
-        } catch (Exception ex) {
-            Log.exception(ex);
-            return Constants.EMPTY_STRING;
-        }
-    }
+        FileOutputStream file
+                = new FileOutputStream(session.currentPlayer.getPlayerSettingsFile());
+        ObjectOutputStream out = new ObjectOutputStream(file);
 
-    public boolean addOrUpdateSetting(String key, String value) {
-        try {
-            if (key == null || value == null) {
-                return false;
-            }
+        out.writeObject(session);
 
-            applicationSettings.put(key, value);
-            ApplicationSettings.updateAppSettings(applicationSettings);
-            return true;
-        } catch (IOException ex) {
-            Log.exception(ex);
-            return false;
-        }
+        out.close();
+        file.close();
     }
 }

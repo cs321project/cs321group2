@@ -47,7 +47,7 @@ public class Player extends AbstractMapItem {
         this.highestLevel = highestLevel;
     }
 
-    public String getPlayerDirectoy() {
+    public String getPlayerSettingsFile() {
         String userDir = SystemUtil.getUserDirectory();
         String dir = StringUtil.concat(userDir, File.separator,
                 this.username);

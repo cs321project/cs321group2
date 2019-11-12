@@ -19,15 +19,12 @@ import java.util.List;
 public class Session implements Serializable{
 
     private static Session instance = null;
-    public Settings appSettings = null;
     public Map currentMap = null;
     public Player currentPlayer = null;
     public boolean isNewUser = true;
 
     private Session() {
-        Log.debug("Creating New Session Instance");
-        appSettings = new Settings();
-        
+        Log.debug("Creating New Session Instance");        
     }
 
     public static Session getInstance() {
@@ -39,6 +36,10 @@ public class Session implements Serializable{
         }
 
         return instance;
+    }
+    
+    public static void setInstance(Session session) {
+        instance = session;
     }
 
     public boolean initGame(String userName) {
