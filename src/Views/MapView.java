@@ -6,11 +6,6 @@
 package Views;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.paint.Color;
 import javax.swing.JPanel;
 
 /**

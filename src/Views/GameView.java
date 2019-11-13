@@ -13,6 +13,8 @@ import Utils.Log;
 import Utils.StringUtil;
 import java.awt.HeadlessException;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -98,6 +100,22 @@ public class GameView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         inGameMenuView = new javax.swing.JInternalFrame();
         saveGameButton = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        inGameUsernameField = new javax.swing.JTextField();
+        inGameHealthLevel = new javax.swing.JProgressBar();
+        inGameCurrentMap = new javax.swing.JTextField();
+        inGameLivesLeft = new javax.swing.JTextField();
+        inGameCurrentInventory = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -421,21 +439,122 @@ public class GameView extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        jButton3.setText("Resume");
+
+        jButton4.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        jButton4.setText("Quit");
+
+        jLabel9.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel9.setText("Username: ");
+
+        jLabel11.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel11.setText("Current Map: ");
+
+        jLabel13.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel13.setText("Lives Left: ");
+
+        jLabel14.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel14.setText("Current Inventory: ");
+
+        jLabel15.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel15.setText("Current Health Level:");
+
+        jLabel16.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel16.setText("Tool #1: ");
+
+        jLabel17.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        jLabel17.setText("Tool #2: ");
+
+        inGameUsernameField.setEditable(false);
+        inGameUsernameField.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+
+        inGameHealthLevel.setPreferredSize(new java.awt.Dimension(146, 20));
+
+        inGameCurrentMap.setEditable(false);
+        inGameCurrentMap.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+
+        inGameLivesLeft.setEditable(false);
+        inGameLivesLeft.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+
+        inGameCurrentInventory.setEditable(false);
+        inGameCurrentInventory.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+
+        jComboBox1.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+
+        jComboBox2.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout inGameMenuViewLayout = new javax.swing.GroupLayout(inGameMenuView.getContentPane());
         inGameMenuView.getContentPane().setLayout(inGameMenuViewLayout);
         inGameMenuViewLayout.setHorizontalGroup(
             inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inGameMenuViewLayout.createSequentialGroup()
-                .addContainerGap(436, Short.MAX_VALUE)
-                .addComponent(saveGameButton)
+            .addGroup(inGameMenuViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inGameMenuViewLayout.createSequentialGroup()
+                        .addGap(0, 254, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveGameButton))
+                    .addGroup(inGameMenuViewLayout.createSequentialGroup()
+                        .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel9))
+                        .addGap(18, 18, 18)
+                        .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inGameHealthLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inGameUsernameField)
+                            .addComponent(inGameCurrentMap)
+                            .addComponent(inGameLivesLeft)
+                            .addComponent(inGameCurrentInventory)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         inGameMenuViewLayout.setVerticalGroup(
             inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inGameMenuViewLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inGameMenuViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(saveGameButton)
-                .addContainerGap(431, Short.MAX_VALUE))
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(inGameUsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(inGameCurrentMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(inGameLivesLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(inGameCurrentInventory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(inGameHealthLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveGameButton)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -454,7 +573,7 @@ public class GameView extends javax.swing.JFrame {
                                 .addComponent(gameSetupView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                                 .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                             .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 26, Short.MAX_VALUE)))
+                        .addGap(0, 28, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -472,7 +591,7 @@ public class GameView extends javax.swing.JFrame {
                 .addComponent(mapView, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -555,6 +674,13 @@ public class GameView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.inGameUsernameField.setText(this.session.currentPlayer.getUsername());
+        this.inGameCurrentMap.setText(Integer.toString(this.session.currentMap.getLevel()));
+        this.inGameCurrentInventory.setText(StringUtil.join(this.session.currentPlayer.getInventoryIDs()));
+        this.inGameLivesLeft.setText(Integer.toString(this.session.currentPlayer.getLives()));
+        this.inGameHealthLevel.setValue(this.session.currentPlayer.getHealth());
+        
+        
         this.mapView.setVisible(false);
         this.inGameMenuView.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -622,13 +748,28 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JInternalFrame gameSetupView;
     private javax.swing.JLabel healthLabel;
     private javax.swing.JTextField highestLevelEntry;
+    private javax.swing.JTextField inGameCurrentInventory;
+    private javax.swing.JTextField inGameCurrentMap;
+    private javax.swing.JProgressBar inGameHealthLevel;
+    private javax.swing.JTextField inGameLivesLeft;
     private javax.swing.JInternalFrame inGameMenuView;
+    private javax.swing.JTextField inGameUsernameField;
     private javax.swing.JTextField invEntry;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -636,6 +777,7 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JRadioButton lastSessionRadioButton;
     private javax.swing.JTextField levelEntry;
