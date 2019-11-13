@@ -47,6 +47,8 @@ public class GameView extends javax.swing.JFrame {
         this.gameSetupView.setVisible(false);
         this.mapView.setVisible(false);
         this.inGameMenuView.setVisible(false);
+        
+        this.gamePanel.add(new MapView());
     }
 
     /**
@@ -92,7 +94,7 @@ public class GameView extends javax.swing.JFrame {
         defenseLabel = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         healthLabel = new javax.swing.JLabel();
-        panel1 = new java.awt.Panel();
+        gamePanel = new java.awt.Panel();
         jButton2 = new javax.swing.JButton();
         inGameMenuView = new javax.swing.JInternalFrame();
         saveGameButton = new javax.swing.JButton();
@@ -181,7 +183,7 @@ public class GameView extends javax.swing.JFrame {
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(returningUserLabel)
                     .addComponent(usernameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
                 .addComponent(startGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aboutButton)
@@ -279,7 +281,7 @@ public class GameView extends javax.swing.JFrame {
                         .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(gameSetupViewLayout.createSequentialGroup()
                                 .addComponent(newGameRadioButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                                 .addComponent(lastSessionRadioButton)
                                 .addGap(10, 10, 10))
                             .addComponent(currentPlayerEntry)))
@@ -319,7 +321,7 @@ public class GameView extends javax.swing.JFrame {
                 .addGroup(gameSetupViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(highestLevelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -348,15 +350,15 @@ public class GameView extends javax.swing.JFrame {
         healthLabel.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         healthLabel.setText("0");
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
+        gamePanel.setLayout(gamePanelLayout);
+        gamePanelLayout.setHorizontalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+        gamePanelLayout.setVerticalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 452, Short.MAX_VALUE)
         );
 
         jButton2.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
@@ -374,7 +376,7 @@ public class GameView extends javax.swing.JFrame {
             .addGroup(mapViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mapViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(mapViewLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -388,7 +390,7 @@ public class GameView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(healthLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mapViewLayout.setVerticalGroup(
@@ -404,7 +406,7 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(healthLabel)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -446,12 +448,12 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(titleLabel)
                                 .addComponent(mapView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                                 .addComponent(gameSetupView, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                                .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)))
+                                .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
+                            .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 26, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -467,10 +469,10 @@ public class GameView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(gameSetupView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mapView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mapView, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(inGameMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -616,6 +618,7 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JTextField currentPlayerEntry;
     private javax.swing.JLabel defenseLabel;
     private javax.swing.JTextField diffEntry;
+    private java.awt.Panel gamePanel;
     private javax.swing.JInternalFrame gameSetupView;
     private javax.swing.JLabel healthLabel;
     private javax.swing.JTextField highestLevelEntry;
@@ -641,7 +644,6 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JRadioButton newGameRadioButton;
     private javax.swing.JButton newUserButton;
     private javax.swing.JLabel newUserLabel;
-    private java.awt.Panel panel1;
     private javax.swing.JButton returningUserButton;
     private javax.swing.JLabel returningUserLabel;
     private javax.swing.JButton saveGameButton;
