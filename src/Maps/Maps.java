@@ -5,11 +5,13 @@
  */
 package Maps;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Group2
  */
-public class Maps {
+public class Maps implements Serializable {
 
     public static String[] Map1 = {
         "|||||||||||||D|||||||||||||||-",
