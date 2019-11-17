@@ -5,11 +5,10 @@
  */
 package Views;
 
+import Models.Map;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.util.Random;
 import javax.swing.JPanel;
 
 /**
@@ -17,60 +16,73 @@ import javax.swing.JPanel;
  * @author Group 2
  */
 public class MapView extends JPanel {
-    
-    public static final Color CITY = new Color(214, 217, 223);
-    public static final Color DESERT = new Color(255, 204, 102);
-    public static final Color DIRT_ROAD = new Color(153, 102, 0);
-    public static final Color FOREST = new Color(0, 102, 0);
-    public static final Color HILLS = new Color(51, 153, 0);
-    public static final Color LAKE = new Color(0, 153, 153);
-    public static final Color MOUNTAINS = new Color(102, 102, 255);
-    public static final Color OCEAN = new Color(0, 0, 153);
-    public static final Color PAVED_ROAD = new Color(51, 51, 0);
-    public static final Color PLAINS = new Color(102, 153, 0);
+
+    public static final Color WALL = new Color(97, 71, 41);
+    public static final Color DOOR = new Color(214, 204, 2);
+    public static final Color ENEMY = new Color(255, 0, 0);
+    public static final Color LOOT = new Color(189, 189, 0);
+    public static final Color TRAP = new Color(189, 110, 0);
+    public static final Color PLAYER = new Color(0, 0, 255);
+    public static final Color MAP = new Color(0, 0, 0);
 
     public static final Color[] TERRAIN = {
-        CITY,
-        DESERT,
-        DIRT_ROAD,
-        FOREST,
-        HILLS,
-        LAKE,
-        MOUNTAINS,
-        OCEAN,
-        PAVED_ROAD,
-        PLAINS
+        WALL,
+        DOOR,
+        ENEMY,
+        LOOT,
+        TRAP,
+        PLAYER,
+        MAP
     };
-    private Point mousePoint;
+
     public static final int NUM_ROWS = 30;
     public static final int NUM_COLS = 30;
 
-    public static final int PREFERRED_GRID_SIZE_PIXELS = 40;
-    
-    // In reality you will probably want a class here to represent a map tile,
-    // which will include things like dimensions, color, properties in the
-    // game world.  Keeping simple just to illustrate.
+    public static final int PREFERRED_GRID_SIZE_PIXELS = 20;
+
     private final TileShape[][] terrainGrid;
 
     public MapView() {
         super.setVisible(true);
-        super.setSize(550, 550);
-        
+        super.setSize(520, 420);
+
         this.terrainGrid = new TileShape[NUM_ROWS][NUM_COLS];
-        Random r = new Random();
-        // Randomize the terrain
-        for (int i = 0; i < NUM_ROWS; i++) {
-            for (int j = 0; j < NUM_COLS; j++) {
-                if (j % 5 == 0) {
-                    Color roadColor = TERRAIN[8];
-                    this.terrainGrid[i][j] = new TileShape(i * 40, j * 40, 40, roadColor);
-                } else {
-                    int randomTerrainIndex = r.nextInt(TERRAIN.length);
-                    Color randomColor = TERRAIN[randomTerrainIndex];
-                    this.terrainGrid[i][j] = new TileShape(i * 40, j * 40, 40, randomColor);
+
+        for (int j = 0; j <Maps.Maps.Map1.length; j++) {
+            for (int i = 0; i < Maps.Maps.Map1[j].length(); i++) {
+                char c = Maps.Maps.Map1[j].charAt(i);
+                Color color = null;
+
+                switch (c) {
+                    case '|':
+                        color = TERRAIN[6];
+                        break;
+                    case 'D':
+                        color = TERRAIN[1];
+                        break;
+                    case 'E':
+                        color = TERRAIN[2];
+                        break;
+                    case 'T':
+                        color = TERRAIN[4];
+                        break;
+                    case 'P':
+                        color = TERRAIN[5];
+                        break;
+                    case 'L':
+                        color = TERRAIN[3];
+                        break;
+                    default:
+                        color = TERRAIN[0];
+                        break;
                 }
+                
+                
+                this.terrainGrid[i][j] = 
+                        new TileShape(j * 40, i * 40, 40, color);
             }
         }
+
         int preferredWidth = NUM_COLS * PREFERRED_GRID_SIZE_PIXELS;
         int preferredHeight = NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
         super.setPreferredSize(new Dimension(preferredWidth, preferredHeight));
@@ -78,17 +90,16 @@ public class MapView extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        // Important to call super class method
+
         super.paintComponent(g);
-        // Clear the board
+
         g.clearRect(0, 0, getWidth(), getHeight());
-        // Draw the grid
+
         int rectWidth = getWidth() / NUM_COLS;
         int rectHeight = getHeight() / NUM_ROWS;
 
         for (int i = 0; i < NUM_ROWS; i++) {
             for (int j = 0; j < NUM_COLS; j++) {
-                // Upper left corner of this terrain rect
                 int x = i * rectWidth;
                 int y = j * rectHeight;
                 Color terrainColor = terrainGrid[i][j].getColor();
@@ -96,6 +107,10 @@ public class MapView extends JPanel {
                 g.fillRect(x, y, rectWidth, rectHeight);
             }
         }
+
+    }
+
+    public void reDraw(Map map) {
 
     }
 }

@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FileUtil {
@@ -43,9 +44,9 @@ public class FileUtil {
 
     public static String[] getSubdirectories(String path) {
         File file = new File(path);
-        String[] directories = file.list((File current, String name) 
+        String[] directories = file.list((File current, String name)
                 -> new File(current, name).isDirectory());
-        
+
         return directories;
     }
 
@@ -70,5 +71,20 @@ public class FileUtil {
             }
         }
         return map;
+    }
+
+    public static List<String> readLines(String path) throws FileNotFoundException, IOException {
+        List<String> lineList = new ArrayList<>();
+        
+        BufferedReader reader;
+        reader = new BufferedReader(new FileReader(path));
+
+        String line = reader.readLine();
+        while (line != null) {
+            lineList.add(line);
+        }
+        reader.close();
+        
+        return lineList;
     }
 }
