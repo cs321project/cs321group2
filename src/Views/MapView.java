@@ -6,7 +6,6 @@
 package Views;
 
 import Utils.Log;
-import Utils.StringUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

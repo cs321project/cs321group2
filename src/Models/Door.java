@@ -6,7 +6,6 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-import java.io.Serializable;
 import javafx.util.Pair;
 
 /**
