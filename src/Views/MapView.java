@@ -5,17 +5,19 @@
  */
 package Views;
 
-import Models.Map;
+import Utils.Log;
+import Utils.StringUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.JPanel;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Group 2
  */
-public class MapView extends JPanel {
+public class MapView extends JTextField implements java.awt.event.KeyListener {
 
     public static final Color WALL = new Color(97, 71, 41);
     public static final Color DOOR = new Color(214, 204, 2);
@@ -45,10 +47,16 @@ public class MapView extends JPanel {
     public MapView() {
         super.setVisible(true);
         super.setSize(520, 420);
+        super.addKeyListener(this);
+        super.setFocusable(true);
+        super.requestFocus();
+        super.setBackground(new Color(0, 0, 0, 0));
+        super.setEditable(false);
+        super.setEnabled(true);
 
         this.terrainGrid = new TileShape[NUM_ROWS][NUM_COLS];
 
-        for (int j = 0; j <Maps.Maps.Map1.length; j++) {
+        for (int j = 0; j < Maps.Maps.Map1.length; j++) {
             for (int i = 0; i < Maps.Maps.Map1[j].length(); i++) {
                 char c = Maps.Maps.Map1[j].charAt(i);
                 Color color = null;
@@ -76,10 +84,9 @@ public class MapView extends JPanel {
                         color = TERRAIN[0];
                         break;
                 }
-                
-                
-                this.terrainGrid[i][j] = 
-                        new TileShape(j * 40, i * 40, 40, color);
+
+                this.terrainGrid[i][j]
+                        = new TileShape(j * 40, i * 40, 40, color);
             }
         }
 
@@ -110,7 +117,54 @@ public class MapView extends JPanel {
 
     }
 
-    public void reDraw(Map map) {
+    private enum Direction {
+        Forward,
+        Backward,
+        Right,
+        Left,
+        None
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char key = e.getKeyChar();
+        Direction direction = Direction.None;
+
+        switch (key) {
+            case 'w':
+            case 'W':
+                direction = Direction.Forward;
+                Log.verbose("Forward");
+                break;
+            case 'a':
+            case 'A':
+                direction = Direction.Left;
+                Log.verbose("Left");
+                break;
+            case 's':
+            case 'S':
+                direction = Direction.Backward;
+                Log.verbose("Backward");
+                break;
+            case 'd':
+            case 'D':
+                direction = Direction.Right;
+                Log.verbose("Right");
+                break;
+            default:
+                Log.verbose("Key not detected");
+        }
+        
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
