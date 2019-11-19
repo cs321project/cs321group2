@@ -14,6 +14,7 @@ import javafx.util.Pair;
  */
 public class Loot extends AbstractMapItem {
 
+    //Test 
     private int value;
     private String id;
 
