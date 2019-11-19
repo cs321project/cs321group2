@@ -16,6 +16,12 @@ public class Trap extends Obstacle {
     public Trap() {
 
     }
+    
+    @Override
+    public String toString()
+    {
+        return "Trap";
+    }
 
     public void setValue(int damageValue) {
         this.damageValue = damageValue;
@@ -29,4 +35,5 @@ public class Trap extends Obstacle {
         
     }
 
+    
 }

@@ -6,7 +6,7 @@
 package Abstractions;
 
 import java.io.Serializable;
-import javafx.util.Pair;
+import Models.Location;
 
 /**
  *
@@ -14,6 +14,6 @@ import javafx.util.Pair;
  */
 public class AbstractMapItem implements Serializable {
 
-    public Pair location;
+    public Location location;
 
 }

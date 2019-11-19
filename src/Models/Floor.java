@@ -4,28 +4,27 @@
  * and open the template in the editor.
  */
 package Models;
-
+import Abstractions.AbstractMapItem;
 /**
  *
- * @author Group 2
+ * @author Matthew
  */
-public class Wall extends Obstacle {
+public class Floor extends AbstractMapItem{
     
     private Location location;
     
-    public Wall() 
+    public Floor()
     {
         
     }
     
-    public Wall(Location location)
+    public Floor(Location location)
     {
         this.location = location;
     }
     
-    @Override
     public String toString()
     {
-        return "Wall";
+        return "Floor";
     }
 }

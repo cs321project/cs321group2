@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
 
 /**
  *
@@ -38,7 +37,7 @@ public class Player extends AbstractMapItem {
 
     }
 
-    public Player(String username, List<Loot> inventory, int health, Pair location, int baseAttack, int baseDefense, int lives, int highestLevel) {
+    public Player(String username, List<Loot> inventory, int health, Location location, int baseAttack, int baseDefense, int lives, int highestLevel) {
         this.username = username;
         this.inventory = inventory;
         this.health = health;

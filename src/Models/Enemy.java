@@ -6,7 +6,6 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-import javafx.util.Pair;
 
 /**
  *
@@ -15,12 +14,13 @@ import javafx.util.Pair;
 public class Enemy extends AbstractMapItem {
 
     private int health;
+    private Location location;
 
     public Enemy() {
 
     }
 
-    public Enemy(Pair location, int health) {
+    public Enemy(Location location, int health) {
         this.location = location;
         this.health = health;
     }
@@ -45,4 +45,9 @@ public class Enemy extends AbstractMapItem {
 
     }
 
+    @Override
+    public String toString()
+    {
+        return "Enemy";
+    }
 }

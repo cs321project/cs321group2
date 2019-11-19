@@ -6,7 +6,7 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 /**
  *
@@ -14,15 +14,15 @@ import javafx.util.Pair;
  */
 public class Loot extends AbstractMapItem {
 
-    //Test 
     private int value;
     private String id;
+    private int[] location;
 
     public Loot() {
 
     }
 
-    public Loot(Pair location, int value, String id) {
+    public Loot(int[] location, int value, String id) {
         this.location = location;
         this.value = value;
         this.id = id;
