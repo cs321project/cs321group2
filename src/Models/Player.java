@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -98,6 +99,10 @@ public class Player extends AbstractMapItem {
 
     public void setHealth(int health) {
         this.health = health;
+        if(this.health <= 0)
+        {
+            this.die();
+        }
     }
 
     public int getHealth() {
@@ -136,16 +141,18 @@ public class Player extends AbstractMapItem {
 
     }
 
-    public void attack() {
-
+    public void attack(Enemy enemy) {
+        int damage;
+        damage = this.baseAttack * (100/(100 + enemy.getDefense()));
+        enemy.setHealth(enemy.getHealth() - damage);
     }
 
     public void move() {
 
     }
 
-    public void pickupLoot() {
-
+    public void pickupLoot(Loot loot) {
+        inventory.add(loot);
     }
 
     public void heal() {

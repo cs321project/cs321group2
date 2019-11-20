@@ -12,6 +12,7 @@ import Models.Location;
  *
  * @author Group 2
  */
+//test
 public class AbstractMapItem implements Serializable {
 
     public Location location;
