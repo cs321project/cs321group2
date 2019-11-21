@@ -62,6 +62,9 @@ public class Map implements Serializable {
                     case 'L':
                         item = new Loot();
                         break;
+                    case 'P':
+                        item = new Player();
+                        break;
                 }
 
                 if (item != null) {

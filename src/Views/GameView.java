@@ -41,7 +41,7 @@ public class GameView extends javax.swing.JFrame {
 
         this.newUserLabel.setVisible(false);
         this.returningUserLabel.setVisible(false);
-        this.startGameButton.setVisible(false);
+        this.setUpGameButton.setVisible(false);
         this.usernameComboBox.setVisible(false);
         this.usernameEntry.setVisible(false);
         this.gameSetupView.setVisible(false);
@@ -49,7 +49,19 @@ public class GameView extends javax.swing.JFrame {
         this.inGameMenuView.setVisible(false);
         
         this.gamePanel.add(new MapView());
-        Log.verbose("beepboop");
+    }
+    private void quitWarningPopUp()
+    {
+        int response = JOptionPane.showConfirmDialog(this, "You are about to quit with out saving. Is this OK?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) 
+        {
+            
+        }
+        else
+        {
+            
+        }
     }
 
     /**
@@ -71,7 +83,7 @@ public class GameView extends javax.swing.JFrame {
         returningUserLabel = new javax.swing.JLabel();
         usernameComboBox = new javax.swing.JComboBox<>();
         aboutButton = new javax.swing.JButton();
-        startGameButton = new javax.swing.JButton();
+        setUpGameButton = new javax.swing.JButton();
         gameSetupView = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -87,7 +99,7 @@ public class GameView extends javax.swing.JFrame {
         invEntry = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         highestLevelEntry = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        startGameButton = new javax.swing.JButton();
         mapView = new javax.swing.JInternalFrame();
         jLabel8 = new javax.swing.JLabel();
         attackLabel = new javax.swing.JLabel();
@@ -96,11 +108,11 @@ public class GameView extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         healthLabel = new javax.swing.JLabel();
         gamePanel = new java.awt.Panel();
-        jButton2 = new javax.swing.JButton();
+        menuButton = new javax.swing.JButton();
         inGameMenuView = new javax.swing.JInternalFrame();
         saveGameButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        resumeButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -155,12 +167,12 @@ public class GameView extends javax.swing.JFrame {
         aboutButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         aboutButton.setText("About");
 
-        startGameButton.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
-        startGameButton.setText("Setup Game");
-        startGameButton.setActionCommand("startGame");
-        startGameButton.addActionListener(new java.awt.event.ActionListener() {
+        setUpGameButton.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
+        setUpGameButton.setText("Setup Game");
+        setUpGameButton.setActionCommand("startGame");
+        setUpGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startGameButtonActionPerformed(evt);
+                setUpGameButtonActionPerformed(evt);
             }
         });
 
@@ -180,7 +192,7 @@ public class GameView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(usernameEntry))
                     .addComponent(newUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(startGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(setUpGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(aboutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(returningUserButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -201,7 +213,7 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(returningUserLabel)
                     .addComponent(usernameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
-                .addComponent(startGameButton)
+                .addComponent(setUpGameButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aboutButton)
                 .addContainerGap())
@@ -263,11 +275,11 @@ public class GameView extends javax.swing.JFrame {
         highestLevelEntry.setFont(new java.awt.Font("Sitka Subheading", 0, 14)); // NOI18N
         highestLevelEntry.setEnabled(false);
 
-        jButton1.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
-        jButton1.setText("Start Game");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        startGameButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        startGameButton.setText("Start Game");
+        startGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                startGameButtonActionPerformed(evt);
             }
         });
 
@@ -305,7 +317,7 @@ public class GameView extends javax.swing.JFrame {
                     .addGroup(gameSetupViewLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(startGameButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         gameSetupViewLayout.setVerticalGroup(
@@ -339,7 +351,7 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(highestLevelEntry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(startGameButton)
                 .addContainerGap())
         );
 
@@ -378,11 +390,11 @@ public class GameView extends javax.swing.JFrame {
             .addGap(0, 452, Short.MAX_VALUE)
         );
 
-        jButton2.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
-        jButton2.setText("Menu");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        menuButton.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
+        menuButton.setText("Menu");
+        menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                menuButtonActionPerformed(evt);
             }
         });
 
@@ -407,7 +419,7 @@ public class GameView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(healthLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                        .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mapViewLayout.setVerticalGroup(
@@ -421,7 +433,7 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(defenseLabel)
                     .addComponent(jLabel12)
                     .addComponent(healthLabel)
-                    .addComponent(jButton2))
+                    .addComponent(menuButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -438,11 +450,21 @@ public class GameView extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
-        jButton3.setText("Resume");
+        resumeButton.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        resumeButton.setText("Resume");
+        resumeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resumeButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
-        jButton4.setText("Quit");
+        quitButton.setFont(new java.awt.Font("Sitka Subheading", 1, 18)); // NOI18N
+        quitButton.setText("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Sitka Subheading", 1, 14)); // NOI18N
         jLabel9.setText("Username: ");
@@ -492,9 +514,9 @@ public class GameView extends javax.swing.JFrame {
                 .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inGameMenuViewLayout.createSequentialGroup()
                         .addGap(0, 254, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(quitButton)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(resumeButton)
                         .addGap(18, 18, 18)
                         .addComponent(saveGameButton))
                     .addGroup(inGameMenuViewLayout.createSequentialGroup()
@@ -551,8 +573,8 @@ public class GameView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addGroup(inGameMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveGameButton)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(resumeButton)
+                    .addComponent(quitButton))
                 .addContainerGap())
         );
 
@@ -602,7 +624,7 @@ public class GameView extends javax.swing.JFrame {
         this.usernameEntry.setVisible(true);
         this.returningUserLabel.setVisible(false);
         this.usernameComboBox.setVisible(false);
-        this.startGameButton.setVisible(true);
+        this.setUpGameButton.setVisible(true);
     }//GEN-LAST:event_newUserButtonActionPerformed
 
     private void returningUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returningUserButtonActionPerformed
@@ -611,10 +633,10 @@ public class GameView extends javax.swing.JFrame {
         this.usernameEntry.setVisible(false);
         this.returningUserLabel.setVisible(true);
         this.usernameComboBox.setVisible(true);
-        this.startGameButton.setVisible(true);
+        this.setUpGameButton.setVisible(true);
     }//GEN-LAST:event_returningUserButtonActionPerformed
 
-    private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
+    private void setUpGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUpGameButtonActionPerformed
         try {
             String username = Constants.EMPTY_STRING;
 
@@ -649,7 +671,7 @@ public class GameView extends javax.swing.JFrame {
         } catch (HeadlessException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-    }//GEN-LAST:event_startGameButtonActionPerformed
+    }//GEN-LAST:event_setUpGameButtonActionPerformed
 
     private void newGameRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameRadioButtonActionPerformed
         if (!session.isNewUser) {
@@ -663,16 +685,17 @@ public class GameView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lastSessionRadioButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         this.gameSetupView.setVisible(false);
         this.mapView.setVisible(true);
+        
 
         this.attackLabel.setText(Integer.toString(session.currentPlayer.getAttack()));
         this.defenseLabel.setText(Integer.toString(session.currentPlayer.getDefense()));
         this.healthLabel.setText(Integer.toString(session.currentPlayer.getHealth()));
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startGameButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
         this.inGameUsernameField.setText(this.session.currentPlayer.getUsername());
         this.inGameCurrentMap.setText(Integer.toString(this.session.currentMap.getLevel()));
         this.inGameCurrentInventory.setText(StringUtil.join(this.session.currentPlayer.getInventoryIDs()));
@@ -682,7 +705,7 @@ public class GameView extends javax.swing.JFrame {
         
         this.mapView.setVisible(false);
         this.inGameMenuView.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_menuButtonActionPerformed
 
     private void saveGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveGameButtonActionPerformed
 
@@ -695,6 +718,15 @@ public class GameView extends javax.swing.JFrame {
             Log.exception(ex);
         }
     }//GEN-LAST:event_saveGameButtonActionPerformed
+
+    private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
+        this.mapView.setVisible(true);
+        this.inGameMenuView.setVisible(false);
+    }//GEN-LAST:event_resumeButtonActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+       quitWarningPopUp();
+    }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -754,10 +786,6 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JInternalFrame inGameMenuView;
     private javax.swing.JTextField inGameUsernameField;
     private javax.swing.JTextField invEntry;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -782,12 +810,16 @@ public class GameView extends javax.swing.JFrame {
     private javax.swing.JTextField levelEntry;
     private javax.swing.JInternalFrame loginPanel;
     private javax.swing.JInternalFrame mapView;
+    private javax.swing.JButton menuButton;
     private javax.swing.JRadioButton newGameRadioButton;
     private javax.swing.JButton newUserButton;
     private javax.swing.JLabel newUserLabel;
+    private javax.swing.JButton quitButton;
+    private javax.swing.JButton resumeButton;
     private javax.swing.JButton returningUserButton;
     private javax.swing.JLabel returningUserLabel;
     private javax.swing.JButton saveGameButton;
+    private javax.swing.JButton setUpGameButton;
     private javax.swing.JButton startGameButton;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JComboBox<String> usernameComboBox;

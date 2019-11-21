@@ -75,6 +75,7 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
                         break;
                     case 'P':
                         color = TERRAIN[5];
+                        //new Player(i,j);
                         break;
                     case 'L':
                         color = TERRAIN[3];
