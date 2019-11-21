@@ -56,11 +56,7 @@ public class GameView extends javax.swing.JFrame {
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) 
         {
-            
-        }
-        else
-        {
-            
+            System.exit(0);
         }
     }
 
