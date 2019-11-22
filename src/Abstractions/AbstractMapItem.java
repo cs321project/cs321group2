@@ -17,4 +17,8 @@ public class AbstractMapItem implements Serializable {
 
     public Location location;
 
+    public void setLocation(Location location)
+    {
+        this.location = location;
+    }
 }

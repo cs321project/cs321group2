@@ -10,21 +10,22 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Matthew
  */
 public class Room 
 {
-    private AbstractMapItem[][] grid;
+    private List<AbstractMapItem> roomItems;
     
     private int roomHeight;
     private int roomWidth;
     
-    private ArrayList<Floor> floors;
-    private ArrayList<Wall> walls;
-    private ArrayList<Enemy> enemies;
-    private ArrayList<Trap> traps;
+    private List<Floor> floors;
+    private List<Wall> walls;
+    private List<Enemy> enemies;
+    private List<Trap> traps;
     private Door door;
     
     public Room()
@@ -32,7 +33,13 @@ public class Room
         
     }
     
+    public Room(String[] mapData)
+    {
+        interpretMapData(mapData);
+    }
+    
     /**
+     * -----OUTDATED-----
      * Reads text from a file and returns it as a string
      * @return the text from the file as a String
      */
@@ -67,143 +74,95 @@ public class Room
     * 'T' is a Trap
     * @param mapData the string that contains the information for building the Room
     */
-    public AbstractMapItem[][] interpretMapData(String mapData)
+    public void interpretMapData(String[] mapData)
     {
         floors = new ArrayList<>();
         walls = new ArrayList<>();
         enemies = new ArrayList<>();
         traps = new ArrayList<>();
+        roomItems = new ArrayList<>();
         door = null;
         
-        int k = 0; 
-        roomWidth = -1; //The while loop does an extra unneeded iteration, so roomWidth is set to -1 to compensate for that
-        roomHeight = 0;
-        while (mapData.charAt(k) != '#') //For calculating room width
-        {
-            if (mapData.charAt(k) != ' ')
-            {
-                roomWidth++;
-            }
-            k++;
-        }
-        for (int i = 0; i < mapData.length(); i++) //For calculating room height
-        {
-            if (mapData.charAt(i) == '#')
-            {
-                roomHeight++;
-            }
-        }
-        grid = new AbstractMapItem[roomWidth][roomHeight];
+        roomWidth = mapData[0].length();
+        roomHeight = mapData.length;
         
-        int i = 0;
-        int j = 0;
-        for (int n = 0; n < mapData.length(); n++)
+        for (int j = 0; j < mapData.length; j++)
         {
-            switch(mapData.charAt(n))
+            for (int i = 0; i < mapData[j].length(); i++)
             {
-                case '#':
-                    //System.out.println("# found " + i + " " + j);
-                    j++;
-                    i = 0;
-                    break;
-                case 'D':
-                    door = new Door();
-                    grid[i][j] = door;
-                    i++;
-                    break;                        
-                case '|':
-                    //System.out.println("| found " + i + " " +j);
-                    Wall tempWall = new Wall();
-                    grid[i][j] = tempWall;
-                    walls.add(tempWall);
-                    i++;
-                    break;
-                case '_':
-                    //System.out.println("_ found " + i + " " +j);
-                    Floor tempFloor = new Floor();
-                    grid[i][j] = tempFloor;
-                    floors.add(tempFloor);
-                    i++; 
-                    break;
-                case 'E':
-                    //System.out.println("E found " + i + " " +j);
-                    Enemy tempEnemy = new Enemy();
-                    grid[i][j] = tempEnemy;
-                    enemies.add(tempEnemy);
-                    i++;                  
-                    break;
-                case 'T':
-                    //System.out.println("T found " + i + " " +j);
-                    Trap tempTrap = new Trap();
-                    grid[i][j] = tempTrap;
-                    traps.add(tempTrap);
-                    i++;                   
-                    break;
+                AbstractMapItem item = null;
+                switch(mapData[j].charAt(i))
+                {
+                    case 'D':
+                        door = new Door();
+                        roomItems.add(door);
+                        door.setLocation(new Location(i,j));
+                        i++;
+                        break;                        
+                    case '|':
+                        //System.out.println("| found " + i + " " +j);
+                        Wall tempWall = new Wall();
+                        tempWall.setLocation(new Location(i,j));
+                        item = tempWall;
+                        walls.add(tempWall);
+                        i++;
+                        break;
+                    case '.':
+                        //System.out.println("_ found " + i + " " +j);
+                        Floor tempFloor = new Floor();
+                        tempFloor.setLocation(new Location(i,j));
+                        item = tempFloor;
+                        floors.add(tempFloor);
+                        i++; 
+                        break;
+                    case 'E':
+                        //System.out.println("E found " + i + " " +j);
+                        Enemy tempEnemy = new Enemy();
+                        tempEnemy.setLocation(new Location(i,j));
+                        item = tempEnemy;
+                        enemies.add(tempEnemy);
+                        i++;                  
+                        break;
+                    case 'T':
+                        //System.out.println("T found " + i + " " +j);
+                        Trap tempTrap = new Trap();
+                        tempTrap.setLocation(new Location(i,j));
+                        item = tempTrap;
+                        traps.add(tempTrap);
+                        i++;                   
+                        break;
+                }
+                
+                if (item!= null)
+                {
+                    this.roomItems.add(item);
+                }
             }
         }
-        return grid;
     }
     
-    /**
-     * Produces a string visualization of the room
-     * Used for Testing
-     * @return 
-     */
-    public String roomTest()
-    {
-        String mapString = "";
-        //System.out.println("room height: " + roomHeight);
-        //System.out.println("room width: " + roomWidth);
-        for (int j = 0; j < roomHeight; j++)
-        {
-            mapString += "\n";
-            for (int i = 0; i < roomWidth; i++)
-            {
-                if (grid[i][j].toString().equals("Floor"))
-                {
-                    mapString += "\t.";
-                    //System.out.println("found a floor " + i + " " + j);
-                }
-                else if (grid[i][j].toString().equals("Wall"))
-                {
-                    mapString += "\t|";
-                    //System.out.println("found a wall " + i + " " + j);
-                }
-                else if (grid[i][j].toString().equals("Enemy"))
-                {
-                    mapString += "\tE";
-                    //System.out.println("found a wall " + i + " " + j);
-                }
-                else if (grid[i][j].toString().equals("Trap"))
-                {
-                    mapString += "\tT";
-                    //System.out.println("found a wall " + i + " " + j);
-                }
-                else if (grid[i][j].toString().equals("Door"))
-                {
-                    mapString += "\tD";
-                    //System.out.println("found a wall " + i + " " + j);
-                }
-            }
-        }
-        return mapString;
-    }
+    
 
-    public ArrayList<Floor> getFloors() {
+    public List<Floor> getFloors() {
         return floors;
     }
 
-    public ArrayList<Wall> getWalls() {
+    public List<Wall> getWalls() {
         return walls;
     }
 
-    public ArrayList<Enemy> getEnemies() {
+    public List<Enemy> getEnemies() {
         return enemies;
     }
 
-    public ArrayList<Trap> getTraps() {
+    public List<Trap> getTraps() {
         return traps;
     }
+
+    public List<AbstractMapItem> getRoomItems() {
+        return roomItems;
+    }
+    
     
     
 }

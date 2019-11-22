@@ -25,6 +25,7 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
     public static final Color TRAP = new Color(189, 110, 0);
     public static final Color PLAYER = new Color(0, 0, 255);
     public static final Color MAP = new Color(0, 0, 0);
+    public static final Color FLOOR = new Color(230, 255, 251);
 
     public static final Color[] TERRAIN = {
         WALL,
@@ -33,7 +34,8 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
         LOOT,
         TRAP,
         PLAYER,
-        MAP
+        MAP,
+        FLOOR
     };
 
     public static final int NUM_ROWS = 30;
@@ -44,6 +46,8 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
     private final TileShape[][] terrainGrid;
 
     public MapView() {
+                
+        
         super.setVisible(true);
         super.setSize(520, 420);
         super.addKeyListener(this);
@@ -54,15 +58,20 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
         super.setEnabled(true);
 
         this.terrainGrid = new TileShape[NUM_ROWS][NUM_COLS];
+        String[] currentRoom;
+        currentRoom = Maps.Maps.HorizontalHall;
 
-        for (int j = 0; j < Maps.Maps.Map1.length; j++) {
-            for (int i = 0; i < Maps.Maps.Map1[j].length(); i++) {
-                char c = Maps.Maps.Map1[j].charAt(i);
+        for (int j = 0; j < currentRoom.length; j++) {
+            for (int i = 0; i < currentRoom[j].length(); i++) {
+                char c = currentRoom[j].charAt(i);
                 Color color = null;
 
                 switch (c) {
                     case '|':
                         color = TERRAIN[6];
+                        break;
+                    case '.':
+                        color = TERRAIN[7];
                         break;
                     case 'D':
                         color = TERRAIN[1];

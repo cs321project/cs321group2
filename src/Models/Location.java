@@ -42,5 +42,15 @@ public class Location {
         this.yCoord = yCoord;
     }
     
-    
+    public boolean equals(Location loc)
+    {
+        if (this.getxCoord() == loc.getxCoord() && this.getyCoord() == loc.getyCoord())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

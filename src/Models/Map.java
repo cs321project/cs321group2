@@ -22,6 +22,7 @@ public class Map implements Serializable {
     private int level;
     private String[] mapFormat;
     private List<AbstractMapItem> mapGrid;
+    private List<Room> rooms;
 
     public Map() {
 
@@ -29,51 +30,23 @@ public class Map implements Serializable {
 
     public Map(int level) {
         this.level = level;
-
+        rooms = new ArrayList<>();
+        //This is test code and will likely be changed later
+        //Currently only adds 1 room to a map
         switch (level) {
             case 1:
-                this.mapFormat = Maps.Maps.Map1;
+                rooms.add(new Room(Maps.Maps.OpenRoom1));
                 break;
             case 2:
-                this.mapFormat = Maps.Maps.Map2;
+                rooms.add(new Room(Maps.Maps.OpenRoom2));
                 break;
             case 3:
-                this.mapFormat = Maps.Maps.Map3;
+                rooms.add(new Room(Maps.Maps.OpenRoom3));
                 break;
         }
-
-        this.mapGrid = new ArrayList<>();
-
-        for (int j = 0; j < this.mapFormat.length; j++) {
-            for (int i = 0; i < this.mapFormat[j].length(); i++) {
-                char c = this.mapFormat[j].charAt(i);
-                AbstractMapItem item = null;
-
-                switch (c) {
-                    case 'D':
-                        item = new Door();
-                        break;
-                    case 'E':
-                        item = new Enemy();
-                        break;
-                    case 'T':
-                        item = new Trap();
-                        break;
-                    case 'L':
-                        item = new Loot();
-                        break;
-                    case 'P':
-                        item = new Player();
-                        break;
-                }
-
-                if (item != null) {
-                    this.mapGrid.add((AbstractMapItem) item);
-                }
-            }
-        }
-
-        initializeGrid();
+        //The code that interprets the map strings and adds AbstractMapItems to
+        //a list has been moved to Room
+        
     }
 
     public int getLevel() {
