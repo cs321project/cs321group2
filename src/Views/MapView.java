@@ -26,6 +26,7 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
     public static final Color PLAYER = new Color(0, 0, 255);
     public static final Color MAP = new Color(0, 0, 0);
     public static final Color FLOOR = new Color(230, 255, 251);
+    public static final Color RTTILE = new Color(250, 0 ,170);
 
     public static final Color[] TERRAIN = {
         WALL,
@@ -35,7 +36,8 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
         TRAP,
         PLAYER,
         MAP,
-        FLOOR
+        FLOOR,
+        RTTILE
     };
 
     public static final int NUM_ROWS = 30;
@@ -46,7 +48,7 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
     private final TileShape[][] terrainGrid;
 
     public MapView() {
-                
+        
         
         super.setVisible(true);
         super.setSize(520, 420);
@@ -88,6 +90,9 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
                         break;
                     case 'L':
                         color = TERRAIN[3];
+                        break;
+                    case 'R':
+                        color = TERRAIN[8];
                         break;
                     default:
                         color = TERRAIN[0];

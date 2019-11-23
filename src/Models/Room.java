@@ -26,7 +26,9 @@ public class Room
     private List<Wall> walls;
     private List<Enemy> enemies;
     private List<Trap> traps;
+    private List<RoomTransitionTile> rtTiles;
     private Door door;
+    
     
     public Room()
     {
@@ -80,6 +82,7 @@ public class Room
         walls = new ArrayList<>();
         enemies = new ArrayList<>();
         traps = new ArrayList<>();
+        rtTiles = new ArrayList<>();
         roomItems = new ArrayList<>();
         door = null;
         
@@ -131,6 +134,13 @@ public class Room
                         traps.add(tempTrap);
                         i++;                   
                         break;
+                    case 'R':
+                        RoomTransitionTile tempRT = new RoomTransitionTile();
+                        tempRT.setLocation(new Location(i,j));
+                        item = tempRT;
+                        rtTiles.add(tempRT);
+                        i++;
+                        break;                           
                 }
                 
                 if (item!= null)

@@ -16,6 +16,7 @@ public class Enemy extends AbstractMapItem {
     private int health;
     private int defense = 5;
     private int attack = 20;
+    private boolean hasKey = false;
 
     private Location location;
     
@@ -58,6 +59,11 @@ public class Enemy extends AbstractMapItem {
 
     }
 
+    private void giveKey()
+    {
+        hasKey = true;
+    }
+    
     @Override
     public String toString()
     {
