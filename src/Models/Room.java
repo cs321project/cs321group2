@@ -22,6 +22,11 @@ public class Room
     private int roomHeight;
     private int roomWidth;
     
+    private boolean hasTopExit = false;
+    private boolean hasBottomExit = false;
+    private boolean hasLeftExit = false;
+    private boolean hasRightExit = false;
+    
     private List<Floor> floors;
     private List<Wall> walls;
     private List<Enemy> enemies;
@@ -29,6 +34,15 @@ public class Room
     private List<RoomTransitionTile> rtTiles;
     private Door door;
     
+    private Room roomAbove = null;
+    private Room roomBelow = null;
+    private Room roomRight = null;
+    private Room roomLeft = null;
+    
+    private static final int TOP_ROW = 0;
+    private static final int BOTTOM_ROW = 29;
+    private static final int FIRST_COLUMN = 0;
+    private static final int LAST_COLUMN = 28;
     
     public Room()
     {
@@ -137,6 +151,15 @@ public class Room
                     case 'R':
                         RoomTransitionTile tempRT = new RoomTransitionTile();
                         tempRT.setLocation(new Location(i,j));
+                        //If the RoomTransitionTile is on the first row and a top exit does not already exit
+                        if (tempRT.getLocation().getyCoord() == TOP_ROW && !this.hasTopExit) 
+                            this.hasTopExit = true;
+                        if (tempRT.getLocation().getyCoord() == BOTTOM_ROW && !this.hasBottomExit)
+                            this.hasBottomExit = true;
+                        if (tempRT.getLocation().getxCoord() == FIRST_COLUMN && !this.hasLeftExit)
+                            this.hasLeftExit = true;
+                        if (tempRT.getLocation().getxCoord() == LAST_COLUMN && !this.hasRightExit)
+                            this.hasRightExit = true;
                         item = tempRT;
                         rtTiles.add(tempRT);
                         i++;
@@ -171,6 +194,56 @@ public class Room
 
     public List<AbstractMapItem> getRoomItems() {
         return roomItems;
+    }
+    
+    //---------Getters and Setters for adjacent Rooms---------------------
+
+    public Room getRoomAbove() {
+        return roomAbove;
+    }
+
+    public void setRoomAbove(Room roomAbove) {
+        this.roomAbove = roomAbove;
+        if (roomAbove.getRoomBelow() == null)
+        {
+            roomAbove.setRoomBelow(this);
+        }
+    }
+
+    public Room getRoomBelow() {
+        return roomBelow;
+    }
+
+    public void setRoomBelow(Room roomBelow) {
+        this.roomBelow = roomBelow;
+        if (roomBelow.getRoomAbove() == null)
+        {
+            roomBelow.setRoomAbove(this);
+        }
+    }
+
+    public Room getRoomRight() {
+        return roomRight;
+    }
+
+    public void setRoomRight(Room roomRight) {
+        this.roomRight = roomRight;
+        if (roomRight.getRoomLeft() == null)
+        {
+            roomRight.setRoomLeft(this);
+        }
+    }
+
+    public Room getRoomLeft() {
+        return roomLeft;
+    }
+
+    public void setRoomLeft(Room roomLeft) {
+        this.roomLeft = roomLeft;
+        if (roomLeft.getRoomRight() == null)
+        {
+            roomLeft.setRoomRight(this);
+        }
     }
     
     

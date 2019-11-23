@@ -7,10 +7,14 @@
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Map.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Views/GameView.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Player.java</file>
+            <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/RoomTransitionTile.java</file>
+            <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Enemy.java</file>
+            <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Door.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Abstractions/AbstractMapItem.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Views/MapView.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Trap.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Maps/Maps.java</file>
+            <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Session.java</file>
         </group>
     </open-files>
 </project-private>

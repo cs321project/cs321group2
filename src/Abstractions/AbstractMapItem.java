@@ -21,4 +21,10 @@ public class AbstractMapItem implements Serializable {
     {
         this.location = location;
     }
+
+    public Location getLocation() {
+        return location;
+    }
+    
+    
 }

@@ -59,7 +59,7 @@ public class Enemy extends AbstractMapItem {
 
     }
 
-    private void giveKey()
+    public void giveKey()
     {
         hasKey = true;
     }
