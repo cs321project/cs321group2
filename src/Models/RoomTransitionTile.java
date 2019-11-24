@@ -13,6 +13,9 @@ import Abstractions.AbstractMapItem;
  */
 public class RoomTransitionTile extends AbstractMapItem {
 
+    /**
+     *
+     */
     public RoomTransitionTile() {
 
     }

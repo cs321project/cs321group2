@@ -14,8 +14,19 @@ import Abstractions.AbstractMapItem;
  */
 public class Enemy extends AbstractMapItem {
 
+    /**
+     *
+     */
     public static final int MAX_HEALTH = 5;
+
+    /**
+     *
+     */
     public static final int MAX_ATTACK = 2;
+
+    /**
+     *
+     */
     public static final int MAX_DEFENSE = 2;
 
     private int health;
@@ -47,6 +58,10 @@ public class Enemy extends AbstractMapItem {
         this.defense = defense;
     }
 
+    /**
+     *
+     * @param health
+     */
     public void setHealth(int health) {
         this.health = health;
         if (this.health <= 0) {
@@ -54,14 +69,26 @@ public class Enemy extends AbstractMapItem {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHealth() {
         return this.health;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getDefense() {
         return this.defense;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAttack() {
         return this.attack;
     }
@@ -83,7 +110,6 @@ public class Enemy extends AbstractMapItem {
     //public void attack() {
     //    this.session.currentPlayer.takeDamage(this.attack);
     //}
-    
     /**
      * Remove the enemy from the map
      */
@@ -91,6 +117,9 @@ public class Enemy extends AbstractMapItem {
 
     }
 
+    /**
+     *
+     */
     public void giveKey() {
         hasKey = true;
     }

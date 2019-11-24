@@ -87,16 +87,14 @@ public class GameView extends javax.swing.JFrame {
         this.jLabel17.setForeground(Color.LIGHT_GRAY);
 
     }
-    
+
     /**
      * Message before quitting the game
      */
-     private void quitWarningPopUp()
-    {
+    private void quitWarningPopUp() {
         int response = JOptionPane.showConfirmDialog(this, "You are about to quit with out saving. Is this OK?", "Confirm",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (response == JOptionPane.YES_OPTION) 
-        {
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }

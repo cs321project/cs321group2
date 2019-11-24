@@ -9,6 +9,7 @@ import Abstractions.AbstractMapItem;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @author Matthew
  */
-public class Room {
+public class Room implements Serializable {
 
     private List<AbstractMapItem> roomItems;
 
@@ -45,10 +46,17 @@ public class Room {
     private static final int FIRST_COLUMN = 0;
     private static final int LAST_COLUMN = 28;
 
+    /**
+     *
+     */
     public Room() {
 
     }
 
+    /**
+     *
+     * @param mapData
+     */
     public Room(String[] mapData) {
         interpretMapData(mapData);
     }
@@ -56,6 +64,7 @@ public class Room {
     /**
      * -----OUTDATED----- Reads text from a file and returns it as a string
      *
+     * @param file
      * @return the text from the file as a String
      */
     public String getMapData(File file) {
@@ -166,31 +175,59 @@ public class Room {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Floor> getFloors() {
         return floors;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Wall> getWalls() {
         return walls;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Enemy> getEnemies() {
         return enemies;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Trap> getTraps() {
         return traps;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<AbstractMapItem> getRoomItems() {
         return roomItems;
     }
 
     //---------Getters and Setters for adjacent Rooms---------------------
+    /**
+     *
+     * @return
+     */
     public Room getRoomAbove() {
         return roomAbove;
     }
 
+    /**
+     *
+     * @param roomAbove
+     */
     public void setRoomAbove(Room roomAbove) {
         this.roomAbove = roomAbove;
         if (roomAbove.getRoomBelow() == null) {
@@ -198,10 +235,18 @@ public class Room {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Room getRoomBelow() {
         return roomBelow;
     }
 
+    /**
+     *
+     * @param roomBelow
+     */
     public void setRoomBelow(Room roomBelow) {
         this.roomBelow = roomBelow;
         if (roomBelow.getRoomAbove() == null) {
@@ -209,10 +254,18 @@ public class Room {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Room getRoomRight() {
         return roomRight;
     }
 
+    /**
+     *
+     * @param roomRight
+     */
     public void setRoomRight(Room roomRight) {
         this.roomRight = roomRight;
         if (roomRight.getRoomLeft() == null) {
@@ -220,10 +273,18 @@ public class Room {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Room getRoomLeft() {
         return roomLeft;
     }
 
+    /**
+     *
+     * @param roomLeft
+     */
     public void setRoomLeft(Room roomLeft) {
         this.roomLeft = roomLeft;
         if (roomLeft.getRoomRight() == null) {

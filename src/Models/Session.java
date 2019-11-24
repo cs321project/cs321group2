@@ -23,8 +23,20 @@ import java.util.List;
 public final class Session implements Serializable {
 
     private static Session instance = null;
+
+    /**
+     *
+     */
     public Map currentMap = null;
+
+    /**
+     *
+     */
     public Player currentPlayer = null;
+
+    /**
+     *
+     */
     public boolean isNewUser = true;
 
     private Session() {

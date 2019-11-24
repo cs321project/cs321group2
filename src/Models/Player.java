@@ -21,9 +21,24 @@ import java.util.List;
  */
 public final class Player extends AbstractMapItem {
 
+    /**
+     *
+     */
     public static final int MAX_HEALTH = 100;
+
+    /**
+     *
+     */
     public static final int MAX_ATTACK = 10;
+
+    /**
+     *
+     */
     public static final int MAX_DEFENSE = 10;
+
+    /**
+     *
+     */
     public static final int MAX_LIVES = 5;
 
     private String username;
@@ -366,9 +381,22 @@ public final class Player extends AbstractMapItem {
      * Directions that the player can move on the map grid
      */
     public enum PlayerDirection {
+
+        /**
+         *
+         */
         Left,
+        /**
+         *
+         */
         Right,
+        /**
+         *
+         */
         Forward,
+        /**
+         *
+         */
         Backward
     }
 }
