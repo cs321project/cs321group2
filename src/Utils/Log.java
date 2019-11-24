@@ -3,8 +3,16 @@ package Utils;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Branch Hill
+ */
 public class Log {
 
+    /**
+     *
+     * @param ex
+     */
     public static void exception(Exception ex) {
         if (ex == null) {
             return;
@@ -29,6 +37,10 @@ public class Log {
         System.err.println("*******************************");
     }
 
+    /**
+     *
+     * @param message
+     */
     public static void error(String message) {
         String time = DateTimeUtil.getLocalTimeAsString();
         if (message == null) {
@@ -37,6 +49,10 @@ public class Log {
         System.err.println("[ERR] " + time + Constants.SINGLE_SPACE + message);
     }
 
+    /**
+     *
+     * @param message
+     */
     public static void warning(String message) {
         String time = DateTimeUtil.getLocalTimeAsString();
         if (message == null) {
@@ -45,6 +61,10 @@ public class Log {
         System.out.println(Constants.ANSI_YELLOW + "[WRN] " + time + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
+    /**
+     *
+     * @param message
+     */
     public static void information(String message) {
         String time = DateTimeUtil.getLocalTimeAsString();
         if (message == null) {
@@ -53,6 +73,10 @@ public class Log {
         System.out.println(Constants.ANSI_BLUE + "[INF] " + time + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
+    /**
+     *
+     * @param message
+     */
     public static void debug(String message) {
         String time = DateTimeUtil.getLocalTimeAsString();
         if (message == null) {
@@ -61,6 +85,10 @@ public class Log {
         System.out.println(Constants.ANSI_BLACK + "[DBG] " + time + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
+    /**
+     *
+     * @param message
+     */
     public static void verbose(String message) {
         String time = DateTimeUtil.getLocalTimeAsString();
         if (message == null) {
@@ -69,6 +97,10 @@ public class Log {
         System.out.println(Constants.ANSI_GREEN + "[VRB] " + time + Constants.SINGLE_SPACE + message + Constants.ANSI_RESET);
     }
 
+    /**
+     *
+     * @param message
+     */
     public static void output(String message) {
         if (message == null) {
             return;
@@ -83,11 +115,19 @@ public class Log {
         System.out.println(message);
     }
 
+    /**
+     *
+     * @return
+     */
     public static String getInputString() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
+    /**
+     *
+     * @return
+     */
     public static int getInputInt() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();

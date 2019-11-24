@@ -6,20 +6,19 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
+
 /**
  *
  * @author Matthew
  */
-public class RoomTransitionTile extends AbstractMapItem{
-    
-    public RoomTransitionTile()
-    {
-        
+public class RoomTransitionTile extends AbstractMapItem {
+
+    public RoomTransitionTile() {
+
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "RoomTransitionTile";
     }
 }

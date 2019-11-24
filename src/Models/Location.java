@@ -5,25 +5,22 @@
  */
 package Models;
 
-
 /**
  *
  * @author Matthew
  */
 public class Location {
-    
+
     private int xCoord;
     private int yCoord;
-    
-    public Location()
-    {
-        
+
+    public Location() {
+
     }
-    
-    public Location(int a, int b)
-    {
-        xCoord = a;
-        yCoord = b;
+
+    public Location(int x, int y) {
+        xCoord = x;
+        yCoord = y;
     }
 
     public int getxCoord() {
@@ -41,16 +38,9 @@ public class Location {
     public void setyCoord(int yCoord) {
         this.yCoord = yCoord;
     }
-    
-    public boolean equals(Location loc)
-    {
-        if (this.getxCoord() == loc.getxCoord() && this.getyCoord() == loc.getyCoord())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+
+    public boolean equals(Location loc) {
+        return this.getxCoord() == loc.getxCoord()
+                && this.getyCoord() == loc.getyCoord();
     }
 }

@@ -12,18 +12,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * @author Branch Hill
+ */
 public class FileUtil {
 
+    /**
+     *
+     * @param path
+     * @return
+     */
     public static boolean fileExists(String path) {
         File file = new File(path);
         return file.exists();
     }
 
+    /**
+     *
+     * @param path
+     * @throws IOException
+     */
     public static void createFile(String path) throws IOException {
         File file = new File(path);
         file.createNewFile();
     }
 
+    /**
+     *
+     * @param path
+     * @throws IOException
+     */
     public static void createIfNotPresent(String path) throws IOException {
         if (fileExists(path)) {
             return;
@@ -31,6 +50,10 @@ public class FileUtil {
         createFile(path);
     }
 
+    /**
+     *
+     * @param path
+     */
     public static void createDirectory(String path) {
         File file = new File(path);
         if (!file.exists()) {
@@ -42,6 +65,11 @@ public class FileUtil {
         }
     }
 
+    /**
+     *
+     * @param path
+     * @return
+     */
     public static String[] getSubdirectories(String path) {
         File file = new File(path);
         String[] directories = file.list((File current, String name)
@@ -50,6 +78,13 @@ public class FileUtil {
         return directories;
     }
 
+    /**
+     *
+     * @param map
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     * @throws IOException
+     */
     public static void WriteMapToSettingsFile(Map map) throws FileNotFoundException, UnsupportedEncodingException, IOException {
         createIfNotPresent(Constants.SETTINGS_FILE);
         PrintWriter writer = new PrintWriter(Constants.SETTINGS_FILE, "UTF-8");
@@ -58,6 +93,11 @@ public class FileUtil {
         });
     }
 
+    /**
+     *
+     * @return @throws FileNotFoundException
+     * @throws IOException
+     */
     public static Map getMapFromSettingsFile() throws FileNotFoundException, IOException {
         Map map = new HashMap();
         if (!fileExists(Constants.SETTINGS_FILE)) {
@@ -73,9 +113,16 @@ public class FileUtil {
         return map;
     }
 
+    /**
+     *
+     * @param path
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public static List<String> readLines(String path) throws FileNotFoundException, IOException {
         List<String> lineList = new ArrayList<>();
-        
+
         BufferedReader reader;
         reader = new BufferedReader(new FileReader(path));
 
@@ -84,7 +131,7 @@ public class FileUtil {
             lineList.add(line);
         }
         reader.close();
-        
+
         return lineList;
     }
 }

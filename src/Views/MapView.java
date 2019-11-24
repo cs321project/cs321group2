@@ -5,11 +5,22 @@
  */
 package Views;
 
+import Abstractions.AbstractMapItem;
+import Models.Map;
+import Models.Player.PlayerDirection;
+import Models.Session;
 import Utils.Log;
+import Utils.SystemUtil;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JTextField;
 
 /**
@@ -18,95 +29,118 @@ import javax.swing.JTextField;
  */
 public class MapView extends JTextField implements java.awt.event.KeyListener {
 
-    public static final Color WALL = new Color(97, 71, 41);
-    public static final Color DOOR = new Color(214, 204, 2);
-    public static final Color ENEMY = new Color(255, 0, 0);
-    public static final Color LOOT = new Color(189, 189, 0);
-    public static final Color TRAP = new Color(189, 110, 0);
-    public static final Color PLAYER = new Color(0, 0, 255);
-    public static final Color MAP = new Color(0, 0, 0);
-    public static final Color FLOOR = new Color(230, 255, 251);
-    public static final Color RTTILE = new Color(250, 0 ,170);
-
-    public static final Color[] TERRAIN = {
-        WALL,
-        DOOR,
-        ENEMY,
-        LOOT,
-        TRAP,
-        PLAYER,
-        MAP,
-        FLOOR,
-        RTTILE
-    };
-
-    public static final int NUM_ROWS = 30;
-    public static final int NUM_COLS = 30;
-
+    public static final BufferedImage WALL = SystemUtil.getBufferedImageFromResource("/Images/wall.png");
+    public static final BufferedImage DOOR = SystemUtil.getBufferedImageFromResource("/Images/door.png");
+    public static final BufferedImage ROOM = SystemUtil.getBufferedImageFromResource("/Images/door.png");
+    public static final BufferedImage ENEMY = SystemUtil.getBufferedImageFromResource("/Images/enemy.png");
+    public static final BufferedImage LOOT = SystemUtil.getBufferedImageFromResource("/Images/loot.png");
+    public static final BufferedImage TRAP = SystemUtil.getBufferedImageFromResource("/Images/trap.png");
+    public static final BufferedImage PLAYER = SystemUtil.getBufferedImageFromResource("/Images/player.png");
+    public static final BufferedImage FLOOR = SystemUtil.getBufferedImageFromResource("/Images/transparent.png");
     public static final int PREFERRED_GRID_SIZE_PIXELS = 20;
 
-    private final TileShape[][] terrainGrid;
+    private BufferedImage[][] terrainGrid;
+    private final GameView gameView;
 
-    public MapView() {
-        
-        
+    /**
+     * Constructor
+     *
+     * @param gameView
+     */
+    public MapView(GameView gameView) {
         super.setVisible(true);
-        super.setSize(520, 420);
+        super.setSize(530, 455);
         super.addKeyListener(this);
         super.setFocusable(true);
         super.requestFocus();
         super.setBackground(new Color(0, 0, 0, 0));
         super.setEditable(false);
+        super.setOpaque(false);
         super.setEnabled(true);
 
-        this.terrainGrid = new TileShape[NUM_ROWS][NUM_COLS];
+        this.terrainGrid = null;
+        this.gameView = gameView;
+        this.setMap();
+
+        int preferredWidth = Map.NUM_COLS * PREFERRED_GRID_SIZE_PIXELS;
+        int preferredHeight = Map.NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
+        super.setPreferredSize(new Dimension(preferredWidth, preferredHeight));
+    }
+
+    private void setMap() {
+        this.terrainGrid = new BufferedImage[Map.NUM_ROWS][Map.NUM_COLS];
+
+        //AbstractMapItem[][] mapGrid = Session.getInstance().currentMap.getMapGrid();
+        //for (int j = 0; j < mapGrid.length; j++) {
+        //    for (int i = 0; i < mapGrid[j].length; i++) {
+        //        AbstractMapItem item = mapGrid[j][i];
+        //        String ID = item.getID();
+        //        BufferedImage res = null;
+        //        switch (ID) {
+        //            case "Wall":
+        //                res = WALL;
+        //                break;
+        //            case "Door":
+        //                res = DOOR;
+        //                break;
+        //            case "Enemy":
+        //                res = ENEMY;
+        //                break;
+        //            case "Loot":
+        //                res = LOOT;
+        //                break;
+        //            case "Trap":
+        //                res = TRAP;
+        //                break;
+        //            case "Player":
+        //                res = PLAYER;
+        //                break;
+        //            case "Floor":
+        //                res = FLOOR;
+        //                break;
+        //        }
+        //        this.terrainGrid[i][j] = res;
+        //    }
+        //}
         String[] currentRoom;
         currentRoom = Maps.Maps.HorizontalHall;
 
         for (int j = 0; j < currentRoom.length; j++) {
             for (int i = 0; i < currentRoom[j].length(); i++) {
                 char c = currentRoom[j].charAt(i);
-                Color color = null;
+                BufferedImage res = null;
 
                 switch (c) {
                     case '|':
-                        color = TERRAIN[6];
-                        break;
-                    case '.':
-                        color = TERRAIN[7];
+                        res = WALL;
                         break;
                     case 'D':
-                        color = TERRAIN[1];
+                        res = DOOR;
                         break;
                     case 'E':
-                        color = TERRAIN[2];
+                        res = ENEMY;
                         break;
                     case 'T':
-                        color = TERRAIN[4];
+                        res = TRAP;
                         break;
                     case 'P':
-                        color = TERRAIN[5];
+                        res = PLAYER;
                         //new Player(i,j);
                         break;
                     case 'L':
-                        color = TERRAIN[3];
+                        res = LOOT;
                         break;
                     case 'R':
-                        color = TERRAIN[8];
+                        res = ROOM;
                         break;
                     default:
-                        color = TERRAIN[0];
+                        res = FLOOR;
                         break;
                 }
 
-                this.terrainGrid[i][j]
-                        = new TileShape(j * 40, i * 40, 40, color);
+                this.terrainGrid[i][j] = res;
             }
         }
-
-        int preferredWidth = NUM_COLS * PREFERRED_GRID_SIZE_PIXELS;
-        int preferredHeight = NUM_ROWS * PREFERRED_GRID_SIZE_PIXELS;
-        super.setPreferredSize(new Dimension(preferredWidth, preferredHeight));
     }
 
     @Override
@@ -114,62 +148,65 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
 
         super.paintComponent(g);
 
+        Image img = null;
+        try {
+            img = ImageIO.read(MapView.class.getResource("/Images/MapBackground.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(MapView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        boolean drawImage;
+
         g.clearRect(0, 0, getWidth(), getHeight());
 
-        int rectWidth = getWidth() / NUM_COLS;
-        int rectHeight = getHeight() / NUM_ROWS;
+        drawImage = g.drawImage(img, 0, 0, null);
 
-        for (int i = 0; i < NUM_ROWS; i++) {
-            for (int j = 0; j < NUM_COLS; j++) {
+        int rectWidth = getWidth() / Map.NUM_COLS;
+        int rectHeight = getHeight() / Map.NUM_ROWS;
+
+        for (int i = 0; i < Map.NUM_ROWS; i++) {
+            for (int j = 0; j < Map.NUM_COLS; j++) {
                 int x = i * rectWidth;
                 int y = j * rectHeight;
-                Color terrainColor = terrainGrid[i][j].getColor();
-                g.setColor(terrainColor);
-                g.fillRect(x, y, rectWidth, rectHeight);
+                g.drawImage(this.terrainGrid[j][i], x, y, rectWidth, rectHeight, null);
             }
         }
 
     }
 
-    private enum Direction {
-        Forward,
-        Backward,
-        Right,
-        Left,
-        None
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
         char key = e.getKeyChar();
-        Direction direction = Direction.None;
+        boolean moved;
 
         switch (key) {
             case 'w':
             case 'W':
-                direction = Direction.Forward;
+                moved = Session.getInstance().currentPlayer.move(PlayerDirection.Forward);
                 Log.verbose("Forward");
                 break;
             case 'a':
             case 'A':
-                direction = Direction.Left;
+                moved = Session.getInstance().currentPlayer.move(PlayerDirection.Left);
                 Log.verbose("Left");
                 break;
             case 's':
             case 'S':
-                direction = Direction.Backward;
+                moved = Session.getInstance().currentPlayer.move(PlayerDirection.Backward);
                 Log.verbose("Backward");
                 break;
             case 'd':
             case 'D':
-                direction = Direction.Right;
+                moved = Session.getInstance().currentPlayer.move(PlayerDirection.Right);
                 Log.verbose("Right");
                 break;
             default:
                 Log.verbose("Key not detected");
         }
-        
-        
+
+        this.setMap();
+        super.repaint();
+        this.gameView.UpdatePlayerStats();
     }
 
     @Override

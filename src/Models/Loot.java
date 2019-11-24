@@ -6,42 +6,62 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-//import javafx.util.Pair;
 
 /**
+ * Loot represents items on the map that the user can use to improve health,
+ * inventory, etc.
  *
  * @author Group 2
  */
 public class Loot extends AbstractMapItem {
 
+    public static final int MAX_VALUE = 5;
+
     private int value;
-    private String id;
-    private int[] location;
+    private String displayName;
+    private final Session session = Session.getInstance();
 
+    /**
+     * Constructor
+     */
     public Loot() {
-
+        super.setID("Loot");
     }
 
-    public Loot(int[] location, int value, String id) {
-        this.location = location;
+    /**
+     * Constructor
+     *
+     * @param location Placement of the item on the map grid
+     * @param value Value of the loot to the user
+     * @param displayName displayName of the Loot
+     */
+    public Loot(Location location, int value, String displayName) {
+        super.setID("Loot");
+        super.setLocation(location);
         this.value = value;
-        this.id = id;
+        this.displayName = displayName;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
+    /**
+     * Get the value of the loot to the user
+     *
+     * @return
+     */
     public int getValue() {
         return this.value;
     }
 
-    public void setID(String id) {
-        this.id = id;
+    /**
+     * Get the display name of the loot
+     *
+     * @return
+     */
+    public String getDisplayName() {
+        return this.displayName;
     }
 
-    public String getID() {
-        return this.id;
+    @Override
+    public String toString() {
+        return "Loot";
     }
-
 }

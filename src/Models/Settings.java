@@ -14,33 +14,44 @@ import java.io.ObjectOutputStream;
 
 /**
  *
- * @author Branch Hill
+ * @author Group 2
  */
 public class Settings {
 
+    /**
+     * De-serializes session
+     *
+     * @param session
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static Session getSetting(Session session) throws IOException, ClassNotFoundException {
 
-        FileInputStream file
-                = new FileInputStream(session.currentPlayer.getPlayerSettingsFile());
-        ObjectInputStream in = new ObjectInputStream(file);
-
-        Session s = (Session) in.readObject();
-
-        in.close();
-        file.close();
+        Session s;
+        try (FileInputStream file = new FileInputStream(
+                session.currentPlayer.getPlayerSettingsFile());
+                ObjectInputStream in = new ObjectInputStream(file)) {
+            s = (Session) in.readObject();
+        }
 
         return s;
     }
 
+    /**
+     * Serializes session
+     *
+     * @param session
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public static void addOrUpdateSetting(Session session) throws FileNotFoundException, IOException {
 
-        FileOutputStream file
-                = new FileOutputStream(session.currentPlayer.getPlayerSettingsFile());
-        ObjectOutputStream out = new ObjectOutputStream(file);
+        try (FileOutputStream file = new FileOutputStream(
+                session.currentPlayer.getPlayerSettingsFile());
+                ObjectOutputStream out = new ObjectOutputStream(file)) {
 
-        out.writeObject(session);
-
-        out.close();
-        file.close();
+            out.writeObject(session);
+        }
     }
 }

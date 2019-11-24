@@ -1,7 +1,18 @@
 package Utils;
 
+/**
+ *
+ * @author Branch Hill
+ */
 public class RandomUtil {
 
+    /**
+     *
+     * @param min
+     * @param max
+     * @return
+     * @throws Exception
+     */
     public static int getRandomIntegerBetweenRange(int min, int max) throws Exception {
         if (min < 0 || max < 0) {
             throw new Exception("min and max cannot be negative values");

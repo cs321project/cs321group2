@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Group 2
  */
-public class Session implements Serializable {
+public final class Session implements Serializable {
 
     private static Session instance = null;
     public Map currentMap = null;
@@ -32,6 +32,11 @@ public class Session implements Serializable {
         FileUtil.createDirectory(this.getGameDirectory());
     }
 
+    /**
+     * Gets the singleton session instance
+     *
+     * @return
+     */
     public static Session getInstance() {
 
         Log.verbose("Getting Session Instance");
@@ -43,6 +48,11 @@ public class Session implements Serializable {
         return instance;
     }
 
+    /**
+     * Gets the directory where all game data is serialized
+     *
+     * @return
+     */
     public String getGameDirectory() {
         String userDir = SystemUtil.getUserDirectory();
         String dir = StringUtil.concat(userDir, File.separator,
@@ -51,6 +61,12 @@ public class Session implements Serializable {
         return dir;
     }
 
+    /**
+     * Gets user data and initializes game
+     *
+     * @param userName
+     * @return
+     */
     public boolean initGame(String userName) {
 
         List<Loot> beginnerInventory = new ArrayList();
@@ -71,8 +87,8 @@ public class Session implements Serializable {
             } catch (IOException | ClassNotFoundException ex) {
                 Log.exception(ex);
             }
-            
-            if(s != null) {
+
+            if (s != null) {
                 this.currentMap = s.currentMap;
                 this.currentPlayer = s.currentPlayer;
                 this.isNewUser = false;

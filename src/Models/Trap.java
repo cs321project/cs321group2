@@ -5,35 +5,61 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
+
 /**
+ * Trap represents traps on the map grid that do damage to the player
  *
  * @author Group 2
  */
-public class Trap extends Obstacle {
+public class Trap extends AbstractMapItem {
 
-    private int damageValue;
+    public static final int MAX_VALUE = 5;
 
+    private final int damageValue;
+    private Session session = Session.getInstance();
+
+    /**
+     * Constructor
+     */
     public Trap() {
-
-    }
-    
-    @Override
-    public String toString()
-    {
-        return "Trap";
+        super.setID("Trap");
+        this.damageValue = MAX_VALUE;
     }
 
-    public void setValue(int damageValue) {
+    /**
+     * Constructor
+     *
+     * @param location
+     * @param damageValue
+     */
+    public Trap(Location location, int damageValue) {
+        super.setLocation(location);
+        super.setID("Trap");
         this.damageValue = damageValue;
     }
 
+    /**
+     * Gets damage value of trap
+     *
+     * @return
+     */
     public int getValue() {
         return this.damageValue;
     }
-    
+
+    /**
+     * Engages trap and does damage to the player
+     *
+     * @return
+     */
     private void engage() {
-        
+
     }
 
-    
+    @Override
+    public String toString() {
+        return "Trap";
+    }
+
 }

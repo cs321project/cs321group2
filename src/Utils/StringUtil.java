@@ -2,8 +2,17 @@ package Utils;
 
 import java.util.List;
 
+/**
+ *
+ * @author Branch Hill
+ */
 public class StringUtil {
 
+    /**
+     *
+     * @param args
+     * @return
+     */
     public static String concat(String... args) {
         if (args == null) {
             return null;
@@ -20,10 +29,21 @@ public class StringUtil {
         return completeString;
     }
 
+    /**
+     *
+     * @param strings
+     * @return
+     */
     public static String join(List<String> strings) {
         return join(strings, ", ");
     }
 
+    /**
+     *
+     * @param strings
+     * @param seperator
+     * @return
+     */
     public static String join(List<String> strings, String seperator) {
         if (strings == null) {
             return null;

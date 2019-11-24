@@ -8,31 +8,48 @@ package Models;
 import Abstractions.AbstractMapItem;
 
 /**
+ * Enemy represents enemies that attempt to hurt the player on the map
  *
  * @author Group 2
  */
 public class Enemy extends AbstractMapItem {
 
-    private int health;
-    private int defense = 5;
-    private int attack = 20;
-    private boolean hasKey = false;
+    public static final int MAX_HEALTH = 5;
+    public static final int MAX_ATTACK = 2;
+    public static final int MAX_DEFENSE = 2;
 
-    private Location location;
-    
+    private int health;
+    private int attack;
+    private int defense;
+    private boolean hasKey;
+    private final Session session = Session.getInstance();
+
+    /**
+     * Constructor
+     */
     public Enemy() {
-        this.health = 10;
+        super.setID("Enemy");
     }
 
-    public Enemy(Location location, int health) {
-        this.location = location;
+    /**
+     * Constructor
+     *
+     * @param location Enemy placement on the map grid
+     * @param health Enemy health
+     * @param attack Enemy attack
+     * @param defense Enemy defense
+     */
+    public Enemy(Location location, int health, int attack, int defense) {
+        super.setID("Enemy");
+        super.setLocation(location);
         this.health = health;
+        this.attack = attack;
+        this.defense = defense;
     }
 
     public void setHealth(int health) {
         this.health = health;
-        if(this.health <= 0)
-        {
+        if (this.health <= 0) {
             this.die();
         }
     }
@@ -40,33 +57,47 @@ public class Enemy extends AbstractMapItem {
     public int getHealth() {
         return this.health;
     }
-    
+
     public int getDefense() {
         return this.defense;
     }
 
-    public void attack(Player player) {
-        int damage;
-        damage = this.attack * (100/(100 + player.getDefense()));
-        player.setHealth(player.getHealth() - damage);
+    public int getAttack() {
+        return this.attack;
     }
 
-    public void move() {
-
-    }
-
+    ///**
+    // * Removes health when the enemy takes damage from the player
+    // *
+    // * @param damage
+    // */
+    //public void takeDamage(int damage) {
+    //    this.health = this.health - (damage / this.defense);
+    //    if (this.health <= 0) {
+    //        this.die();
+    //    }
+    //}
+    ///**
+    // * Attack the player
+    // */
+    //public void attack() {
+    //    this.session.currentPlayer.takeDamage(this.attack);
+    //}
+    
+    /**
+     * Remove the enemy from the map
+     */
     private void die() {
 
     }
 
-    public void giveKey()
-    {
+    public void giveKey() {
         hasKey = true;
     }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Enemy";
     }
+
 }

@@ -4,27 +4,26 @@
  * and open the template in the editor.
  */
 package Models;
+
 import Abstractions.AbstractMapItem;
+
 /**
+ * Floor represents floor tiles on the map grid
  *
- * @author Matthew
+ * @author Group2
  */
-public class Floor extends AbstractMapItem{
-    
-    private Location location;
-    
-    public Floor()
-    {
-        
+public class Floor extends AbstractMapItem {
+
+    /**
+     * Constructor
+     */
+    public Floor() {
+        super.setID("Floor");
     }
-    
-    public Floor(Location location)
-    {
-        this.location = location;
-    }
-    
-    public String toString()
-    {
+
+    @Override
+    public String toString() {
         return "Floor";
     }
+
 }

@@ -5,27 +5,25 @@
  */
 package Models;
 
+import Abstractions.AbstractMapItem;
+
 /**
+ * Wall represents walls on the map
  *
  * @author Group 2
  */
-public class Wall extends Obstacle {
-    
-    private Location location;
-    
-    public Wall() 
-    {
-        
+public class Wall extends AbstractMapItem {
+
+    /**
+     * Constructor
+     */
+    public Wall() {
+        super.setID("Wall");
     }
-    
-    public Wall(Location location)
-    {
-        this.location = location;
-    }
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Wall";
     }
+
 }
