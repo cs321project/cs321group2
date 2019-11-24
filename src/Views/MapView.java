@@ -70,77 +70,80 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
     private void setMap() {
         this.terrainGrid = new BufferedImage[Map.NUM_ROWS][Map.NUM_COLS];
 
-        //AbstractMapItem[][] mapGrid = Session.getInstance().currentMap.getMapGrid();
-        //for (int j = 0; j < mapGrid.length; j++) {
-        //    for (int i = 0; i < mapGrid[j].length; i++) {
-        //        AbstractMapItem item = mapGrid[j][i];
-        //        String ID = item.getID();
-        //        BufferedImage res = null;
-        //        switch (ID) {
-        //            case "Wall":
-        //                res = WALL;
-        //                break;
-        //            case "Door":
-        //                res = DOOR;
-        //                break;
-        //            case "Enemy":
-        //                res = ENEMY;
-        //                break;
-        //            case "Loot":
-        //                res = LOOT;
-        //                break;
-        //            case "Trap":
-        //                res = TRAP;
-        //                break;
-        //            case "Player":
-        //                res = PLAYER;
-        //                break;
-        //            case "Floor":
-        //                res = FLOOR;
-        //                break;
-        //        }
-        //        this.terrainGrid[i][j] = res;
-        //    }
-        //}
-        String[] currentRoom;
-        currentRoom = Maps.Maps.HorizontalHall;
-
-        for (int j = 0; j < currentRoom.length; j++) {
-            for (int i = 0; i < currentRoom[j].length(); i++) {
-                char c = currentRoom[j].charAt(i);
+        AbstractMapItem[][] mapGrid = Session.getInstance().currentMap.getMapGrid();
+        for (int j = 0; j < mapGrid.length; j++) {
+            for (int i = 0; i < mapGrid[j].length; i++) {
+                
+                AbstractMapItem item = mapGrid[j][i];
+                String ID = item.getID();
                 BufferedImage res = null;
-
-                switch (c) {
-                    case '|':
+                
+                switch (ID) {
+                    case "Wall":
                         res = WALL;
                         break;
-                    case 'D':
+                    case "Door":
                         res = DOOR;
                         break;
-                    case 'E':
+                    case "Enemy":
                         res = ENEMY;
                         break;
-                    case 'T':
-                        res = TRAP;
-                        break;
-                    case 'P':
-                        res = PLAYER;
-                        //new Player(i,j);
-                        break;
-                    case 'L':
+                    case "Loot":
                         res = LOOT;
                         break;
-                    case 'R':
-                        res = ROOM;
+                    case "Trap":
+                        res = TRAP;
                         break;
-                    default:
+                    case "Player":
+                        res = PLAYER;
+                        break;
+                    case "Floor":
                         res = FLOOR;
                         break;
                 }
-
                 this.terrainGrid[i][j] = res;
             }
         }
+        
+//        String[] currentRoom;
+//        currentRoom = Maps.Maps.HorizontalHall;
+//
+//        for (int j = 0; j < currentRoom.length; j++) {
+//            for (int i = 0; i < currentRoom[j].length(); i++) {
+//                char c = currentRoom[j].charAt(i);
+//                BufferedImage res = null;
+//
+//                switch (c) {
+//                    case '|':
+//                        res = WALL;
+//                        break;
+//                    case 'D':
+//                        res = DOOR;
+//                        break;
+//                    case 'E':
+//                        res = ENEMY;
+//                        break;
+//                    case 'T':
+//                        res = TRAP;
+//                        break;
+//                    case 'P':
+//                        res = PLAYER;
+//                        //new Player(i,j);
+//                        break;
+//                    case 'L':
+//                        res = LOOT;
+//                        break;
+//                    case 'R':
+//                        res = ROOM;
+//                        break;
+//                    default:
+//                        res = FLOOR;
+//                        break;
+//                }
+//
+//                this.terrainGrid[i][j] = res;
+//            }
+//        }
     }
 
     @Override

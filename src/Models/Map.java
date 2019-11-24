@@ -49,65 +49,68 @@ public class Map implements Serializable {
 
         switch (level) {
             case 1:
-                //this.initMapFormat = Maps.Maps.Map1;
-                assembleMap1();
-                assembleEnemiesList();
+                this.initMapFormat = Maps.Maps.OpenRoom1;
+                //assembleMap1();
+                //assembleEnemiesList();
                 break;
             case 2:
-                //this.initMapFormat = Maps.Maps.Map2;
-                rooms.add(new Room(Maps.Maps.OpenRoom2));
+                this.initMapFormat = Maps.Maps.OpenRoom2;
+                //rooms.add(new Room(Maps.Maps.OpenRoom2));
                 break;
             case 3:
-                //this.initMapFormat = Maps.Maps.Map3;
-                rooms.add(new Room(Maps.Maps.OpenRoom3));
+                this.initMapFormat = Maps.Maps.OpenRoom3;
+                //rooms.add(new Room(Maps.Maps.OpenRoom3));
                 break;
         }
 
-        //this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
-        //for (int j = 0; j < this.initMapFormat.length; j++) {
-        //    for (int i = 0; i < this.initMapFormat[j].length(); i++) {
-        //        char c = this.initMapFormat[j].charAt(i);
-        //        AbstractMapItem item = null;
-        //        Location loc = new Location(j, i);
-        //        boolean isPlayer = false;
-        //        switch (c) {
-        //            case 'D': {
-        //                item = new Door(loc, this.level);
-        //                this.mapDoor = (Door) item;
-        //                break;
-        //            }
-        //            case 'E': {
-        //                item = new Enemy(loc, Enemy.MAX_HEALTH,
-        //                        Enemy.MAX_ATTACK, Enemy.MAX_DEFENSE);
-        //                break;
-        //            }
-        //            case 'T':
-        //                item = new Trap(loc, Trap.MAX_VALUE);
-        //                break;
-        //            case 'L': {
-        //                item = new Loot(loc, Loot.MAX_VALUE, "Loot");
-        //                break;
-        //            }
-        //            case 'P': {
-        //                isPlayer = true;
-        //                this.mapGrid[i][j] = ((AbstractMapItem) this.session.currentPlayer);
-        //                this.session.currentPlayer.setLocation(new Location(j, i));
-        //                break;
-        //            }
-        //            case '|': {
-        //                item = new Floor();
-        //                break;
-        //            }
-        //            case '-': {
-        //                item = new Wall();
-        //                break;
-        //            }
-        //        }
-        //        if (item != null && !isPlayer) {
-        //            this.mapGrid[i][j] = ((AbstractMapItem) item);
-        //        }
-        //    }
-        //}
+        this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
+        for (int j = 0; j < this.initMapFormat.length; j++) {
+            for (int i = 0; i < this.initMapFormat[j].length(); i++) {
+                
+                char c = this.initMapFormat[j].charAt(i);
+                AbstractMapItem item = null;
+                Location loc = new Location(j, i);
+                boolean isPlayer = false;
+                
+                switch (c) {
+                    case 'R':
+                    case 'D': {
+                        item = new Door(loc, this.level);
+                        this.mapDoor = (Door) item;
+                        break;
+                    }
+                    case 'E': {
+                        item = new Enemy(loc, Enemy.MAX_HEALTH,
+                                Enemy.MAX_ATTACK, Enemy.MAX_DEFENSE);
+                        break;
+                    }
+                    case 'T':
+                        item = new Trap(loc, Trap.MAX_VALUE);
+                        break;
+                    case 'L': {
+                        item = new Loot(loc, Loot.MAX_VALUE, "Loot");
+                        break;
+                    }
+                    case 'P': {
+                        isPlayer = true;
+                        this.mapGrid[i][j] = ((AbstractMapItem) this.session.currentPlayer);
+                        this.session.currentPlayer.setLocation(new Location(j, i));
+                        break;
+                    }
+                    case '|': {
+                        item = new Wall();
+                        break;
+                    }
+                    default: {
+                        item = new Floor();
+                        break;
+                    }
+                }
+                if (item != null && !isPlayer) {
+                    this.mapGrid[i][j] = ((AbstractMapItem) item);
+                }
+            }
+        }
     }
 
     /**

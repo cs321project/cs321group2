@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Matthew
  */
-public class Room implements Serializable {
+public final class Room implements Serializable {
 
     private List<AbstractMapItem> roomItems;
 
@@ -58,7 +58,7 @@ public class Room implements Serializable {
      * @param mapData
      */
     public Room(String[] mapData) {
-        interpretMapData(mapData);
+        this.interpretMapData(mapData);
     }
 
     /**
@@ -112,7 +112,6 @@ public class Room implements Serializable {
                         door = new Door();
                         roomItems.add(door);
                         door.setLocation(new Location(i, j));
-                        i++;
                         break;
                     case '|':
                         //System.out.println("| found " + i + " " +j);
@@ -120,7 +119,6 @@ public class Room implements Serializable {
                         tempWall.setLocation(new Location(i, j));
                         item = tempWall;
                         walls.add(tempWall);
-                        i++;
                         break;
                     case '.':
                         //System.out.println("_ found " + i + " " +j);
@@ -128,7 +126,6 @@ public class Room implements Serializable {
                         tempFloor.setLocation(new Location(i, j));
                         item = tempFloor;
                         floors.add(tempFloor);
-                        i++;
                         break;
                     case 'E':
                         //System.out.println("E found " + i + " " +j);
@@ -136,7 +133,6 @@ public class Room implements Serializable {
                         tempEnemy.setLocation(new Location(i, j));
                         item = tempEnemy;
                         enemies.add(tempEnemy);
-                        i++;
                         break;
                     case 'T':
                         //System.out.println("T found " + i + " " +j);
@@ -144,7 +140,6 @@ public class Room implements Serializable {
                         tempTrap.setLocation(new Location(i, j));
                         item = tempTrap;
                         traps.add(tempTrap);
-                        i++;
                         break;
                     case 'R':
                         RoomTransitionTile tempRT = new RoomTransitionTile();
@@ -164,7 +159,6 @@ public class Room implements Serializable {
                         }
                         item = tempRT;
                         rtTiles.add(tempRT);
-                        i++;
                         break;
                 }
 
