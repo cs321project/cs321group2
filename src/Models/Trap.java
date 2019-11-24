@@ -14,13 +14,10 @@ import Abstractions.AbstractMapItem;
  */
 public class Trap extends AbstractMapItem {
 
-    /**
-     *
-     */
     public static final int MAX_VALUE = 5;
 
     private final int damageValue;
-    private Session session = Session.getInstance();
+    private final Session session = Session.getInstance();
 
     /**
      * Constructor

@@ -15,9 +15,6 @@ import Abstractions.AbstractMapItem;
  */
 public class Loot extends AbstractMapItem {
 
-    /**
-     *
-     */
     public static final int MAX_VALUE = 5;
 
     private int value;
