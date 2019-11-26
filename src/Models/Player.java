@@ -297,6 +297,7 @@ public final class Player extends AbstractMapItem {
             }
             case "Trap": {
                 Trap trap = (Trap) item;
+                trap.steppedOn();
                 return false;
             }
             case "Door": {
@@ -337,7 +338,11 @@ public final class Player extends AbstractMapItem {
      * @param damageValue
      */
     public void takeDamage(int damageValue) {
-
+        this.health = this.health - damageValue;
+        
+        if(this.health <= 0) {
+            this.die();
+        }
     }
 
     /**

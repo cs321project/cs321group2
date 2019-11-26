@@ -49,12 +49,19 @@ public class Trap extends AbstractMapItem {
     }
 
     /**
+     * Trap is stepped on
+     *
+     */
+    public void steppedOn() {
+        this.engage();
+    }
+
+    /**
      * Engages trap and does damage to the player
      *
-     * @return
      */
     private void engage() {
-
+        this.session.currentPlayer.takeDamage(this.damageValue);
     }
 
     @Override
