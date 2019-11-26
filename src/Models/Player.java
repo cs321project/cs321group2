@@ -339,9 +339,16 @@ public final class Player extends AbstractMapItem {
      */
     public void takeDamage(int damageValue) {
         this.health = this.health - damageValue;
-        
-        if(this.health <= 0) {
-            this.die();
+
+        if (this.health <= 0) {
+            
+            this.lives--;
+            this.health = Player.MAX_HEALTH;
+            this.session.currentMap.setToInitialFormat();
+            
+            if (this.lives <= 0) {
+                this.die();
+            }
         }
     }
 
@@ -349,7 +356,9 @@ public final class Player extends AbstractMapItem {
      * Starts the game over when the player is out of health and lives
      */
     private void die() {
-
+        
+        // Restart Game
+        
     }
 
     /**

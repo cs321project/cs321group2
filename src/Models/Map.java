@@ -62,8 +62,12 @@ public class Map implements Serializable {
                 //rooms.add(new Room(Maps.Maps.OpenRoom3));
                 break;
         }
-
-        this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
+        
+        this.setToInitialFormat();
+    }
+    
+    public void setToInitialFormat() {
+                this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
         for (int j = 0; j < this.initMapFormat.length; j++) {
             for (int i = 0; i < this.initMapFormat[j].length(); i++) {
                 
