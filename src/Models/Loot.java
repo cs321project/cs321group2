@@ -25,7 +25,7 @@ public class Loot extends AbstractMapItem {
      * Constructor
      */
     public Loot() {
-        super.setID("Loot");
+        super.setID(this.toString());
     }
 
     /**
@@ -36,7 +36,7 @@ public class Loot extends AbstractMapItem {
      * @param displayName displayName of the Loot
      */
     public Loot(Location location, int value, String displayName) {
-        super.setID("Loot");
+        super.setID(this.toString());
         super.setLocation(location);
         this.value = value;
         this.displayName = displayName;
@@ -61,7 +61,7 @@ public class Loot extends AbstractMapItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Loot";
     }
 }

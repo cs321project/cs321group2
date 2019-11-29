@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Group 2
  */
-public class Map implements Serializable {
+public final class Map implements Serializable {
 
     public static final int MIN_LEVEL = 1;
     public static final int MAX_LEVEL = 5;
@@ -66,6 +66,9 @@ public class Map implements Serializable {
         this.setToInitialFormat();
     }
     
+    /**
+     *
+     */
     public void setToInitialFormat() {
                 this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
         for (int j = 0; j < this.initMapFormat.length; j++) {

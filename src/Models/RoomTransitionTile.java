@@ -17,11 +17,11 @@ public class RoomTransitionTile extends AbstractMapItem {
      *
      */
     public RoomTransitionTile() {
-
+        super.setID(this.toString());
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "RoomTransitionTile";
     }
 }

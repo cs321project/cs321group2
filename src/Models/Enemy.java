@@ -21,14 +21,14 @@ public class Enemy extends AbstractMapItem {
     private int health;
     private int attack;
     private int defense;
-    private boolean hasKey;
+    private boolean hasKey = false;
     private final Session session = Session.getInstance();
 
     /**
      * Constructor
      */
     public Enemy() {
-        super.setID("Enemy");
+        super.setID(this.toString());
     }
 
     /**
@@ -40,7 +40,7 @@ public class Enemy extends AbstractMapItem {
      * @param defense Enemy defense
      */
     public Enemy(Location location, int health, int attack, int defense) {
-        super.setID("Enemy");
+        super.setID(this.toString());
         super.setLocation(location);
         this.health = health;
         this.attack = attack;
@@ -104,7 +104,13 @@ public class Enemy extends AbstractMapItem {
      * Remove the enemy from the map
      */
     private void die() {
-
+        AbstractMapItem[][] mapGrid = this.session.currentMap.getMapGrid();
+        int x = this.getLocation().getxCoord();
+        int y = this.getLocation().getyCoord();
+        
+        if(mapGrid != null) {
+            mapGrid[y][x] = new Floor();
+        }
     }
 
     /**
@@ -115,7 +121,7 @@ public class Enemy extends AbstractMapItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Enemy";
     }
 

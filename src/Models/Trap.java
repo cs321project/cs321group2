@@ -23,7 +23,7 @@ public class Trap extends AbstractMapItem {
      * Constructor
      */
     public Trap() {
-        super.setID("Trap");
+        super.setID(this.toString());
         this.damageValue = MAX_VALUE;
     }
 
@@ -35,7 +35,7 @@ public class Trap extends AbstractMapItem {
      */
     public Trap(Location location, int damageValue) {
         super.setLocation(location);
-        super.setID("Trap");
+        super.setID(this.toString());
         this.damageValue = damageValue;
     }
 
@@ -65,7 +65,7 @@ public class Trap extends AbstractMapItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Trap";
     }
 

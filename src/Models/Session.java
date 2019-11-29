@@ -102,4 +102,11 @@ public final class Session implements Serializable {
         return true;
     }
 
+    public void resetSession() {
+        Session.instance = null;
+        this.currentMap = null;
+        this.currentPlayer = null;
+        this.isNewUser = true;
+    }
+
 }

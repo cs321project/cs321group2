@@ -18,11 +18,11 @@ public class Wall extends AbstractMapItem {
      * Constructor
      */
     public Wall() {
-        super.setID("Wall");
+        super.setID(this.toString());
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Wall";
     }
 

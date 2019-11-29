@@ -40,7 +40,7 @@ public final class Player extends AbstractMapItem {
      * Constructor
      */
     public Player() {
-        super.setID("Player");
+        super.setID(this.toString());
     }
 
     /**
@@ -57,7 +57,7 @@ public final class Player extends AbstractMapItem {
      */
     public Player(String username, List<Loot> inventory, int health, Location location, int baseAttack, int baseDefense, int lives, int highestLevel) {
 
-        super.setID("Player");
+        super.setID(this.toString());
         super.setLocation(location);
         this.username = username;
         this.inventory = inventory;

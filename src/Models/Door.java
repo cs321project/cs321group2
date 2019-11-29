@@ -21,7 +21,7 @@ public class Door extends AbstractMapItem {
      * Constructor
      */
     public Door() {
-        super.setID("Door");
+        super.setID(this.toString());
     }
 
     /**
@@ -31,13 +31,13 @@ public class Door extends AbstractMapItem {
      * @param level Map that the user is currently on
      */
     public Door(Location location, int level) {
-        super.setID("Door");
+        super.setID(this.toString());
         super.setLocation(location);
         this.level = level;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Door";
     }
 
