@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Group 2
  */
-public class Map implements Serializable {
+public final class Map implements Serializable {
 
     public static final int MIN_LEVEL = 1;
     public static final int MAX_LEVEL = 5;
@@ -65,7 +65,65 @@ public class Map implements Serializable {
                 break;
         }
 
+<<<<<<< HEAD
         
+=======
+        this.setToInitialFormat();
+    }
+
+    /**
+     * Sets the initial format of the map before being changed by the user
+     */
+    public void setToInitialFormat() {
+        this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
+        for (int j = 0; j < this.initMapFormat.length; j++) {
+            for (int i = 0; i < this.initMapFormat[j].length(); i++) {
+
+                char c = this.initMapFormat[j].charAt(i);
+                AbstractMapItem item = null;
+                Location loc = new Location(j, i);
+                boolean isPlayer = false;
+
+                switch (c) {
+                    case 'R':
+                    case 'D': {
+                        item = new Door(loc, this.level);
+                        this.mapDoor = (Door) item;
+                        break;
+                    }
+                    case 'E': {
+                        item = new Enemy(loc, Enemy.MAX_HEALTH,
+                                Enemy.MAX_ATTACK, Enemy.MAX_DEFENSE);
+                        break;
+                    }
+                    case 'T':
+                        item = new Trap(loc, Trap.MAX_VALUE);
+                        break;
+                    case 'L': {
+                        item = new Loot(loc, Loot.MAX_VALUE, "Loot");
+                        break;
+                    }
+                    case 'P': {
+                        isPlayer = true;
+                        this.mapGrid[i][j] = ((AbstractMapItem) this.session.currentPlayer);
+                        this.session.currentPlayer.setLocation(new Location(j, i));
+                        break;
+                    }
+                    case '|': {
+                        item = new Wall();
+                        break;
+                    }
+                    default: {
+                        item = new Floor();
+                        break;
+                    }
+                }
+                if (item != null && !isPlayer) {
+                    this.mapGrid[i][j] = ((AbstractMapItem) item);
+                }
+            }
+        }
+>>>>>>> af105cdc19596ff981c2d0470859d081b7ad478f
     }
 
     /**

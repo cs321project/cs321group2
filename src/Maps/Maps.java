@@ -117,7 +117,7 @@ public class Maps implements Serializable {
         "||||||||||||||R||||||||||||||-",};
 
     //----------------Dead End Rooms------------------------
-
+    
     public static String[] DeadEndL = {
         "|||||||||||||||||||||||||||||-",
         "|...........................|-",
@@ -312,6 +312,9 @@ public class Maps implements Serializable {
         "|..............P............|-",
         "|||||||||||||||R|||||||||||||-",};
 
+    /**
+     *
+     */
     public static String[] OpenRoom3 = {
         "|||||||||||||R|||||||||||||||-",
         "|...........................|-",
@@ -344,6 +347,9 @@ public class Maps implements Serializable {
         "|.............P.............|-",
         "||||||||||||||R||||||||||||||-",};
 
+    /**
+     *
+     */
     public static String[] HorizontalHall = {
         "|||||||||||||||||||||||||||||-",
         "|||||||||||||||||||||||||||||-",
@@ -376,6 +382,9 @@ public class Maps implements Serializable {
         "|||||||||||||||||||||||||||||-",
         "|||||||||||||||||||||||||||||-",};
 
+    /**
+     *
+     */
     public static String[] VerticalHall = {
         "|||||||||||||R|||||||||||||||-",
         "|||||||||.........|||||||||||-",
@@ -408,6 +417,9 @@ public class Maps implements Serializable {
         "|||||||||....P....|||||||||||-",
         "|||||||||||||R|||||||||||||||-",};
 
+    /**
+     *
+     */
     public static String[] BottomRightCornerRoom = {
         "|||||||||||||R|||||||||||||||-",
         "|............P..............|-",
@@ -440,6 +452,9 @@ public class Maps implements Serializable {
         "|||||||||||||||||||||||||||||-",
         "|||||||||||||||||||||||||||||-",};
 
+    /**
+     *
+     */
     public static String[] HorizontalBridges = {
         "|||||||||||||||||||||||||||||-",
         "|||||||||||||||||||||||||||||-",
@@ -472,6 +487,9 @@ public class Maps implements Serializable {
         "|||||||||||||||||||||||||||||-",
         "|||||||||||||||||||||||||||||-",};
 
+    /**
+     *
+     */
     public static String[] TreasureRoom = {
         "|||||||||||||||||||||||||||||-",
         "|............LLL............|-",

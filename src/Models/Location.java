@@ -8,6 +8,7 @@ package Models;
 import java.io.Serializable;
 
 /**
+ * Location of items on the map
  *
  * @author Matthew
  */
@@ -17,13 +18,14 @@ public class Location implements Serializable {
     private int yCoord;
 
     /**
-     *
+     * Constructor
      */
     public Location() {
 
     }
 
     /**
+     * Constructor
      *
      * @param x
      * @param y
@@ -34,6 +36,7 @@ public class Location implements Serializable {
     }
 
     /**
+     * Get x coordinate
      *
      * @return
      */
@@ -42,6 +45,7 @@ public class Location implements Serializable {
     }
 
     /**
+     * Set x coordinate
      *
      * @param xCoord
      */
@@ -50,6 +54,7 @@ public class Location implements Serializable {
     }
 
     /**
+     * get y coordinate
      *
      * @return
      */
@@ -58,6 +63,7 @@ public class Location implements Serializable {
     }
 
     /**
+     * set y coordinate
      *
      * @param yCoord
      */
@@ -66,6 +72,7 @@ public class Location implements Serializable {
     }
 
     /**
+     * Determine if two locations are equal
      *
      * @param loc
      * @return

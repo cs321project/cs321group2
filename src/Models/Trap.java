@@ -23,7 +23,7 @@ public class Trap extends AbstractMapItem {
      * Constructor
      */
     public Trap() {
-        super.setID("Trap");
+        super.setID(this.toString());
         this.damageValue = MAX_VALUE;
     }
 
@@ -35,7 +35,7 @@ public class Trap extends AbstractMapItem {
      */
     public Trap(Location location, int damageValue) {
         super.setLocation(location);
-        super.setID("Trap");
+        super.setID(this.toString());
         this.damageValue = damageValue;
     }
 
@@ -49,16 +49,23 @@ public class Trap extends AbstractMapItem {
     }
 
     /**
+     * Trap is stepped on
+     *
+     */
+    public void steppedOn() {
+        this.engage();
+    }
+
+    /**
      * Engages trap and does damage to the player
      *
-     * @return
      */
     private void engage() {
-
+        this.session.currentPlayer.takeDamage(this.damageValue);
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Trap";
     }
 

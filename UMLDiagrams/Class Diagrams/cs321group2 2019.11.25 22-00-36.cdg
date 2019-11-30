@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="cs321group2">
+  <ClassDiagramComponents>
+    <Class name="AbstractMapItem" package="Abstractions" visibility="public" xPosition="1756.0" yPosition="1222.0">
+      <Fields>
+        <Field name="location" type="Location" visibility="private"/>
+        <Field name="ID" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setID" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="getID" returnType="String" visibility="public"/>
+        <Method name="setLocation" returnType="void" visibility="public">
+          <Argument type="Location" name="location"/>
+        </Method>
+        <Method name="getLocation" returnType="Location" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Maps" package="Maps" visibility="public" xPosition="5506.0" yPosition="3255.0">
+      <Fields>
+        <Field name="BlankRoom" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="StartingRoomLevel1" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="FinalRoomLevel1" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="DeadEndL" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="DeadEndR" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="DeadEndT" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="DeadEndB" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="OpenRoom1" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="OpenRoom2" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="OpenRoom3" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="HorizontalHall" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="VerticalHall" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="BottomRightCornerRoom" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="HorizontalBridges" type="String[]" visibility="public" isStatic="true"/>
+        <Field name="TreasureRoom" type="String[]" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Door" package="Models" visibility="public" xPosition="4650.0" yPosition="4167.0">
+      <Fields>
+        <Field name="level" type="int" visibility="private"/>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Location" name="location"/>
+          <Argument type="int" name="level"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="setLevel" returnType="void" visibility="public">
+          <Argument type="int" name="level"/>
+        </Method>
+        <Method name="getLevel" returnType="int" visibility="public"/>
+        <Method name="unLock" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Enemy" package="Models" visibility="public" xPosition="3683.0" yPosition="285.0">
+      <Fields>
+        <Field name="MAX_HEALTH" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MAX_ATTACK" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MAX_DEFENSE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="health" type="int" visibility="private"/>
+        <Field name="attack" type="int" visibility="private"/>
+        <Field name="defense" type="int" visibility="private"/>
+        <Field name="hasKey" type="boolean" visibility="private"/>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Location" name="location"/>
+          <Argument type="int" name="health"/>
+          <Argument type="int" name="attack"/>
+          <Argument type="int" name="defense"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setHealth" returnType="void" visibility="public">
+          <Argument type="int" name="health"/>
+        </Method>
+        <Method name="getHealth" returnType="int" visibility="public"/>
+        <Method name="getDefense" returnType="int" visibility="public"/>
+        <Method name="getAttack" returnType="int" visibility="public"/>
+        <Method name="die" returnType="void" visibility="private"/>
+        <Method name="giveKey" returnType="void" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Floor" package="Models" visibility="public" xPosition="305.0" yPosition="1903.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Location" package="Models" visibility="public" xPosition="2205.0" yPosition="31.0">
+      <Fields>
+        <Field name="xCoord" type="int" visibility="private"/>
+        <Field name="yCoord" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getxCoord" returnType="int" visibility="public"/>
+        <Method name="setxCoord" returnType="void" visibility="public">
+          <Argument type="int" name="xCoord"/>
+        </Method>
+        <Method name="getyCoord" returnType="int" visibility="public"/>
+        <Method name="setyCoord" returnType="void" visibility="public">
+          <Argument type="int" name="yCoord"/>
+        </Method>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Location" name="loc"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Loot" package="Models" visibility="public" xPosition="3832.0" yPosition="1125.0">
+      <Fields>
+        <Field name="MAX_VALUE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="value" type="int" visibility="private"/>
+        <Field name="displayName" type="String" visibility="private"/>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Location" name="location"/>
+          <Argument type="int" name="value"/>
+          <Argument type="String" name="displayName"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="int" visibility="public"/>
+        <Method name="getDisplayName" returnType="String" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Map" package="Models" visibility="public" xPosition="5520.0" yPosition="204.0">
+      <Fields>
+        <Field name="MIN_LEVEL" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MAX_LEVEL" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="NUM_ROWS" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="NUM_COLS" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="level" type="int" visibility="private"/>
+        <Field name="mapDoor" type="Door" visibility="private"/>
+        <Field name="rooms" type="List&lt;Room&gt;" visibility="private"/>
+        <Field name="enemies" type="List&lt;Enemy&gt;" visibility="private"/>
+        <Field name="initMapFormat" type="String[]" visibility="private"/>
+        <Field name="mapGrid" type="AbstractMapItem[][]" visibility="private"/>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="level"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getLevel" returnType="int" visibility="public"/>
+        <Method name="getMapGrid" returnType="AbstractMapItem[][]" visibility="public"/>
+        <Method name="getMapDoor" returnType="Door" visibility="public"/>
+        <Method name="setMapGrid" returnType="void" visibility="public">
+          <Argument type="AbstractMapItem[][]" name="grid"/>
+        </Method>
+        <Method name="getLevelOfDificulty" returnType="String" visibility="public"/>
+        <Method name="assembleMap1" returnType="void" visibility="private"/>
+        <Method name="assembleEnemiesList" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="Player" package="Models" visibility="public" isFinal="true" xPosition="5308.0" yPosition="4314.0">
+      <Fields>
+        <Field name="MAX_HEALTH" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MAX_ATTACK" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MAX_DEFENSE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MAX_LIVES" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="inventory" type="List&lt;Loot&gt;" visibility="private"/>
+        <Field name="health" type="int" visibility="private"/>
+        <Field name="baseAttack" type="int" visibility="private"/>
+        <Field name="baseDefense" type="int" visibility="private"/>
+        <Field name="lives" type="int" visibility="private"/>
+        <Field name="highestLevel" type="int" visibility="private"/>
+        <Field name="hasKey" type="boolean" visibility="private"/>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="List&lt;Loot&gt;" name="inventory"/>
+          <Argument type="int" name="health"/>
+          <Argument type="Location" name="location"/>
+          <Argument type="int" name="baseAttack"/>
+          <Argument type="int" name="baseDefense"/>
+          <Argument type="int" name="lives"/>
+          <Argument type="int" name="highestLevel"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPlayerSettingsDir" returnType="String" visibility="public"/>
+        <Method name="getPlayerSettingsFile" returnType="String" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="setInventory" returnType="void" visibility="public">
+          <Argument type="List&lt;Loot&gt;" name="inventory"/>
+        </Method>
+        <Method name="getInventory" returnType="List&lt;Loot&gt;" visibility="public"/>
+        <Method name="getInventoryDisplayNames" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getHealth" returnType="int" visibility="public"/>
+        <Method name="getAttack" returnType="int" visibility="public"/>
+        <Method name="getDefense" returnType="int" visibility="public"/>
+        <Method name="getLives" returnType="int" visibility="public"/>
+        <Method name="equip" returnType="void" visibility="public">
+          <Argument type="Loot" name="item"/>
+        </Method>
+        <Method name="unEquip" returnType="void" visibility="public">
+          <Argument type="Loot" name="item"/>
+        </Method>
+        <Method name="attack" returnType="void" visibility="public"/>
+        <Method name="move" returnType="boolean" visibility="public">
+          <Argument type="PlayerDirection" name="direction"/>
+        </Method>
+        <Method name="canMove" returnType="boolean" visibility="private">
+          <Argument type="AbstractMapItem" name="item"/>
+        </Method>
+        <Method name="heal" returnType="void" visibility="public"/>
+        <Method name="revive" returnType="void" visibility="public"/>
+        <Method name="takeDamage" returnType="void" visibility="public">
+          <Argument type="int" name="damageValue"/>
+        </Method>
+        <Method name="die" returnType="void" visibility="private"/>
+        <Method name="getHighestLevel" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Room" package="Models" visibility="public" isFinal="true" xPosition="210.0" yPosition="5081.0">
+      <Fields>
+        <Field name="roomItems" type="List&lt;AbstractMapItem&gt;" visibility="private"/>
+        <Field name="roomHeight" type="int" visibility="private"/>
+        <Field name="roomWidth" type="int" visibility="private"/>
+        <Field name="hasTopExit" type="boolean" visibility="private"/>
+        <Field name="hasBottomExit" type="boolean" visibility="private"/>
+        <Field name="hasLeftExit" type="boolean" visibility="private"/>
+        <Field name="hasRightExit" type="boolean" visibility="private"/>
+        <Field name="floors" type="List&lt;Floor&gt;" visibility="private"/>
+        <Field name="walls" type="List&lt;Wall&gt;" visibility="private"/>
+        <Field name="enemies" type="List&lt;Enemy&gt;" visibility="private"/>
+        <Field name="traps" type="List&lt;Trap&gt;" visibility="private"/>
+        <Field name="rtTiles" type="List&lt;RoomTransitionTile&gt;" visibility="private"/>
+        <Field name="door" type="Door" visibility="private"/>
+        <Field name="roomAbove" type="Room" visibility="private"/>
+        <Field name="roomBelow" type="Room" visibility="private"/>
+        <Field name="roomRight" type="Room" visibility="private"/>
+        <Field name="roomLeft" type="Room" visibility="private"/>
+        <Field name="TOP_ROW" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="BOTTOM_ROW" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="FIRST_COLUMN" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="LAST_COLUMN" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String[]" name="mapData"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMapData" returnType="String" visibility="public">
+          <Argument type="File" name="file"/>
+        </Method>
+        <Method name="interpretMapData" returnType="void" visibility="public">
+          <Argument type="String[]" name="mapData"/>
+        </Method>
+        <Method name="getFloors" returnType="List&lt;Floor&gt;" visibility="public"/>
+        <Method name="getWalls" returnType="List&lt;Wall&gt;" visibility="public"/>
+        <Method name="getEnemies" returnType="List&lt;Enemy&gt;" visibility="public"/>
+        <Method name="getTraps" returnType="List&lt;Trap&gt;" visibility="public"/>
+        <Method name="getRoomItems" returnType="List&lt;AbstractMapItem&gt;" visibility="public"/>
+        <Method name="getRoomAbove" returnType="Room" visibility="public"/>
+        <Method name="setRoomAbove" returnType="void" visibility="public">
+          <Argument type="Room" name="roomAbove"/>
+        </Method>
+        <Method name="getRoomBelow" returnType="Room" visibility="public"/>
+        <Method name="setRoomBelow" returnType="void" visibility="public">
+          <Argument type="Room" name="roomBelow"/>
+        </Method>
+        <Method name="getRoomRight" returnType="Room" visibility="public"/>
+        <Method name="setRoomRight" returnType="void" visibility="public">
+          <Argument type="Room" name="roomRight"/>
+        </Method>
+        <Method name="getRoomLeft" returnType="Room" visibility="public"/>
+        <Method name="setRoomLeft" returnType="void" visibility="public">
+          <Argument type="Room" name="roomLeft"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RoomTransitionTile" package="Models" visibility="public" xPosition="505.0" yPosition="2338.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Session" package="Models" visibility="public" isFinal="true" xPosition="2399.0" yPosition="4066.0">
+      <Fields>
+        <Field name="instance" type="Session" visibility="private" isStatic="true"/>
+        <Field name="currentMap" type="Map" visibility="public"/>
+        <Field name="currentPlayer" type="Player" visibility="public"/>
+        <Field name="isNewUser" type="boolean" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private"/>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="Session" visibility="public" isStatic="true"/>
+        <Method name="getGameDirectory" returnType="String" visibility="public"/>
+        <Method name="initGame" returnType="boolean" visibility="public">
+          <Argument type="String" name="userName"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Settings" package="Models" visibility="public" xPosition="2150.0" yPosition="4522.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getSetting" returnType="Session" visibility="public" isStatic="true">
+          <Argument type="Session" name="session"/>
+        </Method>
+        <Method name="addOrUpdateSetting" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Session" name="session"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Trap" package="Models" visibility="public" xPosition="1957.0" yPosition="2567.0">
+      <Fields>
+        <Field name="MAX_VALUE" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="damageValue" type="int" visibility="private" isFinal="true"/>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Location" name="location"/>
+          <Argument type="int" name="damageValue"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="int" visibility="public"/>
+        <Method name="engage" returnType="void" visibility="private"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Wall" package="Models" visibility="public" xPosition="1414.0" yPosition="702.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Constants" package="Utils" visibility="public" xPosition="5930.0" yPosition="3150.0">
+      <Fields>
+        <Field name="ANSI_RESET" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_BLACK" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_RED" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_GREEN" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_YELLOW" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ANSI_BLUE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="NEW_LINE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="EMPTY_STRING" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SINGLE_SPACE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SETTINGS_FILE" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="USER_DIR_KEY" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="DateTimeUtil" package="Utils" visibility="public" xPosition="5908.0" yPosition="3570.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getLocalTimeAsString" returnType="String" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="FileUtil" package="Utils" visibility="public" xPosition="6153.0" yPosition="1044.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="fileExists" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="createFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="createIfNotPresent" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="createDirectory" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="getSubdirectories" returnType="String[]" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="WriteMapToSettingsFile" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Map" name="map"/>
+        </Method>
+        <Method name="getMapFromSettingsFile" returnType="Map" visibility="public" isStatic="true"/>
+        <Method name="readLines" returnType="List&lt;String&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="path"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Log" package="Utils" visibility="public" xPosition="5889.0" yPosition="2836.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="exception" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Exception" name="ex"/>
+        </Method>
+        <Method name="error" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="warning" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="information" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="debug" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="verbose" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="output" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="getInputString" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="getInputInt" returnType="int" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="RandomUtil" package="Utils" visibility="public" xPosition="5370.0" yPosition="2802.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getRandomIntegerBetweenRange" returnType="int" visibility="public" isStatic="true">
+          <Argument type="int" name="min"/>
+          <Argument type="int" name="max"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="StringUtil" package="Utils" visibility="public" xPosition="5400.0" yPosition="3010.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="concat" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+        <Method name="join" returnType="String" visibility="public" isStatic="true">
+          <Argument type="List&lt;String&gt;" name="strings"/>
+        </Method>
+        <Method name="join" returnType="String" visibility="public" isStatic="true">
+          <Argument type="List&lt;String&gt;" name="strings"/>
+          <Argument type="String" name="seperator"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SystemUtil" package="Utils" visibility="public" xPosition="6583.0" yPosition="3442.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getUserDirectory" returnType="String" visibility="public" isStatic="true"/>
+        <Method name="getBufferedImageFromResource" returnType="BufferedImage" visibility="public" isStatic="true">
+          <Argument type="String" name="res"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GameView" package="Views" visibility="public" xPosition="5413.0" yPosition="1044.0">
+      <Fields>
+        <Field name="session" type="Session" visibility="private" isFinal="true"/>
+        <Field name="aboutButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="attackLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="currentPlayerEntry" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="defenseLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="diffEntry" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="gamePanel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="gameSetupView" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="healthLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="highestLevelEntry" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="inGameCurrentInventory" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="inGameCurrentMap" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="inGameHealthLevel" type="javax.swing.JProgressBar" visibility="private"/>
+        <Field name="inGameLivesLeft" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="inGameMenuView" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="inGameUsernameField" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="invEntry" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton3" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton4" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jComboBox1" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jComboBox2" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel11" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel12" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel13" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel14" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel15" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel16" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel17" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel18" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel19" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel20" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jSeparator1" type="javax.swing.JSeparator" visibility="private"/>
+        <Field name="lastSessionRadioButton" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="levelEntry" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="loginPanel" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="mapView" type="javax.swing.JInternalFrame" visibility="private"/>
+        <Field name="newGameRadioButton" type="javax.swing.JRadioButton" visibility="private"/>
+        <Field name="newUserButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="newUserLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="returningUserButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="returningUserLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="saveGameButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="startGameButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="titleLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="usernameComboBox" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="usernameEntry" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="quitWarningPopUp" returnType="void" visibility="private"/>
+        <Method name="UpdatePlayerStats" returnType="void" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="newUserButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="returningUserButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="startGameButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="newGameRadioButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="lastSessionRadioButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="saveGameButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MapView" package="Views" visibility="public" xPosition="5054.0" yPosition="1074.0">
+      <Fields>
+        <Field name="WALL" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="DOOR" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ROOM" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ENEMY" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="LOOT" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="TRAP" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PLAYER" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="FLOOR" type="BufferedImage" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PREFERRED_GRID_SIZE_PIXELS" type="int" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="terrainGrid" type="BufferedImage[][]" visibility="private"/>
+        <Field name="gameView" type="GameView" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GameView" name="gameView"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setMap" returnType="void" visibility="private"/>
+        <Method name="paintComponent" returnType="void" visibility="public">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+        <Method name="keyTyped" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyPressed" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+        <Method name="keyReleased" returnType="void" visibility="public">
+          <Argument type="KeyEvent" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="roomLeft" source="Models.Room" target="Models.Room" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="gameView" source="Views.MapView" target="Views.GameView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="rooms" source="Models.Map" target="Models.Room" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Room&gt;"/>
+    <IsRelation name="is" source="Models.Trap" target="Abstractions.AbstractMapItem"/>
+    <HasRelation name="floors" source="Models.Room" target="Models.Floor" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Floor&gt;"/>
+    <HasRelation name="session" source="Views.GameView" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Models.Player" target="Abstractions.AbstractMapItem"/>
+    <IsRelation name="is" source="Models.Door" target="Abstractions.AbstractMapItem"/>
+    <UseRelation source="Models.Room" target="Models.Map" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentMap" source="Models.Session" target="Models.Map" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Map"/>
+    <HasRelation name="roomAbove" source="Models.Room" target="Models.Room" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="session" source="Models.Map" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="enemies" source="Models.Map" target="Models.Enemy" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Enemy&gt;"/>
+    <HasRelation name="roomItems" source="Models.Room" target="Abstractions.AbstractMapItem" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;AbstractMapItem&gt;"/>
+    <IsRelation name="is" source="Models.Wall" target="Abstractions.AbstractMapItem"/>
+    <UseRelation source="Utils.FileUtil" target="Models.Map" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="inventory" source="Models.Player" target="Models.Loot" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loot&gt;"/>
+    <IsRelation name="is" source="Models.Loot" target="Abstractions.AbstractMapItem"/>
+    <UseRelation source="Models.Player" target="Models.Player" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Room" target="Models.Room" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mapDoor" source="Models.Map" target="Models.Door" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="session" source="Models.Loot" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="enemies" source="Models.Room" target="Models.Enemy" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Enemy&gt;"/>
+    <HasRelation name="session" source="Models.Player" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Models.Enemy" target="Abstractions.AbstractMapItem"/>
+    <UseRelation source="Models.Player" target="Models.Map" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Map" target="Models.Map" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="location" source="Abstractions.AbstractMapItem" target="Models.Location" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="door" source="Models.Room" target="Models.Door" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Map" target="Models.Door" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Location" target="Models.Location" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Abstractions.AbstractMapItem" target="Models.Location" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Models.Floor" target="Abstractions.AbstractMapItem"/>
+    <HasRelation name="session" source="Models.Door" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="session" source="Models.Trap" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Models.Settings" target="Models.Session" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Models.RoomTransitionTile" target="Abstractions.AbstractMapItem"/>
+    <HasRelation name="rtTiles" source="Models.Room" target="Models.RoomTransitionTile" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;RoomTransitionTile&gt;"/>
+    <HasRelation name="session" source="Models.Enemy" target="Models.Session" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="traps" source="Models.Room" target="Models.Trap" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Trap&gt;"/>
+    <UseRelation source="Models.Room" target="Models.Wall" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentPlayer" source="Models.Session" target="Models.Player" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="roomBelow" source="Models.Room" target="Models.Room" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

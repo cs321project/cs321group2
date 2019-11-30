@@ -18,7 +18,7 @@ public class Floor extends AbstractMapItem {
      * Constructor
      */
     public Floor() {
-        super.setID("Floor");
+        super.setID(this.toString());
     }
     
     public Floor(Location loc) {
@@ -27,7 +27,7 @@ public class Floor extends AbstractMapItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Floor";
     }
 

@@ -21,10 +21,14 @@ public class RoomTransitionTile extends AbstractMapItem {
     public boolean onBottomWall = false;
     
     /**
+<<<<<<< HEAD
      * Default constructor
+=======
+     * Constructor
+>>>>>>> af105cdc19596ff981c2d0470859d081b7ad478f
      */
     public RoomTransitionTile() {
-
+        super.setID(this.toString());
     }
     
     /**
@@ -53,7 +57,7 @@ public class RoomTransitionTile extends AbstractMapItem {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "RoomTransitionTile";
     }
 }

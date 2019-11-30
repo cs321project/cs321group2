@@ -9,6 +9,7 @@ import Abstractions.AbstractMapItem;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +49,14 @@ public final class Room implements Serializable {
     private static final int LAST_COLUMN = 28;
 
     /**
-     *
+     * Constructor
      */
     public Room() {
 
     }
 
     /**
+     * Constructor
      *
      * @param mapData
      */
@@ -79,7 +81,7 @@ public final class Room implements Serializable {
                 mapCode += "\n" + text;
             }
             return mapCode;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.getStackTrace();
         }
         return "getMapData did not work";

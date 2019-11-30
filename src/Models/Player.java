@@ -40,7 +40,7 @@ public final class Player extends AbstractMapItem {
      * Constructor
      */
     public Player() {
-        super.setID("Player");
+        super.setID(this.toString());
     }
 
     /**
@@ -57,7 +57,7 @@ public final class Player extends AbstractMapItem {
      */
     public Player(String username, List<Loot> inventory, int health, Location location, int baseAttack, int baseDefense, int lives, int highestLevel) {
 
-        super.setID("Player");
+        super.setID(this.toString());
         super.setLocation(location);
         this.username = username;
         this.inventory = inventory;
@@ -297,6 +297,7 @@ public final class Player extends AbstractMapItem {
             }
             case "Trap": {
                 Trap trap = (Trap) item;
+                trap.steppedOn();
                 return false;
             }
             case "Door": {
@@ -365,14 +366,27 @@ public final class Player extends AbstractMapItem {
      * @param damageValue
      */
     public void takeDamage(int damageValue) {
+        this.health = this.health - damageValue;
 
+        if (this.health <= 0) {
+            
+            this.lives--;
+            this.health = Player.MAX_HEALTH;
+            this.session.currentMap.setToInitialFormat();
+            
+            if (this.lives <= 0) {
+                this.die();
+            }
+        }
     }
 
     /**
      * Starts the game over when the player is out of health and lives
      */
     private void die() {
-
+        
+        // Restart Game
+        
     }
 
     /**
