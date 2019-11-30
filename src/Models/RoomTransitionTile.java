@@ -14,7 +14,7 @@ import Abstractions.AbstractMapItem;
 public class RoomTransitionTile extends AbstractMapItem {
 
     /**
-     *
+     * Constructor
      */
     public RoomTransitionTile() {
         super.setID(this.toString());

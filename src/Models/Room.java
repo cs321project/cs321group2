@@ -48,13 +48,14 @@ public final class Room implements Serializable {
     private static final int LAST_COLUMN = 28;
 
     /**
-     *
+     * Constructor
      */
     public Room() {
 
     }
 
     /**
+     * Constructor
      *
      * @param mapData
      */

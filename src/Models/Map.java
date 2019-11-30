@@ -62,23 +62,23 @@ public final class Map implements Serializable {
                 //rooms.add(new Room(Maps.Maps.OpenRoom3));
                 break;
         }
-        
+
         this.setToInitialFormat();
     }
-    
+
     /**
-     *
+     * Sets the initial format of the map before being changed by the user
      */
     public void setToInitialFormat() {
-                this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
+        this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
         for (int j = 0; j < this.initMapFormat.length; j++) {
             for (int i = 0; i < this.initMapFormat[j].length(); i++) {
-                
+
                 char c = this.initMapFormat[j].charAt(i);
                 AbstractMapItem item = null;
                 Location loc = new Location(j, i);
                 boolean isPlayer = false;
-                
+
                 switch (c) {
                     case 'R':
                     case 'D': {
