@@ -64,10 +64,6 @@ public final class Map implements Serializable {
                 //rooms.add(new Room(Maps.Maps.OpenRoom3));
                 break;
         }
-
-<<<<<<< HEAD
-        
-=======
         this.setToInitialFormat();
     }
 
@@ -123,7 +119,6 @@ public final class Map implements Serializable {
                 }
             }
         }
->>>>>>> af105cdc19596ff981c2d0470859d081b7ad478f
     }
 
     /**
