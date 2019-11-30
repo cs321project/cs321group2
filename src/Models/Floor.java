@@ -20,6 +20,11 @@ public class Floor extends AbstractMapItem {
     public Floor() {
         super.setID("Floor");
     }
+    
+    public Floor(Location loc) {
+        super.setLocation(loc);
+        super.setID("Floor");
+    }
 
     @Override
     public String toString() {

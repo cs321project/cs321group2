@@ -312,6 +312,34 @@ public final class Player extends AbstractMapItem {
                     return false;
                 }
             }
+            //Currently does not affect gameplay
+            case "Room": {
+                RoomTransitionTile rtt = (RoomTransitionTile) item;
+                int x = rtt.getLocation().getxCoord();
+                int y = rtt.getLocation().getyCoord();
+                Room newRoom = null;
+                if (rtt.onTopWall) {
+                    newRoom = session.currentMap.getCurrentRoom().getRoomAbove();
+                    session.currentMap.setCurrentRoom(newRoom);
+                    this.setLocation(new Location(x + 1, y));
+                }
+                else if (rtt.onBottomWall) {
+                    newRoom = session.currentMap.getCurrentRoom().getRoomBelow();
+                    session.currentMap.setCurrentRoom(newRoom);
+                    this.setLocation(new Location(x - 1, y));
+                }
+                else if (rtt.onLeftWall) {
+                    newRoom = session.currentMap.getCurrentRoom().getRoomLeft();
+                    session.currentMap.setCurrentRoom(newRoom);
+                    this.setLocation(new Location(x, y + 1));
+                }
+                else if (rtt.onRightWall) {
+                    newRoom = session.currentMap.getCurrentRoom().getRoomRight();
+                    session.currentMap.setCurrentRoom(newRoom);
+                    this.setLocation(new Location(x, y - 1));
+                }
+                
+            }
             default: //Just open floor here
                 return true;
         }

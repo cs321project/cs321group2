@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * 
  * @author Matthew
  */
 public final class Room implements Serializable {
 
-    private List<AbstractMapItem> roomItems;
+    private AbstractMapItem[][] roomGrid;
 
     private int roomHeight;
     private int roomWidth;
@@ -33,8 +33,9 @@ public final class Room implements Serializable {
     private List<Wall> walls;
     private List<Enemy> enemies;
     private List<Trap> traps;
+    private List<Loot> loot;
     private List<RoomTransitionTile> rtTiles;
-    private Door door;
+    public Door door;
 
     private Room roomAbove = null;
     private Room roomBelow = null;
@@ -57,8 +58,8 @@ public final class Room implements Serializable {
      *
      * @param mapData
      */
-    public Room(String[] mapData) {
-        this.interpretMapData(mapData);
+    public Room(String[] mapData, Session session) {
+        this.interpretMapData(mapData, session);
     }
 
     /**
@@ -85,90 +86,109 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Takes a string and builds a Room based on the text from the file '#'
-     * indicates the end of a row '|' is a Wall '_' is a Floor 'E' is an Enemy
+     * Takes a string and builds a Room based on the text from the file '-'
+     * indicates the end of a row '|' is a Wall '.' is a Floor 'E' is an Enemy
      * 'T' is a Trap
      *
      * @param mapData the string that contains the information for building the
      * Room
      */
-    public void interpretMapData(String[] mapData) {
+    public void interpretMapData(String[] mapData, Session session) {
         floors = new ArrayList<>();
         walls = new ArrayList<>();
         enemies = new ArrayList<>();
         traps = new ArrayList<>();
         rtTiles = new ArrayList<>();
-        roomItems = new ArrayList<>();
+        loot = new ArrayList<>();
         door = null;
 
         roomWidth = mapData[0].length();
         roomHeight = mapData.length;
+        
+        this.roomGrid = new AbstractMapItem[roomWidth][roomHeight];
 
         for (int j = 0; j < mapData.length; j++) {
             for (int i = 0; i < mapData[j].length(); i++) {
+                
+                char c = mapData[j].charAt(i);
                 AbstractMapItem item = null;
-                switch (mapData[j].charAt(i)) {
-                    case 'D':
-                        door = new Door();
-                        roomItems.add(door);
-                        door.setLocation(new Location(i, j));
-                        break;
-                    case '|':
-                        //System.out.println("| found " + i + " " +j);
-                        Wall tempWall = new Wall();
-                        tempWall.setLocation(new Location(i, j));
-                        item = tempWall;
-                        walls.add(tempWall);
-                        break;
-                    case '.':
-                        //System.out.println("_ found " + i + " " +j);
-                        Floor tempFloor = new Floor();
-                        tempFloor.setLocation(new Location(i, j));
-                        item = tempFloor;
-                        floors.add(tempFloor);
-                        break;
-                    case 'E':
-                        //System.out.println("E found " + i + " " +j);
-                        Enemy tempEnemy = new Enemy();
-                        tempEnemy.setLocation(new Location(i, j));
-                        item = tempEnemy;
-                        enemies.add(tempEnemy);
-                        break;
-                    case 'T':
-                        //System.out.println("T found " + i + " " +j);
-                        Trap tempTrap = new Trap();
-                        tempTrap.setLocation(new Location(i, j));
-                        item = tempTrap;
-                        traps.add(tempTrap);
-                        break;
+                Location loc = new Location(j, i);
+                boolean isPlayer = false;
+                
+                switch (c) {
                     case 'R':
-                        RoomTransitionTile tempRT = new RoomTransitionTile();
-                        tempRT.setLocation(new Location(i, j));
+                        RoomTransitionTile tempRT = null;
                         //If the RoomTransitionTile is on the first row and a top exit does not already exit
-                        if (tempRT.getLocation().getyCoord() == TOP_ROW && !this.hasTopExit) {
+                        if (loc.getxCoord() == TOP_ROW && !this.hasTopExit) {
                             this.hasTopExit = true;
+                            tempRT = new RoomTransitionTile(loc, "Top");
                         }
-                        if (tempRT.getLocation().getyCoord() == BOTTOM_ROW && !this.hasBottomExit) {
+                        if (loc.getxCoord() == BOTTOM_ROW && !this.hasBottomExit) {
                             this.hasBottomExit = true;
+                            tempRT = new RoomTransitionTile(loc, "Bottom");
                         }
-                        if (tempRT.getLocation().getxCoord() == FIRST_COLUMN && !this.hasLeftExit) {
+                        if (loc.getyCoord() == FIRST_COLUMN && !this.hasLeftExit) {
                             this.hasLeftExit = true;
+                            tempRT = new RoomTransitionTile(loc, "Left");
                         }
-                        if (tempRT.getLocation().getxCoord() == LAST_COLUMN && !this.hasRightExit) {
+                        if (loc.getyCoord() == LAST_COLUMN && !this.hasRightExit) {
                             this.hasRightExit = true;
+                            tempRT = new RoomTransitionTile(loc, "Right");
                         }
-                        item = tempRT;
-                        rtTiles.add(tempRT);
+                        if (tempRT != null) {
+                            item = tempRT;
+                            rtTiles.add(tempRT);
+                        } 
                         break;
+                    case 'D': {
+                        Door tempDoor = new Door();
+                        tempDoor.setLocation(loc);
+                        door = tempDoor;
+                        item = tempDoor;
+                        break;
+                    }
+                    case 'E': {
+                        Enemy tempEnemy = new Enemy(loc, Enemy.MAX_HEALTH,
+                                Enemy.MAX_ATTACK, Enemy.MAX_DEFENSE);
+                        enemies.add(tempEnemy);
+                        item = tempEnemy;
+                        break;
+                    }
+                    case 'T':
+                        Trap tempTrap = new Trap(loc, Trap.MAX_VALUE);
+                        traps.add(tempTrap);
+                        item = tempTrap;
+                        break;
+                    case 'L': {
+                        Loot tempLoot = new Loot(loc, Loot.MAX_VALUE, "Loot");
+                        loot.add(tempLoot);
+                        item = tempLoot;
+                        break;
+                    }
+                    case 'P': {
+                        isPlayer = true;
+                        this.roomGrid[i][j] = ((AbstractMapItem) session.currentPlayer);
+                        session.currentPlayer.setLocation(new Location(j, i));
+                        break;
+                    }
+                    case '|': {
+                        Wall tempWall = new Wall();
+                        walls.add(tempWall);
+                        item = tempWall;
+                        break;
+                    }
+                    default: {
+                        item = new Floor();
+                        break;
+                    }
                 }
-
-                if (item != null) {
-                    this.roomItems.add(item);
+                if (item != null && !isPlayer) {
+                    this.roomGrid[i][j] = ((AbstractMapItem) item);
                 }
             }
         }
     }
-
+    //------------Getters for all AbstractMapItem Lists-----------------------
     /**
      *
      * @return
@@ -205,8 +225,8 @@ public final class Room implements Serializable {
      *
      * @return
      */
-    public List<AbstractMapItem> getRoomItems() {
-        return roomItems;
+    public AbstractMapItem[][] getRoomGrid() {
+        return roomGrid;
     }
 
     //---------Getters and Setters for adjacent Rooms---------------------

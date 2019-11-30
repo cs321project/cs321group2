@@ -20,6 +20,11 @@ public class Wall extends AbstractMapItem {
     public Wall() {
         super.setID("Wall");
     }
+    
+    public Wall(Location loc) {
+        super.setLocation(loc);
+        super.setID("Wall");
+    }
 
     @Override
     public String toString() {

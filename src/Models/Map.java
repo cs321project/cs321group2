@@ -25,6 +25,7 @@ public class Map implements Serializable {
     private int level;
     private Door mapDoor;
     private List<Room> rooms;
+    private Room currentRoom;
     private List<Enemy> enemies;
     private String[] initMapFormat;
     private AbstractMapItem[][] mapGrid;
@@ -49,9 +50,10 @@ public class Map implements Serializable {
 
         switch (level) {
             case 1:
-                this.initMapFormat = Maps.Maps.OpenRoom1;
-                //assembleMap1();
-                //assembleEnemiesList();
+                //this.initMapFormat = Maps.Maps.OpenRoom1;
+                assembleMap1();
+                //If you want to test a different room, go to assembleMap1 and
+                //replace StartingRoomLevel1 with the room you want
                 break;
             case 2:
                 this.initMapFormat = Maps.Maps.OpenRoom2;
@@ -63,54 +65,7 @@ public class Map implements Serializable {
                 break;
         }
 
-        this.mapGrid = new AbstractMapItem[NUM_ROWS][NUM_COLS];
-        for (int j = 0; j < this.initMapFormat.length; j++) {
-            for (int i = 0; i < this.initMapFormat[j].length(); i++) {
-                
-                char c = this.initMapFormat[j].charAt(i);
-                AbstractMapItem item = null;
-                Location loc = new Location(j, i);
-                boolean isPlayer = false;
-                
-                switch (c) {
-                    case 'R':
-                    case 'D': {
-                        item = new Door(loc, this.level);
-                        this.mapDoor = (Door) item;
-                        break;
-                    }
-                    case 'E': {
-                        item = new Enemy(loc, Enemy.MAX_HEALTH,
-                                Enemy.MAX_ATTACK, Enemy.MAX_DEFENSE);
-                        break;
-                    }
-                    case 'T':
-                        item = new Trap(loc, Trap.MAX_VALUE);
-                        break;
-                    case 'L': {
-                        item = new Loot(loc, Loot.MAX_VALUE, "Loot");
-                        break;
-                    }
-                    case 'P': {
-                        isPlayer = true;
-                        this.mapGrid[i][j] = ((AbstractMapItem) this.session.currentPlayer);
-                        this.session.currentPlayer.setLocation(new Location(j, i));
-                        break;
-                    }
-                    case '|': {
-                        item = new Wall();
-                        break;
-                    }
-                    default: {
-                        item = new Floor();
-                        break;
-                    }
-                }
-                if (item != null && !isPlayer) {
-                    this.mapGrid[i][j] = ((AbstractMapItem) item);
-                }
-            }
-        }
+        
     }
 
     /**
@@ -171,17 +126,23 @@ public class Map implements Serializable {
      */
     private void assembleMap1() {
         //Assemble Map
-        rooms.add(new Room(Maps.Maps.StartingRoomLevel1));
-        rooms.add(new Room(Maps.Maps.OpenRoom1));
+        rooms.add(new Room(Maps.Maps.StartingRoomLevel1, this.session));
+        rooms.add(new Room(Maps.Maps.OpenRoom1, this.session));
         rooms.get(0).setRoomAbove(rooms.get(1));
-        rooms.add(new Room(Maps.Maps.DeadEndR));
+        rooms.add(new Room(Maps.Maps.DeadEndR, this.session));
         rooms.get(2).setRoomRight(rooms.get(1));
-        rooms.add(new Room(Maps.Maps.DeadEndB));
+        rooms.add(new Room(Maps.Maps.DeadEndB, this.session));
         rooms.get(3).setRoomBelow(rooms.get(1));
-        rooms.add(new Room(Maps.Maps.BottomRightCornerRoom));
+        rooms.add(new Room(Maps.Maps.BottomRightCornerRoom, this.session));
         rooms.get(4).setRoomLeft(rooms.get(1));
-        rooms.add(new Room(Maps.Maps.FinalRoomLevel1));
+        rooms.add(new Room(Maps.Maps.FinalRoomLevel1, this.session));
         rooms.get(5).setRoomBelow(rooms.get(4));
+        
+        findDoor();
+        assembleEnemiesList();
+        
+        setCurrentRoom(rooms.get(0));
+        setMapGrid(currentRoom.getRoomGrid());
     }
 
     /**
@@ -202,4 +163,25 @@ public class Map implements Serializable {
         enemies.get((int) (Math.random() * enemies.size())).giveKey();
     }
 
+    /**
+     * Finds the door inside one of the rooms and sets it as the map's door.
+     * Also sets the level of the door.
+     */
+    private void findDoor() {
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i).door != null) {
+                rooms.get(i).door.setLevel(this.level);
+                mapDoor = rooms.get(i).door;
+            }
+        }
+    }
+    
+    public void setCurrentRoom(Room room) {
+        this.currentRoom = room;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+    
 }

@@ -100,6 +100,9 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
                     case "Floor":
                         res = FLOOR;
                         break;
+                    case "Room":
+                        res = ROOM;
+                        break;
                 }
                 this.terrainGrid[i][j] = res;
             }
