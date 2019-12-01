@@ -1,6 +1,6 @@
 /build/
 /dist/
-/JavaApplication6/nbproject/private/
+/nbproject/private/
 *.properties
 /build.xml
-/JavaApplication6/nbproject/private/private.xml
+/nbproject/private/private.xml
