@@ -179,7 +179,8 @@ public final class Map implements Serializable {
      */
     private void assembleMap1() {
         //Assemble Map
-        rooms.add(new Room(Maps.Maps.StartingRoomLevel1, this.session));
+        String[] firstRoom = Maps.Maps.StartingRoomLevel1;
+        rooms.add(new Room(firstRoom, this.session));
         rooms.add(new Room(Maps.Maps.OpenRoom1, this.session));
         rooms.get(0).setRoomAbove(rooms.get(1));
         rooms.add(new Room(Maps.Maps.DeadEndR, this.session));
@@ -196,6 +197,7 @@ public final class Map implements Serializable {
         
         setCurrentRoom(rooms.get(0));
         setMapGrid(currentRoom.getRoomGrid());
+        this.initMapFormat = firstRoom;
     }
 
     /**
