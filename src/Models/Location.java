@@ -27,8 +27,9 @@ public class Location implements Serializable {
     /**
      * Constructor
      *
-     * @param x
-     * @param y
+     * @param x int value for location on vertical axis (0 is top row, then
+     * numbers increase as location descends)
+     * @param y int value for location on horizontal axis
      */
     public Location(int x, int y) {
         xCoord = x;
@@ -63,7 +64,7 @@ public class Location implements Serializable {
     }
 
     /**
-     * set y coordinate
+     * Set y coordinate
      *
      * @param yCoord
      */

@@ -6,16 +6,16 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Room is the object that contains the data for each room. It contains a 2D
+ * array of AbstractMapItems representing the room grid, a list of each type
+ * of AbstractMapItem within it, and which rooms it is next to (and whether
+ * it is next to any rooms at all).
  * @author Matthew
  */
 public final class Room implements Serializable {
@@ -62,29 +62,6 @@ public final class Room implements Serializable {
      */
     public Room(String[] mapData, Session session) {
         this.interpretMapData(mapData, session);
-    }
-
-    /**
-     * -----OUTDATED----- Reads text from a file and returns it as a string
-     *
-     * @param file
-     * @return the text from the file as a String
-     */
-    public String getMapData(File file) {
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(file));
-            String text;
-            String mapCode = "";
-
-            while ((text = br.readLine()) != null) {
-                mapCode += "\n" + text;
-            }
-            return mapCode;
-        } catch (IOException e) {
-            e.getStackTrace();
-        }
-        return "getMapData did not work";
     }
 
     /**
@@ -192,7 +169,7 @@ public final class Room implements Serializable {
     }
     //------------Getters for all AbstractMapItem Lists-----------------------
     /**
-     *
+     * Gets the list of floors in this room.
      * @return
      */
     public List<Floor> getFloors() {
@@ -200,7 +177,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets the list of walls in this room.
      * @return
      */
     public List<Wall> getWalls() {
@@ -208,7 +185,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets the list of enemies in this room.
      * @return
      */
     public List<Enemy> getEnemies() {
@@ -216,7 +193,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets the list of traps in this room.
      * @return
      */
     public List<Trap> getTraps() {
@@ -224,7 +201,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets the 2D array of AbstractMapItems in this room.
      * @return
      */
     public AbstractMapItem[][] getRoomGrid() {
@@ -233,7 +210,7 @@ public final class Room implements Serializable {
 
     //---------Getters and Setters for adjacent Rooms---------------------
     /**
-     *
+     * Gets room above this one.
      * @return
      */
     public Room getRoomAbove() {
@@ -241,7 +218,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Sets room above of this one.
      * @param roomAbove
      */
     public void setRoomAbove(Room roomAbove) {
@@ -252,7 +229,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets room below this one.
      * @return
      */
     public Room getRoomBelow() {
@@ -260,7 +237,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Sets room below of this one.
      * @param roomBelow
      */
     public void setRoomBelow(Room roomBelow) {
@@ -271,7 +248,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets room to the right this one.
      * @return
      */
     public Room getRoomRight() {
@@ -279,7 +256,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Sets room to the right of this one.
      * @param roomRight
      */
     public void setRoomRight(Room roomRight) {
@@ -290,7 +267,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Gets room to the left this one.
      * @return
      */
     public Room getRoomLeft() {
@@ -298,7 +275,7 @@ public final class Room implements Serializable {
     }
 
     /**
-     *
+     * Sets room to the left of this one.
      * @param roomLeft
      */
     public void setRoomLeft(Room roomLeft) {
