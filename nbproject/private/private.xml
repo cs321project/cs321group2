@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Location.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Map.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Views/GameView.java</file>
@@ -14,6 +15,11 @@
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Trap.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Maps/Maps.java</file>
             <file>file:/C:/Users/Matthew/Documents/NetBeansProjects/temp/cs321group2/src/Models/Session.java</file>
+=======
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Maps/Maps.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Abstractions/AbstractMapItem.java</file>
+            <file>file:/C:/Users/branc/source/repos/cs321group2/src/Models/Map.java</file>
+>>>>>>> bf3ada115d848ff5a3c5ecb58b5daa5958023282
         </group>
     </open-files>
 </project-private>
