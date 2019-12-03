@@ -19,9 +19,10 @@ import java.util.Map;
 public class FileUtil {
 
     /**
+     * Checks if a file exists on disk
      *
      * @param path
-     * @return
+     * @return boolean
      */
     public static boolean fileExists(String path) {
         File file = new File(path);
@@ -29,6 +30,7 @@ public class FileUtil {
     }
 
     /**
+     * Creates a new file locally on disk
      *
      * @param path
      * @throws IOException
@@ -39,6 +41,7 @@ public class FileUtil {
     }
 
     /**
+     * Creates a new file if not already present
      *
      * @param path
      * @throws IOException
@@ -51,6 +54,7 @@ public class FileUtil {
     }
 
     /**
+     * Creates a new directory on disk
      *
      * @param path
      */
@@ -66,6 +70,7 @@ public class FileUtil {
     }
 
     /**
+     * Gets all subdirectories of a directory
      *
      * @param path
      * @return
@@ -79,6 +84,7 @@ public class FileUtil {
     }
 
     /**
+     * Write to settings file
      *
      * @param map
      * @throws FileNotFoundException
@@ -94,6 +100,7 @@ public class FileUtil {
     }
 
     /**
+     * Get settings file
      *
      * @return @throws FileNotFoundException
      * @throws IOException
@@ -114,6 +121,7 @@ public class FileUtil {
     }
 
     /**
+     * Reads all lines of a file
      *
      * @param path
      * @return

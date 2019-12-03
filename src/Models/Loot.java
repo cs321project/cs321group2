@@ -45,7 +45,7 @@ public class Loot extends AbstractMapItem {
     /**
      * Get the value of the loot to the user
      *
-     * @return
+     * @return Loot value to the player
      */
     public int getValue() {
         return this.value;
@@ -54,7 +54,7 @@ public class Loot extends AbstractMapItem {
     /**
      * Get the display name of the loot
      *
-     * @return
+     * @return Display name of the loot
      */
     public String getDisplayName() {
         return this.displayName;

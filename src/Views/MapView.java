@@ -18,6 +18,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -27,16 +28,51 @@ import javax.swing.JTextField;
  *
  * @author Group 2
  */
-public class MapView extends JTextField implements java.awt.event.KeyListener {
+public class MapView extends JTextField implements java.awt.event.KeyListener, Serializable {
 
+    /**
+     *
+     */
     public static final BufferedImage WALL = SystemUtil.getBufferedImageFromResource("/Images/wall.png");
+
+    /**
+     *
+     */
     public static final BufferedImage DOOR = SystemUtil.getBufferedImageFromResource("/Images/door.png");
-    public static final BufferedImage ROOM = SystemUtil.getBufferedImageFromResource("/Images/door.png");
+
+    /**
+     *
+     */
+    public static final BufferedImage ROOM = SystemUtil.getBufferedImageFromResource("/Images/transparent.png");
+
+    /**
+     *
+     */
     public static final BufferedImage ENEMY = SystemUtil.getBufferedImageFromResource("/Images/enemy.png");
+
+    /**
+     *
+     */
     public static final BufferedImage LOOT = SystemUtil.getBufferedImageFromResource("/Images/loot.png");
+
+    /**
+     *
+     */
     public static final BufferedImage TRAP = SystemUtil.getBufferedImageFromResource("/Images/trap.png");
+
+    /**
+     *
+     */
     public static final BufferedImage PLAYER = SystemUtil.getBufferedImageFromResource("/Images/player.png");
+
+    /**
+     *
+     */
     public static final BufferedImage FLOOR = SystemUtil.getBufferedImageFromResource("/Images/transparent.png");
+
+    /**
+     *
+     */
     public static final int PREFERRED_GRID_SIZE_PIXELS = 20;
 
     private BufferedImage[][] terrainGrid;
@@ -67,17 +103,20 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
         super.setPreferredSize(new Dimension(preferredWidth, preferredHeight));
     }
 
-    private void setMap() {
+    /**
+     *
+     */
+    public void setMap() {
         this.terrainGrid = new BufferedImage[Map.NUM_ROWS][Map.NUM_COLS];
 
         AbstractMapItem[][] mapGrid = Session.getInstance().currentMap.getMapGrid();
         for (int j = 0; j < mapGrid.length; j++) {
             for (int i = 0; i < mapGrid[j].length; i++) {
-                
+
                 AbstractMapItem item = mapGrid[j][i];
                 String ID = item.getID();
                 BufferedImage res = null;
-                
+
                 switch (ID) {
                     case "Wall":
                         res = WALL;
@@ -100,53 +139,13 @@ public class MapView extends JTextField implements java.awt.event.KeyListener {
                     case "Floor":
                         res = FLOOR;
                         break;
-                    case "Room":
+                    case "RoomTransitionTile":
                         res = ROOM;
                         break;
                 }
                 this.terrainGrid[i][j] = res;
             }
         }
-        
-//        String[] currentRoom;
-//        currentRoom = Maps.Maps.HorizontalHall;
-//
-//        for (int j = 0; j < currentRoom.length; j++) {
-//            for (int i = 0; i < currentRoom[j].length(); i++) {
-//                char c = currentRoom[j].charAt(i);
-//                BufferedImage res = null;
-//
-//                switch (c) {
-//                    case '|':
-//                        res = WALL;
-//                        break;
-//                    case 'D':
-//                        res = DOOR;
-//                        break;
-//                    case 'E':
-//                        res = ENEMY;
-//                        break;
-//                    case 'T':
-//                        res = TRAP;
-//                        break;
-//                    case 'P':
-//                        res = PLAYER;
-//                        //new Player(i,j);
-//                        break;
-//                    case 'L':
-//                        res = LOOT;
-//                        break;
-//                    case 'R':
-//                        res = ROOM;
-//                        break;
-//                    default:
-//                        res = FLOOR;
-//                        break;
-//                }
-//
-//                this.terrainGrid[i][j] = res;
-//            }
-//        }
     }
 
     @Override

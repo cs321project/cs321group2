@@ -6,6 +6,7 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
+import Views.GameView;
 
 /**
  * Door is the item that is used to unlock the next level from the map
@@ -53,19 +54,29 @@ public class Door extends AbstractMapItem {
     /**
      * Get the level of the map
      *
-     * @return
+     * @return Health level
      */
     public int getLevel() {
         return this.level;
     }
 
     /**
-     * Unlock the next map/level
-     *
+     * Let the player know they have won the game
      */
     public void unLock() {
+        if (this.session.currentLevel == 3) {
+            GameView.DisplayGameOver(
+                    this.session.currentPlayer.getUsername());
+        } else {
+            this.session.currentLevel = this.session.currentLevel + 1;
+            this.session.currentPlayer.setHighestLevel(this.session.currentLevel);
 
-        // Reset session variable for next level
+            this.session.currentMap = null;
+            this.session.currentMap = new Map(Map.MIN_LEVEL);
+
+            GameView.DisplayWinningMessage(
+                    this.session.currentPlayer.getUsername(), this.session.currentLevel);
+        }
     }
 
 }

@@ -20,7 +20,12 @@ public class Floor extends AbstractMapItem {
     public Floor() {
         super.setID(this.toString());
     }
-    
+
+    /**
+     * Constructor
+     *
+     * @param loc
+     */
     public Floor(Location loc) {
         super.setLocation(loc);
         super.setID("Floor");

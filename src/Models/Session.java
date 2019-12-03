@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Singleton class that has the current map and current user information during
+ * the game
  *
  * @author Group 2
  */
@@ -26,6 +28,7 @@ public final class Session implements Serializable {
     public Map currentMap = null;
     public Player currentPlayer = null;
     public boolean isNewUser = true;
+    public int currentLevel = 1;
 
     private Session() {
         Log.debug("Creating New Session Instance");
@@ -35,11 +38,9 @@ public final class Session implements Serializable {
     /**
      * Gets the singleton session instance
      *
-     * @return
+     * @return Singleton Session
      */
     public static Session getInstance() {
-
-        Log.verbose("Getting Session Instance");
 
         if (instance == null) {
             instance = new Session();
@@ -51,7 +52,9 @@ public final class Session implements Serializable {
     /**
      * Gets the directory where all game data is serialized
      *
-     * @return
+     * @return Game directory where all user directories are saved. This
+     * directory will be on the user home directory and will be name
+     * 'DungeonCrawlerData'.
      */
     public String getGameDirectory() {
         String userDir = SystemUtil.getUserDirectory();
@@ -65,41 +68,55 @@ public final class Session implements Serializable {
      * Gets user data and initializes game
      *
      * @param userName
-     * @return
+     * @return boolean
      */
     public boolean initGame(String userName) {
 
-        List<Loot> beginnerInventory = new ArrayList();
-        beginnerInventory.add(new Loot(null, 5, "Sword"));
-        beginnerInventory.add(new Loot(null, 5, "Sheild"));
+        try {
 
-        currentPlayer = new Player(userName, beginnerInventory, Player.MAX_HEALTH, null,
-                Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES, Map.MIN_LEVEL);
+            List<Loot> beginnerInventory = new ArrayList();
+            beginnerInventory.add(new Loot(null, 5, "Sword"));
+            beginnerInventory.add(new Loot(null, 5, "Sheild"));
 
-        if (this.isNewUser) {
+            currentPlayer = new Player(userName, beginnerInventory, Player.MAX_HEALTH, null,
+                    Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES, Map.MIN_LEVEL);
+
+            if (this.isNewUser) {
+                currentMap = new Map(Map.MIN_LEVEL);
+
+            } else {
+                Session s = null;
+
+                try {
+                    s = Settings.getSetting(this);
+                } catch (IOException | ClassNotFoundException ex) {
+                    Log.exception(ex);
+                }
+
+                if (s != null) {
+                    this.currentMap = s.currentMap;
+                    this.currentPlayer = s.currentPlayer;
+                    this.currentLevel = s.currentLevel;
+                    this.isNewUser = false;
+                }
+            }
+
+            Log.information(StringUtil.concat("Game Initialized: ",
+                    "Username: ", currentPlayer.getUsername(), ",", Constants.SINGLE_SPACE,
+                    "Map Level: ", Integer.toString(currentMap.getLevel())));
+
+            return true;
+        } catch (Exception ex) {
+            List<Loot> beginnerInventory = new ArrayList();
+            beginnerInventory.add(new Loot(null, 5, "Sword"));
+            beginnerInventory.add(new Loot(null, 5, "Sheild"));
+
             currentMap = new Map(Map.MIN_LEVEL);
+            currentPlayer = new Player(userName, beginnerInventory, Player.MAX_HEALTH, null,
+                    Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES, Map.MIN_LEVEL);
 
-        } else {
-            Session s = null;
-
-            try {
-                s = Settings.getSetting(this);
-            } catch (IOException | ClassNotFoundException ex) {
-                Log.exception(ex);
-            }
-
-            if (s != null) {
-                this.currentMap = s.currentMap;
-                this.currentPlayer = s.currentPlayer;
-                this.isNewUser = false;
-            }
+            return true;
         }
-
-        Log.information(StringUtil.concat("Game Initialized: ",
-                "Username: ", currentPlayer.getUsername(), ",", Constants.SINGLE_SPACE,
-                "Map Level: ", Integer.toString(currentMap.getLevel())));
-
-        return true;
     }
 
     /**

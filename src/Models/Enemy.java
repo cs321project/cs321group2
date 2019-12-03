@@ -21,7 +21,7 @@ public class Enemy extends AbstractMapItem {
     private int health;
     private int attack;
     private int defense;
-    private boolean hasKey = false;
+    private boolean hasKey = true;
     private final Session session = Session.getInstance();
 
     /**
@@ -48,6 +48,7 @@ public class Enemy extends AbstractMapItem {
     }
 
     /**
+     * Set the health level of the enemy
      *
      * @param health
      */
@@ -59,47 +60,53 @@ public class Enemy extends AbstractMapItem {
     }
 
     /**
+     * Get the health level of the enemy
      *
-     * @return
+     * @return Health level
      */
     public int getHealth() {
         return this.health;
     }
 
     /**
+     * Get defense level of the enemy
      *
-     * @return
+     * @return Defense level
      */
     public int getDefense() {
         return this.defense;
     }
 
     /**
+     * Get the attack level of the enemy
      *
-     * @return
+     * @return Attack level
      */
     public int getAttack() {
         return this.attack;
     }
 
-    ///**
-    // * Removes health when the enemy takes damage from the player
-    // *
-    // * @param damage
-    // */
-    //public void takeDamage(int damage) {
-    //    this.health = this.health - (damage / this.defense);
-    //    if (this.health <= 0) {
-    //        this.die();
-    //    }
-    //}
-    ///**
-    // * Attack the player
-    // */
-    //public void attack() {
-    //    this.session.currentPlayer.takeDamage(this.attack);
-    //}
-    
+    /**
+     * Removes health when the enemy takes damage from the player
+     *
+     * @param damage
+     */
+    public void takeDamage(int damage) {
+        this.health = this.health - (damage / this.defense);
+        if (this.health <= 0) {
+            this.die();
+        } else {
+            this.attack();
+        }
+    }
+
+    /**
+     * Attack the player
+     */
+    public void attack() {
+        this.session.currentPlayer.takeDamage(this.attack, this);
+    }
+
     /**
      * Remove the enemy from the map
      */
@@ -107,14 +114,19 @@ public class Enemy extends AbstractMapItem {
         AbstractMapItem[][] mapGrid = this.session.currentMap.getMapGrid();
         int x = this.getLocation().getxCoord();
         int y = this.getLocation().getyCoord();
-        
-        if(mapGrid != null) {
+
+        if (this.hasKey) {
+            this.session.currentPlayer.giveKey();
+        }
+
+        if (mapGrid != null) {
             mapGrid[y][x] = new Floor();
         }
     }
 
     /**
-     *
+     * Gives the enemy the door key that will advance the player to the next
+     * level. The user will get this key if they defeat the enemy.
      */
     public void giveKey() {
         hasKey = true;

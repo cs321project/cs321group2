@@ -37,7 +37,7 @@ public class AbstractMapItem implements Serializable {
     /**
      * Get a string ID to describe the map item
      *
-     * @return
+     * @return Item ID
      */
     public String getID() {
         return this.ID;
@@ -55,7 +55,7 @@ public class AbstractMapItem implements Serializable {
     /**
      * Get location of item on the map
      *
-     * @return
+     * @return Location
      */
     public Location getLocation() {
         return location;

@@ -42,7 +42,7 @@ public class Trap extends AbstractMapItem {
     /**
      * Gets damage value of trap
      *
-     * @return
+     * @return Damage value
      */
     public int getValue() {
         return this.damageValue;
@@ -61,7 +61,7 @@ public class Trap extends AbstractMapItem {
      *
      */
     private void engage() {
-        this.session.currentPlayer.takeDamage(this.damageValue);
+        this.session.currentPlayer.takeDamage(this.damageValue, null);
     }
 
     @Override

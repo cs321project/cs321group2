@@ -6,6 +6,9 @@
 package Models;
 
 import Abstractions.AbstractMapItem;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,12 +33,18 @@ public final class Room implements Serializable {
     private boolean hasLeftExit = false;
     private boolean hasRightExit = false;
 
+    private final Session session = Session.getInstance();
+    private String[] mapData;
     private List<Floor> floors;
     private List<Wall> walls;
     private List<Enemy> enemies;
     private List<Trap> traps;
     private List<Loot> loot;
     private List<RoomTransitionTile> rtTiles;
+
+    /**
+     * Current map door to the next level
+     */
     public Door door;
 
     private Room roomAbove = null;
@@ -60,8 +69,41 @@ public final class Room implements Serializable {
      *
      * @param mapData
      */
-    public Room(String[] mapData, Session session) {
+    public Room(String[] mapData) {
         this.interpretMapData(mapData, session);
+        this.mapData = mapData;
+    }
+
+    /**
+     * Gets initial map data
+     *
+     * @return Map Data
+     */
+    public String[] getMapFormat() {
+        return this.mapData;
+    }
+
+    /**
+     * -----OUTDATED----- Reads text from a file and returns it as a string
+     *
+     * @param file
+     * @return the text from the file as a String
+     */
+    public String getMapData(File file) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
+            String text;
+            String mapCode = "";
+
+            while ((text = br.readLine()) != null) {
+                mapCode += "\n" + text;
+            }
+            return mapCode;
+        } catch (IOException e) {
+            e.getStackTrace();
+        }
+        return "getMapData did not work";
     }
 
     /**
@@ -71,6 +113,7 @@ public final class Room implements Serializable {
      *
      * @param mapData the string that contains the information for building the
      * Room
+     * @param session
      */
     public void interpretMapData(String[] mapData, Session session) {
         floors = new ArrayList<>();
@@ -83,17 +126,17 @@ public final class Room implements Serializable {
 
         roomWidth = mapData[0].length();
         roomHeight = mapData.length;
-        
+
         this.roomGrid = new AbstractMapItem[roomWidth][roomHeight];
 
         for (int j = 0; j < mapData.length; j++) {
             for (int i = 0; i < mapData[j].length(); i++) {
-                
+
                 char c = mapData[j].charAt(i);
                 AbstractMapItem item = null;
                 Location loc = new Location(j, i);
                 boolean isPlayer = false;
-                
+
                 switch (c) {
                     case 'R':
                         RoomTransitionTile tempRT = null;
@@ -117,7 +160,7 @@ public final class Room implements Serializable {
                         if (tempRT != null) {
                             item = tempRT;
                             rtTiles.add(tempRT);
-                        } 
+                        }
                         break;
                     case 'D': {
                         Door tempDoor = new Door();
@@ -167,42 +210,48 @@ public final class Room implements Serializable {
             }
         }
     }
+
     //------------Getters for all AbstractMapItem Lists-----------------------
     /**
-     * Gets the list of floors in this room.
-     * @return
+     * Get Floors for each room
+     *
+     * @return Floors
      */
     public List<Floor> getFloors() {
         return floors;
     }
 
     /**
-     * Gets the list of walls in this room.
-     * @return
+     * Gets walls for each room
+     *
+     * @return Walls
      */
     public List<Wall> getWalls() {
         return walls;
     }
 
     /**
-     * Gets the list of enemies in this room.
-     * @return
+     * Gets a collection of enemies for each room
+     *
+     * @return Enemies
      */
     public List<Enemy> getEnemies() {
         return enemies;
     }
 
     /**
-     * Gets the list of traps in this room.
-     * @return
+     * Gets all of the traps for each room
+     *
+     * @return Traps
      */
     public List<Trap> getTraps() {
         return traps;
     }
 
     /**
-     * Gets the 2D array of AbstractMapItems in this room.
-     * @return
+     * Gets Map Grid Data
+     *
+     * @return Collection of Abstract Map Items
      */
     public AbstractMapItem[][] getRoomGrid() {
         return roomGrid;
@@ -210,15 +259,17 @@ public final class Room implements Serializable {
 
     //---------Getters and Setters for adjacent Rooms---------------------
     /**
-     * Gets room above this one.
-     * @return
+     * Gets the room above the current room
+     *
+     * @return Room
      */
     public Room getRoomAbove() {
         return roomAbove;
     }
 
     /**
-     * Sets room above of this one.
+     * Sets the room above the current room
+     *
      * @param roomAbove
      */
     public void setRoomAbove(Room roomAbove) {
@@ -229,7 +280,8 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Gets room below this one.
+     * Gets the room below the current room
+     *
      * @return
      */
     public Room getRoomBelow() {
@@ -237,7 +289,8 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Sets room below of this one.
+     * Sets the room below the current room
+     *
      * @param roomBelow
      */
     public void setRoomBelow(Room roomBelow) {
@@ -248,7 +301,8 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Gets room to the right this one.
+     * Gets the room to the right the current room
+     *
      * @return
      */
     public Room getRoomRight() {
@@ -256,7 +310,8 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Sets room to the right of this one.
+     * Sets the room to the right the current room
+     *
      * @param roomRight
      */
     public void setRoomRight(Room roomRight) {
@@ -267,7 +322,8 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Gets room to the left this one.
+     * Gets the room to the left the current room
+     *
      * @return
      */
     public Room getRoomLeft() {
@@ -275,7 +331,8 @@ public final class Room implements Serializable {
     }
 
     /**
-     * Sets room to the left of this one.
+     * Sets the room to the left the current room
+     *
      * @param roomLeft
      */
     public void setRoomLeft(Room roomLeft) {

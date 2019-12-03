@@ -9,9 +9,9 @@ import java.util.List;
 public class StringUtil {
 
     /**
-     *
+     * Concatenates strings
      * @param args
-     * @return
+     * @return string
      */
     public static String concat(String... args) {
         if (args == null) {
@@ -30,19 +30,19 @@ public class StringUtil {
     }
 
     /**
-     *
+     * joins string in a specified format
      * @param strings
-     * @return
+     * @return string
      */
     public static String join(List<String> strings) {
         return join(strings, ", ");
     }
 
     /**
-     *
+     * joins string in a specified format
      * @param strings
      * @param seperator
-     * @return
+     * @return string 
      */
     public static String join(List<String> strings, String seperator) {
         if (strings == null) {

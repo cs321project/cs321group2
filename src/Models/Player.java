@@ -9,6 +9,7 @@ import Abstractions.AbstractMapItem;
 import Utils.FileUtil;
 import Utils.Log;
 import Utils.StringUtil;
+import Views.GameView;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Player directory where player info and settings are serialized
      *
-     * @return
+     * @return The path of the directory where all player settings are saved
      */
     public String getPlayerSettingsDir() {
         String gameDir = this.session.getGameDirectory();
@@ -92,7 +93,7 @@ public final class Player extends AbstractMapItem {
     /**
      * File where players sessions are serialized
      *
-     * @return
+     * @return the path to the file where all player settings are displayed
      */
     public String getPlayerSettingsFile() {
         String playerDir = this.getPlayerSettingsDir();
@@ -107,7 +108,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Player username used to log in
      *
-     * @return
+     * @return Username
      */
     public String getUsername() {
         return this.username;
@@ -125,7 +126,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Gets list of loot the user currently has in inventory
      *
-     * @return
+     * @return Player inventory
      */
     public List<Loot> getInventory() {
         return this.inventory;
@@ -134,7 +135,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Gets the display names of the inventory items
      *
-     * @return
+     * @return Inventory display names
      */
     public List<String> getInventoryDisplayNames() {
         List<String> inv = new ArrayList<>();
@@ -149,7 +150,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Get the health value of the player
      *
-     * @return
+     * @return Player health
      */
     public int getHealth() {
         return this.health;
@@ -158,7 +159,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Gets the attack level of the player
      *
-     * @return
+     * @return Player attack level
      */
     public int getAttack() {
         return this.baseAttack;
@@ -167,7 +168,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Gets the defense level of the user
      *
-     * @return
+     * @return Player defense level
      */
     public int getDefense() {
         return this.baseDefense;
@@ -176,7 +177,7 @@ public final class Player extends AbstractMapItem {
     /**
      * Gets the number of lives that the player has left
      *
-     * @return
+     * @return Player lives remaining
      */
     public int getLives() {
         return this.lives;
@@ -202,16 +203,20 @@ public final class Player extends AbstractMapItem {
 
     /**
      * Attack enemies on the map
+     *
+     * @param enemy
      */
-    public void attack() {
-
+    public void attack(Enemy enemy) {
+        enemy.takeDamage(this.baseAttack);
     }
 
     /**
-     * Moves the player around the map
+     * Moves the player around the map if the player can move into the the
+     * specified grid square. This also accounts for picking up loot attacking
+     * enemies, etc.
      *
      * @param direction
-     * @return
+     * @return boolean
      */
     public boolean move(PlayerDirection direction) {
 
@@ -293,6 +298,8 @@ public final class Player extends AbstractMapItem {
                 return true;
             }
             case "Enemy": {
+                Enemy enemy = (Enemy) item;
+                enemy.attack();
                 return false;
             }
             case "Trap": {
@@ -306,40 +313,35 @@ public final class Player extends AbstractMapItem {
 
                     if (mapDoor != null) {
                         mapDoor.unLock();
-                    }
 
-                    return true;
+                        if (this.session.currentLevel < 3) {
+                            this.hasKey = false;
+
+                            List<Loot> inv = new ArrayList<>();
+
+                            for (Loot l : this.inventory) {
+                                if (l != null) {
+                                    if (l.getDisplayName() != "Key") {
+                                        inv.add(l);
+                                    }
+                                }
+                            }
+
+                            this.inventory = inv;
+                        }
+                    }
                 } else {
-                    return false;
+                    GameView.DisplayNoKeyMessage();
                 }
+
+                return false;
             }
-            //Currently does not affect gameplay
-            case "Room": {
-                RoomTransitionTile rtt = (RoomTransitionTile) item;
-                int x = rtt.getLocation().getxCoord();
-                int y = rtt.getLocation().getyCoord();
-                Room newRoom = null;
-                if (rtt.onTopWall) {
-                    newRoom = session.currentMap.getCurrentRoom().getRoomAbove();
-                    session.currentMap.setCurrentRoom(newRoom);
-                    this.setLocation(new Location(x + 1, y));
-                }
-                else if (rtt.onBottomWall) {
-                    newRoom = session.currentMap.getCurrentRoom().getRoomBelow();
-                    session.currentMap.setCurrentRoom(newRoom);
-                    this.setLocation(new Location(x - 1, y));
-                }
-                else if (rtt.onLeftWall) {
-                    newRoom = session.currentMap.getCurrentRoom().getRoomLeft();
-                    session.currentMap.setCurrentRoom(newRoom);
-                    this.setLocation(new Location(x, y + 1));
-                }
-                else if (rtt.onRightWall) {
-                    newRoom = session.currentMap.getCurrentRoom().getRoomRight();
-                    session.currentMap.setCurrentRoom(newRoom);
-                    this.setLocation(new Location(x, y - 1));
-                }
-                
+            case "RoomTransitionTile": {
+                int level = this.session.currentMap.getLevel() + 1;
+                this.session.currentMap = null;
+                this.session.currentMap = new Map(level);
+
+                return false;
             }
             default: //Just open floor here
                 return true;
@@ -347,35 +349,37 @@ public final class Player extends AbstractMapItem {
     }
 
     /**
-     * Improves the players health
+     * Gives the user the key to unlock the map door to advance the next level
      */
-    public void heal() {
-
+    public void giveKey() {
+        if (!this.hasKey) {
+            hasKey = true;
+            GameView.DisplayHasKeyMessage();
+            this.inventory.add(new Loot(this.getLocation(), 5, "Key"));
+        }
     }
 
     /**
-     * Spawns the user
-     */
-    public void revive() {
-
-    }
-
-    /**
-     * Spawns the user
+     * Take damage from traps and enemies
      *
      * @param damageValue
+     * @param enemy
      */
-    public void takeDamage(int damageValue) {
+    public void takeDamage(int damageValue, Enemy enemy) {
         this.health = this.health - damageValue;
 
         if (this.health <= 0) {
-            
+
             this.lives--;
             this.health = Player.MAX_HEALTH;
             this.session.currentMap.setToInitialFormat();
-            
+
             if (this.lives <= 0) {
                 this.die();
+            }
+        } else {
+            if (enemy != null) {
+                this.attack(enemy);
             }
         }
     }
@@ -384,19 +388,35 @@ public final class Player extends AbstractMapItem {
      * Starts the game over when the player is out of health and lives
      */
     private void die() {
-        
-        // Restart Game
-        
+
+        List<Loot> beginnerInventory = new ArrayList();
+        beginnerInventory.add(new Loot(null, 5, "Sword"));
+        beginnerInventory.add(new Loot(null, 5, "Sheild"));
+        String name = this.session.currentPlayer.getUsername();
+
+        this.session.currentMap = new Map(Map.MIN_LEVEL);
+        this.session.currentPlayer = new Player(name, beginnerInventory, Player.MAX_HEALTH, null,
+                Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES, Map.MIN_LEVEL);
+
     }
 
     /**
      * Gets the highest map level that the player has achieved
      *
-     * @return
+     * @return Highest level achieved by the user
      */
     public int getHighestLevel() {
         return this.highestLevel;
 
+    }
+
+    /**
+     * Sets the highest level achieved by the user
+     *
+     * @param level
+     */
+    public void setHighestLevel(int level) {
+        this.highestLevel = level;
     }
 
     @Override

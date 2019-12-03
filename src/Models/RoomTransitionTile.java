@@ -8,9 +8,9 @@ package Models;
 import Abstractions.AbstractMapItem;
 
 /**
- * The AbstractMapItem that represents the passage from one room to another.
- * It keeps track of its relative position in the room 
- * (left wall, top wall, etc.).
+ * The AbstractMapItem that represents the passage from one room to another. It
+ * keeps track of its relative position in the room (left wall, top wall, etc.).
+ *
  * @author Matthew
  */
 public class RoomTransitionTile extends AbstractMapItem {
@@ -19,20 +19,23 @@ public class RoomTransitionTile extends AbstractMapItem {
     public boolean onRightWall = false;
     public boolean onTopWall = false;
     public boolean onBottomWall = false;
-    
 
+    /**
+     * Tile that leads to a different room when the player enters the tile
+     */
     public RoomTransitionTile() {
         super.setID(this.toString());
     }
-    
+
     /**
      * Constructor
-     * @param loc becomes the tile's location
+     *
+     * @param loc becomes the tiles location
      * @param pos A string of either "Top", "Bottom", "Left", or "Right",
      * indicating on which side of the room the tile is.
      */
     public RoomTransitionTile(Location loc, String pos) {
-        super.setID("Room");
+        super.setID(this.toString());
         super.setLocation(loc);
         switch (pos) {
             case "Top":

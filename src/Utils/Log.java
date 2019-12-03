@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class Log {
 
     /**
+     * Display exceptions in output window
      *
      * @param ex
      */
@@ -38,6 +39,7 @@ public class Log {
     }
 
     /**
+     * Display errors in output window
      *
      * @param message
      */
@@ -50,6 +52,7 @@ public class Log {
     }
 
     /**
+     * Display warnings in output window
      *
      * @param message
      */
@@ -62,6 +65,7 @@ public class Log {
     }
 
     /**
+     * Display information in output window
      *
      * @param message
      */
@@ -74,6 +78,7 @@ public class Log {
     }
 
     /**
+     * Display debug messages in output window
      *
      * @param message
      */
@@ -86,6 +91,7 @@ public class Log {
     }
 
     /**
+     * Display verbose messages in output window
      *
      * @param message
      */
@@ -98,6 +104,7 @@ public class Log {
     }
 
     /**
+     * Display output in output window
      *
      * @param message
      */
@@ -116,8 +123,9 @@ public class Log {
     }
 
     /**
+     * Read input from console
      *
-     * @return
+     * @return string
      */
     public static String getInputString() {
         Scanner scanner = new Scanner(System.in);
@@ -125,8 +133,9 @@ public class Log {
     }
 
     /**
+     * Get integer from console
      *
-     * @return
+     * @return integer
      */
     public static int getInputInt() {
         Scanner scanner = new Scanner(System.in);

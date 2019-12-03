@@ -22,7 +22,7 @@ public class Settings {
      * De-serializes session
      *
      * @param session
-     * @return
+     * @return Session
      * @throws IOException
      * @throws ClassNotFoundException
      */

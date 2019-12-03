@@ -7,10 +7,10 @@ package Utils;
 public class RandomUtil {
 
     /**
-     *
+     * Gets a random number in a range
      * @param min
      * @param max
-     * @return
+     * @return random integer
      * @throws Exception
      */
     public static int getRandomIntegerBetweenRange(int min, int max) throws Exception {

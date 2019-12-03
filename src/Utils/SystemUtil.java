@@ -19,14 +19,16 @@ import javax.imageio.ImageIO;
 public class SystemUtil {
 
     /**
+     * Gets the user home directory
      *
-     * @return
+     * @return User directory path
      */
     public static String getUserDirectory() {
         return System.getProperty(Constants.USER_DIR_KEY);
     }
 
     /**
+     * Gets a buffered image from an embedded resource
      *
      * @param res
      * @return

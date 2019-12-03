@@ -27,9 +27,8 @@ public class Location implements Serializable {
     /**
      * Constructor
      *
-     * @param x int value for location on vertical axis (0 is top row, then
-     * numbers increase as location descends)
-     * @param y int value for location on horizontal axis
+     * @param x
+     * @param y
      */
     public Location(int x, int y) {
         xCoord = x;
@@ -39,7 +38,7 @@ public class Location implements Serializable {
     /**
      * Get x coordinate
      *
-     * @return
+     * @return X
      */
     public int getxCoord() {
         return xCoord;
@@ -57,14 +56,14 @@ public class Location implements Serializable {
     /**
      * get y coordinate
      *
-     * @return
+     * @return Y
      */
     public int getyCoord() {
         return yCoord;
     }
 
     /**
-     * Set y coordinate
+     * set y coordinate
      *
      * @param yCoord
      */
@@ -76,7 +75,7 @@ public class Location implements Serializable {
      * Determine if two locations are equal
      *
      * @param loc
-     * @return
+     * @return boolean
      */
     public boolean equals(Location loc) {
         return this.getxCoord() == loc.getxCoord()

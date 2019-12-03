@@ -41,27 +41,64 @@ public final class Map implements Serializable {
     /**
      * Constructor
      *
-     * @param level Int value representing which level the player is on.
-     * Determines the contents of the map.
+     * @param level
      */
     public Map(int level) {
         this.level = level;
         this.rooms = new ArrayList<>();
         this.enemies = new ArrayList<>();
 
-        switch (level) {
+        switch (this.session.currentLevel) {
             case 1:
-                assembleMap1();
-                //If you want to test a different room, go to assembleMap1 and
-                //replace StartingRoomLevel1 with the room you want
+                switch (level) {
+                    case 1:
+                        this.initMapFormat = Maps.Maps.Level1Map1;
+                        break;
+                    case 2:
+                        this.initMapFormat = Maps.Maps.Level1Map2;
+                        break;
+                    case 3:
+                        this.initMapFormat = Maps.Maps.Level1Map3;
+                        break;
+                    case 4:
+                        this.initMapFormat = Maps.Maps.Level1Map4;
+                        break;
+                }
                 break;
             case 2:
-                assembleMap2();
+                switch (level) {
+                    case 1:
+                        this.initMapFormat = Maps.Maps.Level2Map1;
+                        break;
+                    case 2:
+                        this.initMapFormat = Maps.Maps.Level2Map2;
+                        break;
+                    case 3:
+                        this.initMapFormat = Maps.Maps.Level2Map3;
+                        break;
+                    case 4:
+                        this.initMapFormat = Maps.Maps.Level2Map4;
+                        break;
+                }
                 break;
-            case 3:
-                assembleMap3();
+            default:
+                switch (level) {
+                    case 1:
+                        this.initMapFormat = Maps.Maps.Level3Map1;
+                        break;
+                    case 2:
+                        this.initMapFormat = Maps.Maps.Level3Map2;
+                        break;
+                    case 3:
+                        this.initMapFormat = Maps.Maps.Level3Map3;
+                        break;
+                    case 4:
+                        this.initMapFormat = Maps.Maps.Level3Map4;
+                        break;
+                }
                 break;
         }
+
         this.setToInitialFormat();
     }
 
@@ -79,7 +116,10 @@ public final class Map implements Serializable {
                 boolean isPlayer = false;
 
                 switch (c) {
-                    case 'R':
+                    case 'R': {
+                        item = new RoomTransitionTile(loc, "Top");
+                        break;
+                    }
                     case 'D': {
                         item = new Door(loc, this.level);
                         this.mapDoor = (Door) item;
@@ -122,7 +162,7 @@ public final class Map implements Serializable {
     /**
      * Get the level of the map that the user is on
      *
-     * @return
+     * @return Map Level
      */
     public int getLevel() {
         return this.level;
@@ -131,7 +171,7 @@ public final class Map implements Serializable {
     /**
      * Gets the list of AbstractMapItems on the map
      *
-     * @return
+     * @return Map grid of abstract map items
      */
     public AbstractMapItem[][] getMapGrid() {
         return this.mapGrid;
@@ -140,7 +180,7 @@ public final class Map implements Serializable {
     /**
      * Gets the door on the map
      *
-     * @return
+     * @return Map door to the next level
      */
     public Door getMapDoor() {
         return this.mapDoor;
@@ -158,10 +198,10 @@ public final class Map implements Serializable {
     /**
      * Gets a string representation on the map level
      *
-     * @return
+     * @return Display name for the level of difficulty of the map
      */
     public String getLevelOfDificulty() {
-        switch (this.level) {
+        switch (this.session.currentLevel) {
             case 1:
                 return "Easy";
             case 2:
@@ -176,72 +216,72 @@ public final class Map implements Serializable {
      * adjacent rooms so they know their relative position.
      */
     private void assembleMap1() {
-        String[] firstRoom = Maps.Maps.StartingRoomLevel1;
-        rooms.add(new Room(firstRoom, this.session)); //0
-        rooms.add(new Room(Maps.Maps.OpenRoom1, this.session)); //1        
-        rooms.add(new Room(Maps.Maps.DeadEndR, this.session)); //2        
-        rooms.add(new Room(Maps.Maps.DeadEndB, this.session)); //3        
-        rooms.add(new Room(Maps.Maps.BottomRightCornerRoom, this.session)); //4        
-        rooms.add(new Room(Maps.Maps.FinalRoomLevel1, this.session)); //5        
-        
+        //Assemble Map
+        String[] firstRoom = Maps.Maps.Level1Map1;
+        rooms.add(new Room(firstRoom));
+        rooms.add(new Room(Maps.Maps.Level1Map2));
         rooms.get(0).setRoomAbove(rooms.get(1));
+        rooms.add(new Room(Maps.Maps.Level2Map1));
         rooms.get(2).setRoomRight(rooms.get(1));
+        rooms.add(new Room(Maps.Maps.Level2Map2));
         rooms.get(3).setRoomBelow(rooms.get(1));
+        rooms.add(new Room(Maps.Maps.Level3Map2));
         rooms.get(4).setRoomLeft(rooms.get(1));
+        rooms.add(new Room(Maps.Maps.Level3Map4));
         rooms.get(5).setRoomBelow(rooms.get(4));
-        
+
         findDoor();
         assembleEnemiesList();
-        
+
         setCurrentRoom(rooms.get(0));
         setMapGrid(currentRoom.getRoomGrid());
         this.initMapFormat = firstRoom;
     }
-    
+
     /**
      * Creates rooms and adds the to the map's room list. Also sets the rooms
      * adjacent rooms so they know their relative position.
      */
     private void assembleMap2() {
-        String[] firstRoom = Maps.Maps.StartingRoomLevel2;
-        rooms.add(new Room(firstRoom, this.session)); //0
-        rooms.add(new Room(Maps.Maps.OpenRoom2, this.session)); //1
-        rooms.add(new Room(Maps.Maps.TreasureRoom, this.session)); //2        
-        rooms.add(new Room(Maps.Maps.HorizontalHall, this.session)); //3        
-        rooms.add(new Room(Maps.Maps.BottomRightCornerRoom, this.session)); //4        
-        rooms.add(new Room(Maps.Maps.FinalRoomLevel2, this.session)); //5        
-        
+        String[] firstRoom = Maps.Maps.Level1Map1;
+        rooms.add(new Room(firstRoom)); //0
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //1
+        rooms.add(new Room(Maps.Maps.Level2Map2)); //2        
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //3        
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //4        
+        rooms.add(new Room(Maps.Maps.Level1Map3)); //5        
+
         rooms.get(0).setRoomAbove(rooms.get(1));
         rooms.get(2).setRoomBelow(rooms.get(1));
         rooms.get(3).setRoomLeft(rooms.get(1));
         rooms.get(4).setRoomLeft(rooms.get(3));
         rooms.get(5).setRoomBelow(rooms.get(4));
-        
+
         findDoor();
         assembleEnemiesList();
-        
+
         setCurrentRoom(rooms.get(0));
         setMapGrid(currentRoom.getRoomGrid());
         this.initMapFormat = firstRoom;
     }
-    
+
     /**
      * Creates rooms and adds the to the map's room list. Also sets the rooms
      * adjacent rooms so they know their relative position.
      */
     private void assembleMap3() {
-        String[] firstRoom = Maps.Maps.StartingRoomLevel3;
-        rooms.add(new Room(firstRoom, this.session)); //0
-        rooms.add(new Room(Maps.Maps.OpenRoom3, this.session)); //1
-        rooms.add(new Room(Maps.Maps.DeadEndL, this.session)); //2
-        rooms.add(new Room(Maps.Maps.HorizontalBridge, this.session)); //3
-        rooms.add(new Room(Maps.Maps.OpenRoom1, this.session)); //4
-        rooms.add(new Room(Maps.Maps.DeadEndB, this.session)); //5
-        rooms.add(new Room(Maps.Maps.DeadEndT, this.session)); //6
-        rooms.add(new Room(Maps.Maps.BottomLeftCornerRoom, this.session)); //7
-        rooms.add(new Room(Maps.Maps.VerticalHall, this.session)); //8
-        rooms.add(new Room(Maps.Maps.FinalRoomLevel3, this.session)); //9
-        
+        String[] firstRoom = Maps.Maps.Level1Map1;
+        rooms.add(new Room(firstRoom)); //0
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //1
+        rooms.add(new Room(Maps.Maps.Level2Map2)); //2        
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //3        
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //4        
+        rooms.add(new Room(Maps.Maps.Level1Map3)); //5   
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //6
+        rooms.add(new Room(Maps.Maps.Level1Map2)); //7
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //8
+        rooms.add(new Room(Maps.Maps.Level1Map1)); //9
+
         rooms.get(0).setRoomAbove(rooms.get(1));
         rooms.get(2).setRoomLeft(rooms.get(1));
         rooms.get(3).setRoomRight(rooms.get(1));
@@ -251,15 +291,15 @@ public final class Map implements Serializable {
         rooms.get(7).setRoomRight(rooms.get(4));
         rooms.get(8).setRoomBelow(rooms.get(7));
         rooms.get(9).setRoomBelow(rooms.get(8));
-        
+
         findDoor();
         assembleEnemiesList();
-        
+
         setCurrentRoom(rooms.get(0));
         setMapGrid(currentRoom.getRoomGrid());
         this.initMapFormat = firstRoom;
     }
-    
+
     /**
      * Takes the enemy lists from the maps rooms and compiles all the enemies
      * into one list. This method also assigns a key to a random enemy in the
@@ -267,7 +307,7 @@ public final class Map implements Serializable {
      */
     private void assembleEnemiesList() {
         //Assigns key to random enemy
-        List<Enemy> tempEnemies = null;
+        List<Enemy> tempEnemies;
         for (int i = 0; i < rooms.size(); i++) {
             tempEnemies = rooms.get(i).getEnemies();
             for (int j = 0; j < tempEnemies.size(); j++) {
@@ -290,13 +330,23 @@ public final class Map implements Serializable {
             }
         }
     }
-    
+
+    /**
+     * Sets the map room the the player is currently in
+     *
+     * @param room
+     */
     public void setCurrentRoom(Room room) {
         this.currentRoom = room;
     }
 
+    /**
+     * Gets the current room that the player is in
+     *
+     * @return
+     */
     public Room getCurrentRoom() {
         return currentRoom;
     }
-    
+
 }

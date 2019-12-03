@@ -20,7 +20,12 @@ public class Wall extends AbstractMapItem {
     public Wall() {
         super.setID(this.toString());
     }
-    
+
+    /**
+     * Constructor
+     *
+     * @param loc
+     */
     public Wall(Location loc) {
         super.setLocation(loc);
         super.setID("Wall");
