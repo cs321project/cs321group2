@@ -391,7 +391,7 @@ public final class Player extends AbstractMapItem {
 
         List<Loot> beginnerInventory = new ArrayList();
         beginnerInventory.add(new Loot(null, 5, "Sword"));
-        beginnerInventory.add(new Loot(null, 5, "Sheild"));
+        beginnerInventory.add(new Loot(null, 5, "Shield"));
         String name = this.session.currentPlayer.getUsername();
 
         this.session.currentMap = new Map(Map.MIN_LEVEL);

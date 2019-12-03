@@ -109,7 +109,7 @@ public final class Session implements Serializable {
         } catch (Exception ex) {
             List<Loot> beginnerInventory = new ArrayList();
             beginnerInventory.add(new Loot(null, 5, "Sword"));
-            beginnerInventory.add(new Loot(null, 5, "Sheild"));
+            beginnerInventory.add(new Loot(null, 5, "Shield"));
 
             currentMap = new Map(Map.MIN_LEVEL);
             currentPlayer = new Player(userName, beginnerInventory, Player.MAX_HEALTH, null,
