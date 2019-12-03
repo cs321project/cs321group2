@@ -76,7 +76,7 @@ public final class Session implements Serializable {
 
             List<Loot> beginnerInventory = new ArrayList();
             beginnerInventory.add(new Loot(null, 5, "Sword"));
-            beginnerInventory.add(new Loot(null, 5, "Sheild"));
+            beginnerInventory.add(new Loot(null, 5, "Shield"));
 
             currentPlayer = new Player(userName, beginnerInventory, Player.MAX_HEALTH, null,
                     Player.MAX_ATTACK, Player.MAX_DEFENSE, Player.MAX_LIVES, Map.MIN_LEVEL);
